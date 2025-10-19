@@ -1023,3 +1023,15 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+if vim.g.vscode then -- VSCode extension
+  local vscode = require('vscode')
+  -- Remap folding keys
+  vim.keymap.set('n', 'zM', function() vscode.call("editor.foldAll") end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'zR', function() vscode.call("editor.unfoldAll") end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'zc', function() vscode.call("editor.fold") end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'zC', function() vscode.call("editor.foldRecursively") end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'zo', function() vscode.call("editor.unfold") end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'zO', function() vscode.call("editor.unfoldRecursively") end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'za', function() vscode.call("editor.toggleFold") end, { noremap = true, silent = true })
+end
