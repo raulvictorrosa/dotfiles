@@ -1,0 +1,104 @@
+" ------------------------------
+" 1. Leader key must be set first
+" ------------------------------
+" let g:mapleader = ' '
+" let maplocalleader = ' '
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+
+" ------------------------------
+" 2. Plugin setup
+" ------------------------------
+call plug#begin('~/.vim/plugged')
+" List your plugins here
+Plug 'dracula/vim', { 'as': 'dracula' }
+" core fzf plugin (required)
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" vim integration
+Plug 'junegunn/fzf.vim'
+Plug 'matze/vim-move'
+" Plug 'myusuf3/numbers.vim'
+Plug 'liuchengxu/vim-which-key'
+Plug 'rust-lang/rust.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-sensible'
+Plug 'xuyuanp/nerdtree-git-plugin'
+
+" Supported by IdeaVim
+" Highlight copied text"
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+Plug 'dbakker/vim-paragraph-motion'
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+
+call plug#end()
+
+" ------------------------------
+" 3. General settings
+" ------------------------------
+set encoding=UTF-8
+set guifont=JetBrainsMono\ Nerd\ Font\ 14
+set relativenumber
+
+" ------------------------------
+" 4. Colorscheme
+" ------------------------------
+colorscheme dracula
+
+" ------------------------------
+" 5. Key mappings (after leader + plugins are loaded)
+" ------------------------------
+let g:CommandTAcceptSelectionMap = '<C-t>'
+let g:CommandTAcceptSelectionTabMap = '<CR>'
+
+" Command-T settings (optional)
+let g:CommandTMaxFiles = 5000 " Max files to index
+let g:CommandTScanDotFiles = 1 " Include hidden files
+
+" Key mapping to open fzf
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>g :GFiles<CR>
+
+" WhichKey config
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+
+" Define prefix dictionary
+" let g:which_key_map =  {}
+" let g:which_key_map['w'] = {
+"       \ 'name' : '+windows' ,
+"       \ 'w' : ['<C-W>w'     , 'other-window']          ,
+"       \ 'd' : ['<C-W>c'     , 'delete-window']         ,
+"       \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+"       \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+"       \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+"       \ 'h' : ['<C-W>h'     , 'window-left']           ,
+"       \ 'j' : ['<C-W>j'     , 'window-below']          ,
+"       \ 'l' : ['<C-W>l'     , 'window-right']          ,
+"       \ 'k' : ['<C-W>k'     , 'window-up']             ,
+"       \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+"       \ 'J' : [':resize +5'  , 'expand-window-below']   ,
+"       \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+"       \ 'K' : [':resize -5'  , 'expand-window-up']      ,
+"       \ '=' : ['<C-W>='     , 'balance-window']        ,
+"       \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+"       \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+"       \ '?' : ['Windows'    , 'fzf-window']            ,
+"       \ }
+
+let g:NERDTreeShowHidden = 1
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" ------------------------------
+" 6. Autocommands / Plugin configs
+" ------------------------------
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+let g:NERDTreeShowHidden = 1
