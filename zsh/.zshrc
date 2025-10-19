@@ -171,6 +171,7 @@ source /Users/ror2lis/.config/broot/launcher/bash/br
 
 # LSD Aliases
 alias ls='lsd'
+alias cat='bat'
 
 # VI Mode!!!
 bindkey jj vi-cmd-mode
