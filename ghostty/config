@@ -1,3 +1,4 @@
 theme = Dracula
 minimum-contrast = 1
 font-size = 14
+mouse-hide-while-typing = true
