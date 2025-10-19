@@ -1,0 +1,7 @@
+# skhd configuration file
+# https://github.com/koekeishiya/skhd
+
+# Application shortcuts
+alt - c : open -a 'Visual Studio Code'
+alt - t : open -a 'Ghostty'
+alt - b : open -a 'Google Chrome'
