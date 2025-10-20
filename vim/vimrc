@@ -1,8 +1,6 @@
 " ------------------------------
 " 1. Leader key must be set first
 " ------------------------------
-" let g:mapleader = ' '
-" let maplocalleader = ' '
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
 
@@ -11,9 +9,13 @@ let g:maplocalleader = ','
 " ------------------------------
 call plug#begin('~/.vim/plugged')
 " List your plugins here
+
+" Theme
 Plug 'dracula/vim', { 'as': 'dracula' }
+
 " core fzf plugin (required)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 " vim integration
 Plug 'junegunn/fzf.vim'
 Plug 'matze/vim-move'
@@ -24,6 +26,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-sensible'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'vim-airline/vim-airline'
 
 " Supported by IdeaVim
 " Highlight copied text"
@@ -66,29 +69,6 @@ nnoremap <leader>g :GFiles<CR>
 " WhichKey config
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-
-" Define prefix dictionary
-" let g:which_key_map =  {}
-" let g:which_key_map['w'] = {
-"       \ 'name' : '+windows' ,
-"       \ 'w' : ['<C-W>w'     , 'other-window']          ,
-"       \ 'd' : ['<C-W>c'     , 'delete-window']         ,
-"       \ '-' : ['<C-W>s'     , 'split-window-below']    ,
-"       \ '|' : ['<C-W>v'     , 'split-window-right']    ,
-"       \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
-"       \ 'h' : ['<C-W>h'     , 'window-left']           ,
-"       \ 'j' : ['<C-W>j'     , 'window-below']          ,
-"       \ 'l' : ['<C-W>l'     , 'window-right']          ,
-"       \ 'k' : ['<C-W>k'     , 'window-up']             ,
-"       \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-"       \ 'J' : [':resize +5'  , 'expand-window-below']   ,
-"       \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-"       \ 'K' : [':resize -5'  , 'expand-window-up']      ,
-"       \ '=' : ['<C-W>='     , 'balance-window']        ,
-"       \ 's' : ['<C-W>s'     , 'split-window-below']    ,
-"       \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
-"       \ '?' : ['Windows'    , 'fzf-window']            ,
-"       \ }
 
 let g:NERDTreeShowHidden = 1
 nnoremap <leader>n :NERDTreeFocus<CR>
