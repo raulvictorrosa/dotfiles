@@ -5,6 +5,11 @@ setupVsCodeConfigs = function()
   if not vim.g.vscode then
     return -- Only run when in VSCode
   end
+
+  -- Disable statusline in VSCode since VSCode has its own status bar
+  vim.o.showmode = true
+  vim.o.laststatus = 0
+
   local vscode = require('vscode')
   -- Remap folding keys to use VSCode commands
   local keymap = vim.keymap.set
