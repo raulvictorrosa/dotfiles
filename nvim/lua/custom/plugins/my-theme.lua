@@ -1,4 +1,4 @@
--- Initing Dracula Theme
+-- Dracula Theme
 
 return {
   {
@@ -9,3 +9,4 @@ return {
     end,
   },
 }
+-- vim: ts=2 sts=2 sw=2 e
