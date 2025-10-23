@@ -30,6 +30,23 @@ setupVsCodeConfigs = function()
   keymap('n', 'za', function()
     vscode.call("editor.toggleFold")
   end, opts)
+
+  -- Additional VSCode-specific keymaps
+  keymap('n', '<leader>sf', function()
+    vscode.call 'workbench.action.quickOpen'
+  end, { desc = 'Quick Open' })
+
+  -- keymap('n', '<leader>fg', function()
+  --   vscode.call 'workbench.view.search'
+  -- end, { desc = 'Search in files' })
+
+  keymap('n', '<leader>s<space>', function()
+    vscode.call 'workbench.action.showAllEditors'
+  end, { desc = 'Show all buffers' })
+
+  keymap('n', '<leader>sc', function()
+    vscode.call 'workbench.action.showCommands'
+  end, { desc = 'Command palette' })
 end
 
 setupVsCodeConfigs()
