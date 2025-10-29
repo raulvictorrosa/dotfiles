@@ -70,6 +70,10 @@ local setupVsCodeConfigs = function()
       vscode.call("workbench.files.action.focusFilesExplorer")
     end, { desc = "Open Global Keybindings", noremap = true, silent = true })
 
+    pcall(set_vscode_keymap, "n", "<leader>aa", function()
+      vscode.call("workbench.panel.chat")
+    end, { desc = "Toggle CopilotChat", noremap = true, silent = true })
+
     -- Uncomment and modify this if you want to override telescope's file search
   end)
 end
