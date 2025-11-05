@@ -1,0 +1,25 @@
+# skhd configuration file
+# https://github.com/koekeishiya/skhd
+
+# Application shortcuts
+alt  - 1: open -a 'Google Chrome'
+# alt - b: open -a 'Google Chrome'
+
+# alt - 2: open -a 'Visual Studio Code'
+alt - c: open -a 'Visual Studio Code'
+
+# alt - 3: open -a 'Ghostty'
+alt - t: open -a 'Ghostty'
+# shift + alt - 2: open -a 'Ghostty'
+
+alt - 4: open -a 'Figma'
+# alt - f: open -a 'Figma'
+
+alt - 5: open -a 'Microsoft Teams'
+# alt - m: open -a 'Microsoft Teams'
+
+alt - 6: open -a 'Microsoft Outlook'
+
+# command to restart skhd
+# skhd --reload
+
