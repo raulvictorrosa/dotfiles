@@ -97,8 +97,8 @@ plugins=(
   # nvm
   npm
   rust
-  sudo
-  vi-mode
+  # sudo
+  # vi-mode
   # ubuntu
 )
 
@@ -168,10 +168,13 @@ source /Users/ror2lis/.config/broot/launcher/bash/br
 # bun completions
 [ -s "/Users/ror2lis/.bun/_bun" ] && source "/Users/ror2lis/.bun/_bun"
 
-
-# LSD Aliases
 alias ls='lsd'
 alias cat='bat'
+alias vim='nvim'
+
+export VISUAL=nvim;
+export EDITOR=nvim;
 
 # VI Mode!!!
 bindkey jj vi-cmd-mode
+
