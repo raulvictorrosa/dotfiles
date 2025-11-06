@@ -10,7 +10,7 @@ k9s:
   portForwardAddress: localhost
   ui:
     skin: dracula
-    enableMouse: false
+    enableMouse: true
     headless: false
     logoless: false
     crumbsless: false
@@ -46,4 +46,4 @@ k9s:
     memory:
       critical: 90
       warn: 70
-  defaultView: ""
+  defaultView: ''
