@@ -1,5 +1,7 @@
 .DS_Store
 
+tmux/.config/tmux/plugins/
+
 zed/.config/zed/conversations/
 zed/.config/zed/embeddings/
 zed/.config/zed/prompts/
