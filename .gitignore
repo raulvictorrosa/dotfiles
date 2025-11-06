@@ -1,1 +1,6 @@
 .DS_Store
+
+zed/.config/zed/conversations/
+zed/.config/zed/embeddings/
+zed/.config/zed/prompts/
+zed/.config/zed/.tmp*
