@@ -98,7 +98,7 @@ plugins=(
   npm
   rust
   # sudo
-  # vi-mode
+  vi-mode
   # ubuntu
 )
 
