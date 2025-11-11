@@ -130,7 +130,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-cmd-2 = 'workspace 2'
     alt-cmd-3 = 'workspace 3'
     alt-4 = 'workspace 4'
-    alt-5 = 'workspace 5'
+    alt-5 = ['exec-and-forget open -b com.microsoft.teams2', 'workspace 5']
     alt-6 = 'workspace 6'
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
@@ -200,7 +200,7 @@ if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.teams'
+if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 5'
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
