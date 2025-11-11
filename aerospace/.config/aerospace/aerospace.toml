@@ -126,12 +126,12 @@ automatically-unhide-macos-hidden-apps = true
     alt-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    alt-1 = 'workspace 1'
-    alt-cmd-2 = 'workspace 2'
-    alt-cmd-3 = 'workspace 3'
-    alt-4 = 'workspace 4'
+    alt-1 = ['exec-and-forget open -b com.google.Chrome', 'workspace 1']
+    alt-cmd-2 = ['exec-and-forget open -b com.microsoft.VSCode', 'workspace 2']
+    alt-cmd-3 = ['exec-and-forget open -b com.mitchellh.ghostty', 'workspace 3']
+    alt-4 = ['exec-and-forget open -b com.figma.Desktop', 'workspace 4']
     alt-5 = ['exec-and-forget open -b com.microsoft.teams2', 'workspace 5']
-    alt-6 = 'workspace 6'
+    alt-6 = ['exec-and-forget open -b com.microsoft.Outlook', 'workspace 6']
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
