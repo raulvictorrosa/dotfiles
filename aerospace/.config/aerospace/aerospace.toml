@@ -108,10 +108,10 @@ automatically-unhide-macos-hidden-apps = true
     # alt-comma = 'layout accordion horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    alt-h = 'focus left'
-    alt-j = 'focus down'
-    alt-k = 'focus up'
-    alt-l = 'focus right'
+    alt-cmd-h = 'focus left'
+    alt-cmd-j = 'focus down'
+    alt-cmd-k = 'focus up'
+    alt-cmd-l = 'focus right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     alt-shift-h = 'move left'
@@ -126,26 +126,26 @@ automatically-unhide-macos-hidden-apps = true
     alt-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    alt-1 = ['exec-and-forget open -b com.google.Chrome', 'workspace 1']
+    alt-cmd-1 = ['exec-and-forget open -b com.google.Chrome', 'workspace 1']
     alt-cmd-2 = ['exec-and-forget open -b com.microsoft.VSCode', 'workspace 2']
     alt-cmd-3 = ['exec-and-forget open -b com.mitchellh.ghostty', 'workspace 3']
-    alt-4 = ['exec-and-forget open -b com.figma.Desktop', 'workspace 4']
-    alt-5 = ['exec-and-forget open -b com.microsoft.teams2', 'workspace 5']
-    alt-6 = ['exec-and-forget open -b com.microsoft.Outlook', 'workspace 6']
-    alt-7 = 'workspace 7'
-    alt-8 = 'workspace 8'
-    alt-9 = 'workspace 9'
+    alt-cmd-4 = ['exec-and-forget open -b com.figma.Desktop', 'workspace 4']
+    alt-cmd-5 = ['exec-and-forget open -b com.microsoft.teams2', 'workspace 5']
+    alt-cmd-6 = ['exec-and-forget open -b com.microsoft.Outlook', 'workspace 6']
+    alt-cmd-7 = 'workspace 7'
+    alt-cmd-8 = 'workspace 8'
+    alt-cmd-9 = 'workspace 9'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    alt-shift-1 = 'move-node-to-workspace 1'
-    alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-3 = 'move-node-to-workspace 3'
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
-    alt-shift-6 = 'move-node-to-workspace 6'
-    alt-shift-7 = 'move-node-to-workspace 7'
-    alt-shift-8 = 'move-node-to-workspace 8'
-    alt-shift-9 = 'move-node-to-workspace 9'
+    alt-cmd-shift-1 = 'move-node-to-workspace 1'
+    alt-cmd-shift-2 = 'move-node-to-workspace 2'
+    alt-cmd-shift-3 = 'move-node-to-workspace 3'
+    alt-cmd-shift-4 = 'move-node-to-workspace 4'
+    alt-cmd-shift-5 = 'move-node-to-workspace 5'
+    alt-cmd-shift-6 = 'move-node-to-workspace 6'
+    alt-cmd-shift-7 = 'move-node-to-workspace 7'
+    alt-cmd-shift-8 = 'move-node-to-workspace 8'
+    alt-cmd-shift-9 = 'move-node-to-workspace 9'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
