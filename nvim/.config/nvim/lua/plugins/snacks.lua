@@ -5,6 +5,13 @@ return {
     picker = {
       hidden = true, -- Show hidden files in the picker (e.g., using <leader><leader>)
       ignored = true, -- Show files ignored by git in the picker
+      sources = {
+        files = {
+          -- Explicitly set for the 'files' source used by <space><space>
+          hidden = true,
+          ignored = true,
+        },
+      },
     },
     explorer = {
       files = {
