@@ -4,4 +4,4 @@ minimum-contrast = 1
 font-size = 14
 mouse-hide-while-typing = true
 window-colorspace = display-p3
-
+macos-option-as-alt = true
