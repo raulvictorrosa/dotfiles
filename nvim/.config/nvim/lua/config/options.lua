@@ -6,3 +6,5 @@ local opt = vim.opt
 
 opt.winborder = "rounded"
 opt.spelllang = { "en", "pt" }
+-- vim.opt.statuscolumn = ""
+opt.colorcolumn = "80,100,120"
