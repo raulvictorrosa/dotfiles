@@ -1,7 +1,24 @@
-theme = Dracula
-font-thicken = true
-minimum-contrast = 1
+theme = TokyoNight
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-style = Regular
 font-size = 14
+
+font-thicken = true
+
+# Window
+window-theme = ghostty
+window-padding-x = 14
+window-padding-y = 14
+confirm-close-surface=false
+resize-overlay = never
+gtk-toolbar-style = flat
+
+# Mac config
+# theme = Dracula
+# font-thicken = true
+# macos-option-as-alt = false
+minimum-contrast = 1
 mouse-hide-while-typing = true
 window-colorspace = display-p3
-macos-option-as-alt = true
