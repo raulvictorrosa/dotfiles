@@ -196,10 +196,10 @@ esc = ['reload-config', 'mode main']
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+# alt-shift-h = ['join-with left', 'mode main']
+# alt-shift-j = ['join-with down', 'mode main']
+# alt-shift-k = ['join-with up', 'mode main']
+# alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.toggl.daneel'
@@ -241,14 +241,23 @@ if.window-title-regex-substring = 'btop'
 run = [
   'layout floating',
   '''exec-and-forget osascript \
-    -e 'set window_width to 875' \
-    -e 'set window_height to 600' \
-    -e 'set process_name to "Ghostty"' \
-    -e 'tell application "Finder" to set screen_bounds to bounds of window of desktop' \
-    -e 'set screen_width to item 3 of screen_bounds' \
-    -e 'set screen_height to item 4 of screen_bounds' \
-    -e 'set x_pos to (screen_width - window_width) / 2' \
-    -e 'set y_pos to ((screen_height - window_height) / 3)' \
-    -e 'tell application "System Events" to tell process process_name to set size of (first window whose name contains "btop") to {window_width, window_height}' \
-    -e 'tell application "System Events" to tell process process_name to set position of (first window whose name contains "btop") to {x_pos, y_pos}' ''',
+    -e "set window_width to 875" \
+    -e "set window_height to 600" \
+    -e "set process_name to \"Ghostty\"" \
+    -e "tell application \"Finder\" to set screen_bounds to bounds of window of desktop" \
+    -e "set screen_width to item 3 of screen_bounds" \
+    -e "set screen_height to item 4 of screen_bounds" \
+    -e "set x_pos to (screen_width - window_width) / 2" \
+    -e "set y_pos to ((screen_height - window_height) / 3)" \
+    -e "tell application \"System Events\"" \
+    -e "  repeat with p in (every process whose name is process_name)" \
+    -e "    repeat with w in windows of p" \
+    -e "      if name of w contains \"btop\" then" \
+    -e "        set size of w to {window_width, window_height}" \
+    -e "        set position of w to {x_pos, y_pos}" \
+    -e "        return" \
+    -e "      end if" \
+    -e "    end repeat" \
+    -e "  end repeat" \
+    -e "end tell" ''',
 ]
