@@ -9,7 +9,7 @@ config-version = 2
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
   'exec-and-forget sketchybar',
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+  'exec-and-forget borders',
 ]
 
 # Notify Sketchybar about workspace change
@@ -55,7 +55,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -76,12 +76,12 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 15
-inner.vertical = 15
-outer.left = 15
-outer.bottom = 15
-outer.top = 15
-outer.right = 15
+inner.horizontal = 5
+inner.vertical = 5
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -114,11 +114,22 @@ outer.right = 15
 #     activate
 # end tell'
 # '''
+# alt is the equivalent to SUPER on Omarchy
 cmd-m = 'exec-and-forget' # Disable minimaze from mac
 
 alt-enter = 'exec-and-forget open -b com.mitchellh.ghostty'
 alt-shift-b = 'exec-and-forget open -b com.google.Chrome'
+alt-cmd-shift-b = 'exec-and-forget open -na "Google Chrome" --args --incognito'
+alt-shift-f = 'exec-and-forget open -a Finder'
+alt-shift-m = 'exec-and-forget open -a Spotify'
 alt-shift-n = 'exec-and-forget open -b com.microsoft.VSCode'
+alt-shift-t = '''exec-and-forget sh -c '
+if pgrep -f "Ghostty.*btop" > /dev/null; then
+  osascript -e "tell application \"Ghostty\" to activate"
+else
+  open -n -a Ghostty --args --title="btop" -e btop
+fi
+' '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-cmd-f = 'fullscreen'
@@ -126,16 +137,16 @@ alt-j = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 alt-t = 'layout floating tiling'           # 'floating toggle' in i3
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-cmd-left = 'focus left'
-alt-cmd-down = 'focus down'
-alt-cmd-up = 'focus up'
-alt-cmd-right = 'focus right'
+alt-left = 'focus left'
+alt-down = 'focus down'
+alt-up = 'focus up'
+alt-right = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-ctrl-cmd-shift-left = 'move left'
-ctrl-cmd-shift-down = 'move down'
-ctrl-cmd-shift-up = 'move up'
-ctrl-cmd-shift-right = 'move right'
+alt-shift-left = 'move left'
+alt-shift-down = 'move down'
+alt-shift-up = 'move up'
+alt-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-cmd-minus = 'resize width -50'
@@ -155,24 +166,24 @@ alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-# alt-tab = 'workspace-back-and-forth'
+alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-cmd-shift-right = 'move-workspace-to-monitor --wrap-around right'
 alt-cmd-shift-left = 'move-workspace-to-monitor --wrap-around left'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-cmd-shift-semicolon = 'mode service'
+alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -185,58 +196,59 @@ esc = ['reload-config', 'mode main']
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-# alt-shift-h = ['join-with left', 'mode main']
-# alt-shift-j = ['join-with down', 'mode main']
-# alt-shift-k = ['join-with up', 'mode main']
-# alt-shift-l = ['join-with right', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 3'
-[[on-window-detected]]
-if.app-id = 'dev.warp.Warp-Stable'
-run = 'move-node-to-workspace 3'
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = 'move-node-to-workspace 5'
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 5'
-[[on-window-detected]]
-if.app-id = 'net.whatsapp.WhatsApp'
-run = 'move-node-to-workspace 5'
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = 'move-node-to-workspace 6'
-
-[[on-window-detected]]
-if.app-id = 'com.toggl.toggldesktop'
-run = 'layout floating'
+if.app-id = 'com.toggl.daneel'
+run = [
+  'layout floating',
+  '''exec-and-forget osascript \
+    -e 'set window_width to 875' \
+    -e 'set window_height to 600' \
+    -e 'set process_name to "Toggl Track"' \
+    -e 'tell application "Finder" to set screen_bounds to bounds of window of desktop' \
+    -e 'set screen_width to item 3 of screen_bounds' \
+    -e 'set screen_height to item 4 of screen_bounds' \
+    -e 'set x_pos to (screen_width - window_width) / 2' \
+    -e 'set y_pos to ((screen_height - window_height) / 3)' \
+    -e 'tell application "System Events" to tell process process_name to set position of window 1 to {x_pos, y_pos}' \
+    -e 'tell application "System Events" to tell process process_name to set size of window 1 to {window_width, window_height}' ''',
+]
 
 [[on-window-detected]]
 if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
-run = 'layout floating'
+run = [
+  'layout floating',
+  '''exec-and-forget osascript \
+    -e 'set window_width to 875' \
+    -e 'set window_height to 600' \
+    -e 'set process_name to "Karabiner-Elements"' \
+    -e 'tell application "Finder" to set screen_bounds to bounds of window of desktop' \
+    -e 'set screen_width to item 3 of screen_bounds' \
+    -e 'set screen_height to item 4 of screen_bounds' \
+    -e 'set x_pos to (screen_width - window_width) / 2' \
+    -e 'set y_pos to ((screen_height - window_height) / 3)' \
+    -e 'tell application "System Events" to tell process process_name to set position of window 1 to {x_pos, y_pos}' \
+    -e 'tell application "System Events" to tell process process_name to set size of window 1 to {window_width, window_height}' ''',
+]
 
 [[on-window-detected]]
-if.app-id = 'com.google.Calendar'
-run = 'layout floating'
+if.app-id = 'com.mitchellh.ghostty'
+if.window-title-regex-substring = 'btop'
+run = [
+  'layout floating',
+  '''exec-and-forget osascript \
+    -e 'set window_width to 875' \
+    -e 'set window_height to 600' \
+    -e 'set process_name to "Ghostty"' \
+    -e 'tell application "Finder" to set screen_bounds to bounds of window of desktop' \
+    -e 'set screen_width to item 3 of screen_bounds' \
+    -e 'set screen_height to item 4 of screen_bounds' \
+    -e 'set x_pos to (screen_width - window_width) / 2' \
+    -e 'set y_pos to ((screen_height - window_height) / 3)' \
+    -e 'tell application "System Events" to tell process process_name to set size of (first window whose name contains "btop") to {window_width, window_height}' \
+    -e 'tell application "System Events" to tell process process_name to set position of (first window whose name contains "btop") to {x_pos, y_pos}' ''',
+]
