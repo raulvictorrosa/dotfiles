@@ -207,13 +207,13 @@ run = [
   'layout floating',
   '''exec-and-forget osascript \
     -e 'set window_width to 875' \
-    -e 'set window_height to 600' \
+    -e 'set window_height to 1200' \
     -e 'set process_name to "Toggl Track"' \
     -e 'tell application "Finder" to set screen_bounds to bounds of window of desktop' \
     -e 'set screen_width to item 3 of screen_bounds' \
     -e 'set screen_height to item 4 of screen_bounds' \
     -e 'set x_pos to (screen_width - window_width) / 2' \
-    -e 'set y_pos to ((screen_height - window_height) / 3)' \
+    -e 'set y_pos to ((screen_height - window_height) / 2)' \
     -e 'tell application "System Events" to tell process process_name to set position of window 1 to {x_pos, y_pos}' \
     -e 'tell application "System Events" to tell process process_name to set size of window 1 to {window_width, window_height}' ''',
 ]
