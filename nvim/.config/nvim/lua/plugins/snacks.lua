@@ -2,6 +2,9 @@ return {
   "folke/snacks.nvim",
   ---@type snacks.Config
   opts = {
+    scroll = {
+      enabled = false, -- Disable scrolling animations
+    },
     picker = {
       hidden = true, -- Show hidden files in the picker (e.g., using <leader><leader>)
       ignored = true, -- Show files ignored by git in the picker
