@@ -4,20 +4,23 @@
 # Use custom shell (skips interactive shell overhead)
 .shell "/bin/zsh"
 
-# Application shortcuts
-alt - 1: @toggle_app('Google Chrome');
-alt - 2: @toggle_app('Visual Studio Code');
-alt - 3: @toggle_app('Ghostty');
-alt - 4: @toggle_app('Figma');
-alt - 5: @toggle_app('Microsoft Teams');
-alt - 6: @toggle_app('Microsoft Outlook');
+# Define toggle_app command
+.define toggle_app : osascript -e 'tell application "{{1}}" to if it is running then quit else activate' 2>/dev/null || open -a "{{1}}"
 
-alt - return: @toggle_app('Ghostty');
-alt + shift - b: @toggle_app('Google Chrome');
-alt + cmd + shift - b: open -na 'Google Chrome' --args --incognito;
-alt + shift - f: @toggle_app('Finder');
-alt + shift - m: @toggle_app('Spotify');
-alt + shift - n: @toggle_app('Visual Studio Code');
+# Application shortcuts
+alt - 1: @toggle_app("Google Chrome")
+alt - 2: @toggle_app("Visual Studio Code")
+alt - 3: @toggle_app("Ghostty")
+alt - 4: @toggle_app("Figma")
+alt - 5: @toggle_app("Microsoft Teams")
+alt - 6: @toggle_app("Microsoft Outlook")
+
+alt - return: @toggle_app("Ghostty")
+alt + shift - b: @toggle_app("Google Chrome")
+alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
+alt + shift - f: @toggle_app("Finder")
+alt + shift - m: @toggle_app("Spotify")
+alt + shift - n: @toggle_app("Visual Studio Code")
 alt + shift - t : sh -c ' \
   if pgrep -f "Ghostty.*btop" > /dev/null; then \
     osascript -e "tell application \\"Ghostty\\" to activate"; \
