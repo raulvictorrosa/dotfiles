@@ -1,0 +1,240 @@
+{
+  "version": 3,
+  "skills": {
+    "azure-observability": {
+      "source": "microsoft/GitHub-Copilot-for-Azure",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/GitHub-Copilot-for-Azure.git",
+      "skillPath": "plugin/skills/azure-observability/SKILL.md",
+      "skillFolderHash": "555e77a0171dffb540edb9dbe502aae7baedaeeb",
+      "installedAt": "2026-02-23T20:19:40.963Z",
+      "updatedAt": "2026-03-03T15:20:29.241Z"
+    },
+    "azure-postgres": {
+      "source": "microsoft/GitHub-Copilot-for-Azure",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/GitHub-Copilot-for-Azure.git",
+      "skillPath": "plugin/skills/azure-postgres/SKILL.md",
+      "skillFolderHash": "e0480ffbb0feb4daa0190420d1971e3aa1410918",
+      "installedAt": "2026-02-23T20:19:41.010Z",
+      "updatedAt": "2026-02-23T20:19:41.010Z"
+    },
+    "appinsights-instrumentation": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/appinsights-instrumentation/SKILL.md",
+      "skillFolderHash": "693f009f0dcba483ce712ff88e7b61bd1b2640ad",
+      "installedAt": "2026-04-08T15:45:00.442Z",
+      "updatedAt": "2026-04-08T15:45:00.442Z"
+    },
+    "azure-ai": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-ai/SKILL.md",
+      "skillFolderHash": "b97b6e2ca05720a69a2fad6522f6696920395354",
+      "installedAt": "2026-04-08T15:45:00.503Z",
+      "updatedAt": "2026-04-08T15:45:00.503Z"
+    },
+    "azure-aigateway": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-aigateway/SKILL.md",
+      "skillFolderHash": "60b95bff29657444a4b0dcb33547766a4da68415",
+      "installedAt": "2026-04-08T15:45:00.559Z",
+      "updatedAt": "2026-04-08T15:45:00.559Z"
+    },
+    "azure-cloud-migrate": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-cloud-migrate/SKILL.md",
+      "skillFolderHash": "131b51641fb6e7fe1c53344a01c62d73620fed25",
+      "installedAt": "2026-04-08T15:45:00.615Z",
+      "updatedAt": "2026-04-08T15:45:00.615Z"
+    },
+    "azure-compliance": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-compliance/SKILL.md",
+      "skillFolderHash": "4418e3d52a4038932bbb1aa90e1feca55968301e",
+      "installedAt": "2026-04-08T15:45:00.672Z",
+      "updatedAt": "2026-04-08T15:45:00.672Z"
+    },
+    "azure-compute": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-compute/SKILL.md",
+      "skillFolderHash": "fcb0943d989d0a59148824fad61f0a3f2b10be9c",
+      "installedAt": "2026-04-08T15:45:00.734Z",
+      "updatedAt": "2026-04-08T15:45:00.734Z"
+    },
+    "azure-cost": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-cost/SKILL.md",
+      "skillFolderHash": "79a5eb6302ab409ede4e6793f357f4c3359e1cb2",
+      "installedAt": "2026-04-08T15:45:00.793Z",
+      "updatedAt": "2026-04-08T15:45:00.793Z"
+    },
+    "azure-deploy": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-deploy/SKILL.md",
+      "skillFolderHash": "2fab70b3095e9bf97339ec4dd9c43c59d6099dfd",
+      "installedAt": "2026-04-08T15:45:00.854Z",
+      "updatedAt": "2026-04-08T15:45:00.854Z"
+    },
+    "azure-diagnostics": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-diagnostics/SKILL.md",
+      "skillFolderHash": "63c462099343aac25346cee5375ebc61565f00a9",
+      "installedAt": "2026-04-08T15:45:00.909Z",
+      "updatedAt": "2026-04-08T15:45:00.909Z"
+    },
+    "azure-enterprise-infra-planner": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-enterprise-infra-planner/SKILL.md",
+      "skillFolderHash": "7ee7fe9e5759ef04dde046b484505ca264efe2bd",
+      "installedAt": "2026-04-08T15:45:00.969Z",
+      "updatedAt": "2026-04-08T15:45:00.969Z"
+    },
+    "azure-hosted-copilot-sdk": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-hosted-copilot-sdk/SKILL.md",
+      "skillFolderHash": "c700e4392b75f7ca552e84d8bc59c041fc8e60c6",
+      "installedAt": "2026-04-08T15:45:01.026Z",
+      "updatedAt": "2026-04-08T15:45:01.026Z"
+    },
+    "azure-kubernetes": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-kubernetes/SKILL.md",
+      "skillFolderHash": "7db13451ad4fba13f630f329fa0661c6aa758a6c",
+      "installedAt": "2026-04-08T15:45:01.082Z",
+      "updatedAt": "2026-04-08T15:45:01.082Z"
+    },
+    "azure-kusto": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-kusto/SKILL.md",
+      "skillFolderHash": "450fd374ac6c072211de0b911d69635957773fb2",
+      "installedAt": "2026-04-08T15:45:01.143Z",
+      "updatedAt": "2026-04-08T15:45:01.143Z"
+    },
+    "azure-messaging": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-messaging/SKILL.md",
+      "skillFolderHash": "a62c041d2c9d764a5b4b8bed34e11c1af688ac11",
+      "installedAt": "2026-04-08T15:45:01.195Z",
+      "updatedAt": "2026-04-08T15:45:01.195Z"
+    },
+    "azure-prepare": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-prepare/SKILL.md",
+      "skillFolderHash": "a8314f2ac3f8d47477bb8c4bced8bf3f509544a0",
+      "installedAt": "2026-04-08T15:45:01.251Z",
+      "updatedAt": "2026-04-08T15:45:01.251Z"
+    },
+    "azure-quotas": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-quotas/SKILL.md",
+      "skillFolderHash": "a7e6cd1f2c48ca6367f415f32d9bac8a3a3bc2c8",
+      "installedAt": "2026-04-08T15:45:01.311Z",
+      "updatedAt": "2026-04-08T15:45:01.311Z"
+    },
+    "azure-rbac": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-rbac/SKILL.md",
+      "skillFolderHash": "46f7a7d4e5a80debbd26176dc43a01e369c05655",
+      "installedAt": "2026-04-08T15:45:01.371Z",
+      "updatedAt": "2026-04-08T15:45:01.371Z"
+    },
+    "azure-resource-lookup": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-resource-lookup/SKILL.md",
+      "skillFolderHash": "2088860e26330844707e757dca1040682c6ae3df",
+      "installedAt": "2026-04-08T15:45:01.453Z",
+      "updatedAt": "2026-04-08T15:45:01.453Z"
+    },
+    "azure-resource-visualizer": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-resource-visualizer/SKILL.md",
+      "skillFolderHash": "60997c2d585c3d19b0501c0f8b94101fe292220f",
+      "installedAt": "2026-04-08T15:45:01.504Z",
+      "updatedAt": "2026-04-08T15:45:01.504Z"
+    },
+    "azure-storage": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-storage/SKILL.md",
+      "skillFolderHash": "7397a2d96490f9f0f5c9def45b450a18dab98519",
+      "installedAt": "2026-04-08T15:45:01.564Z",
+      "updatedAt": "2026-04-08T15:45:01.564Z"
+    },
+    "azure-upgrade": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-upgrade/SKILL.md",
+      "skillFolderHash": "f9a43833ef922de7c1e895f4328d92766bfcee1d",
+      "installedAt": "2026-04-08T15:45:01.627Z",
+      "updatedAt": "2026-04-08T15:45:01.627Z"
+    },
+    "azure-validate": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-validate/SKILL.md",
+      "skillFolderHash": "3d02bf095f203e3b6a562f859be9ed9cf198a534",
+      "installedAt": "2026-04-08T15:45:01.676Z",
+      "updatedAt": "2026-04-08T15:45:01.676Z"
+    },
+    "entra-app-registration": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/entra-app-registration/SKILL.md",
+      "skillFolderHash": "4192d6b1993f728091eecce86ab950c9522f508d",
+      "installedAt": "2026-04-08T15:45:01.726Z",
+      "updatedAt": "2026-04-08T15:45:01.726Z"
+    },
+    "microsoft-foundry": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/microsoft-foundry/SKILL.md",
+      "skillFolderHash": "c65c3c317955bb5d5439cdc25c711e7627a9536c",
+      "installedAt": "2026-04-08T15:45:01.781Z",
+      "updatedAt": "2026-04-08T15:45:01.781Z"
+    }
+  },
+  "dismissed": {}
+}
