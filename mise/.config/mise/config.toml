@@ -1,7 +1,21 @@
 [tools]
+bat = "0.26.1"
 bun = "latest"
+eza = "0.23.4"
+fd = "10.3.0"
+fzf = "0.70.0"
+gh = "2.87.3"
+helm = "4.1.1"
 java = "latest"
+jq = "1.8.1"
+kubectl = "1.35.2"
 node = "latest"
+pnpm = "latest"
+python = "3.14.3"
+ripgrep = "15.1.0"
+ruby = "3.3.5"
+rust = "1.90.0"
+zoxide = "0.9.9"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
