@@ -89,7 +89,15 @@ The following tools are actively used and recommended for the best experience:
    stow */
    ```
 
-4. **Restart your shell**
+4. **Bootstrap Copilot config** *(optional)*
+
+   ```bash
+   cd ~/dotfiles
+   stow copilot --target ~ --ignore='vscode-agents|vscode-instructions|install.sh'
+   bash copilot/install.sh
+   ```
+
+5. **Restart your shell**
 
    ```bash
    exec zsh
@@ -103,6 +111,7 @@ The following tools are actively used and recommended for the best experience:
 ├── amethyst/          # Alternative tiling window manager (macOS - unused, kept for reference)
 ├── atuin/             # Shell history manager
 ├── borders/           # Window border customization
+├── copilot/           # GitHub Copilot CLI skills, agents, and instructions
 ├── brew/              # Package management (mainly for macOS)
 │   ├── Brewfile       # All installed packages/apps
 │   └── README.md      # Package management guide
