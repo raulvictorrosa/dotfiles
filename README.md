@@ -20,7 +20,7 @@ The following tools are actively used and recommended for the best experience:
 
 ### 🛠️ Core Tools
 
-- **Terminal**: Ghostty (recommended), Alacritty, Kitty, WezTerm configurations
+- **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
 - **Shell**: Zsh with Oh-My-Zsh, Zinit, and Powerlevel10k
 - **Multiplexer**: tmux with TPM plugin manager
 - **File Management**: Atuin (history), Yazi (directory navigation)
@@ -99,7 +99,7 @@ The following tools are actively used and recommended for the best experience:
 
 ```text
 ├── aerospace/          # Primary tiling window manager (macOS)
-├── alacritty/         # GPU-accelerated terminal emulator
+├── alacritty/         # GPU-accelerated terminal emulator (uninstalled, kept for reference)
 ├── amethyst/          # Alternative tiling window manager (macOS - unused, kept for reference)
 ├── atuin/             # Shell history manager
 ├── borders/           # Window border customization
@@ -135,7 +135,7 @@ The following tools are actively used and recommended for the best experience:
 ### Development Setup
 
 - **Modern text editing** with Neovim + LazyVim
-- **Multiple terminal options** (Alacritty, Kitty, WezTerm, Ghostty)
+- **Multiple terminal options** (Ghostty, Kitty, WezTerm; Alacritty kept for reference)
 - **Efficient window management** with Aerospace tiling and hotkeys (macOS)
 - **Kubernetes management** with K9s
 - **Version management** with Mise
