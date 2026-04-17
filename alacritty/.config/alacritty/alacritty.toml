@@ -1,4 +1,9 @@
 # Alacritty Configuration File
+#
+# NOTE: Alacritty is no longer the primary terminal emulator.
+# We are currently using Ghostty as the default terminal.
+# See: ghostty/.config/ghostty/config
+# This config is kept for reference only.
 
 # [window]
 # # Window dimensions (changes require restart)
