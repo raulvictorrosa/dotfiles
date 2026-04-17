@@ -191,3 +191,6 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# Opt out of Azure MCP / Copilot skills telemetry
+export AZURE_MCP_COLLECT_TELEMETRY=false
