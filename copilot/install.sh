@@ -2,7 +2,7 @@
 set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Reinstall all plugins from lock file
+# Install Copilot plugins (list is hardcoded below)
 echo "Installing Copilot plugins..."
 for plugin in awesome-copilot azure-cloud-development doublecheck frontend-web-dev \
               gem-team java-development react19-upgrade security-best-practices \
@@ -10,9 +10,12 @@ for plugin in awesome-copilot azure-cloud-development doublecheck frontend-web-d
   copilot plugin install "${plugin}@awesome-copilot"
 done
 
-# Copy manually-tracked skills
+# Copy manually-tracked skills (dir is gitignored; skip if absent)
 echo "Copying manual skills..."
-cp -r "$DOTFILES_DIR/.agents/skills/." ~/.agents/skills/
+if [ -d "$DOTFILES_DIR/.agents/skills" ] && [ -n "$(ls -A "$DOTFILES_DIR/.agents/skills" 2>/dev/null)" ]; then
+    mkdir -p ~/.agents/skills
+    cp -r "$DOTFILES_DIR/.agents/skills/." ~/.agents/skills/
+fi
 
 # Copy hooks
 echo "Copying hooks..."
