@@ -194,3 +194,6 @@ function y() {
 
 # Opt out of Azure MCP / Copilot skills telemetry
 export AZURE_MCP_COLLECT_TELEMETRY=false
+
+# Required for claude CLI and poetry — both install to ~/.local/bin and won't be found without this
+export PATH="$HOME/.local/bin:$PATH"
