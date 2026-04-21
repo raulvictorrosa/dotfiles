@@ -15,6 +15,7 @@ The following tools are actively used and recommended for the best experience:
 - **✨ Terminal**: Ghostty
 - **🐭 Mouse**: LinearMouse
 - **📦 Tools**: Mise, Homebrew
+- **🤖 AI**: Claude Code
 
 ## ✨ What's Inside
 
@@ -46,6 +47,10 @@ The following tools are actively used and recommended for the best experience:
 
 - **Homebrew**: Centralized package management via Brewfile (macOS)
 - **Mise**: Development tool version management
+
+### 🤖 AI Tools
+
+- **Claude Code**: MCP servers config (Atlassian, GitHub, Figma, Azure, Playwright, Context7, Crowdin, and more) + Caveman plugin
 
 ### 🔧 Additional Tools
 
@@ -84,6 +89,7 @@ The following tools are actively used and recommended for the best experience:
    # Recommended: Link only the currently recommended configs
    stow nvim zsh tmux ghostty mise atuin  # Core tools
    stow aerospace sketchybar borders linearmouse  # macOS window management
+   stow claude  # AI tools
 
    # Alternative: Create symlinks for all configs
    stow */
@@ -106,6 +112,7 @@ The following tools are actively used and recommended for the best experience:
 ├── brew/              # Package management (mainly for macOS)
 │   ├── Brewfile       # All installed packages/apps
 │   └── README.md      # Package management guide
+├── claude/            # Claude Code AI assistant config
 ├── ghostty/           # Terminal emulator
 ├── k9s/               # Kubernetes cluster manager
 ├── kitty/             # Terminal emulator
