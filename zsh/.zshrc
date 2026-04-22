@@ -146,8 +146,8 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-zi light dracula/zsh
-zi light dracula/zsh-syntax-highlighting
+# zi light dracula/zsh
+# zi light dracula/zsh-syntax-highlighting
 zi light zsh-users/zsh-autosuggestions
 zi light zsh-users/zsh-completions
 zi light zsh-users/zsh-syntax-highlighting
@@ -168,15 +168,13 @@ source /Users/ror2lis/.config/broot/launcher/bash/br
 # bun completions
 [ -s "/Users/ror2lis/.bun/_bun" ] && source "/Users/ror2lis/.bun/_bun"
 
-alias ls='lsd'
+alias ls='eza --icons=always'
 alias cat='bat'
 alias vim='nvim'
+alias trs='tmux rename-session'
 
 export VISUAL=nvim;
 export EDITOR=nvim;
-
-# VI Mode!!!
-bindkey jj vi-cmd-mode
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/ror2lis/.docker/completions $fpath)
@@ -197,3 +195,7 @@ export AZURE_MCP_COLLECT_TELEMETRY=false
 
 # Required for claude CLI and poetry — both install to ~/.local/bin and won't be found without this
 export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/ror2lis/.antigravity/antigravity/bin:$PATH"
+
