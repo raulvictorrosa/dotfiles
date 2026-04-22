@@ -10,31 +10,35 @@ local setupVsCodeConfigs = function()
   vim.o.showmode = true
   -- vim.o.laststatus = 0
 
-  local vscode = require("vscode")
-  -- Remap folding keys to use VSCode commands
-  local keymap = vim.keymap.set
-  local opts = { noremap = true, silent = true }
-  keymap("n", "zM", function()
-    vscode.call("editor.foldAll")
-  end, opts)
-  keymap("n", "zR", function()
-    vscode.call("editor.unfoldAll")
-  end, opts)
-  keymap("n", "zc", function()
-    vscode.call("editor.fold")
-  end, opts)
-  keymap("n", "zC", function()
-    vscode.call("editor.foldRecursively")
-  end, opts)
-  keymap("n", "zo", function()
-    vscode.call("editor.unfold")
-  end, opts)
-  keymap("n", "zO", function()
-    vscode.call("editor.unfoldRecursively")
-  end, opts)
-  keymap("n", "za", function()
-    vscode.call("editor.toggleFold")
-  end, opts)
+  -- local vscode = require("vscode")
+  -- -- Remap folding keys to use VSCode commands
+  -- local keymap = vim.keymap.set
+  -- local opts = { noremap = true, silent = true }
+  -- keymap("n", "zM", function()
+  --   vscode.call("editor.foldAll")
+  -- end, opts)
+  -- keymap("n", "zR", function()
+  --   vscode.call("editor.unfoldAll")
+  -- end, opts)
+  -- keymap("n", "zc", function()
+  --   vscode.call("editor.fold")
+  -- end, opts)
+  -- keymap("n", "zC", function()
+  --   vscode.call("editor.foldRecursively")
+  -- end, opts)
+  -- keymap("n", "zo", function()
+  --   vscode.call("editor.unfold")
+  -- end, opts)
+  -- keymap("n", "zO", function()
+  --   vscode.call("editor.unfoldRecursively")
+  -- end, opts)
+  -- keymap("n", "za", function()
+  --   vscode.call("editor.toggleFold")
+  -- end, opts)
+
+  -- Comment or remove the return bellow if you want to add
+  -- more VSCode-specific keymaps
+  do return end
 
   -- Additional VSCode-specific keymaps (with absolute priority - will override telescope and other plugins)
   local function set_vscode_keymap(mode, lhs, rhs, opts)
@@ -73,8 +77,6 @@ local setupVsCodeConfigs = function()
     pcall(set_vscode_keymap, "n", "<leader>aa", function()
       vscode.call("workbench.panel.chat")
     end, { desc = "Toggle CopilotChat", noremap = true, silent = true })
-
-    -- Uncomment and modify this if you want to override telescope's file search
   end)
 end
 
