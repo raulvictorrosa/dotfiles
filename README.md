@@ -54,6 +54,7 @@ The following tools are actively used and recommended for the best experience:
 
 ### 🔧 Additional Tools
 
+- **Git**: Portable gitconfig with machine-local identity override pattern
 - **K9s**: Kubernetes cluster management
 - **SKHD**: Hotkey daemon (unused - Aerospace handles hotkeys)
 
@@ -87,9 +88,13 @@ The following tools are actively used and recommended for the best experience:
    brew install stow
 
    # Recommended: Link only the currently recommended configs
-   stow nvim zsh tmux ghostty mise atuin  # Core tools
+   stow nvim zsh tmux ghostty mise atuin git  # Core tools
    stow aerospace sketchybar borders linearmouse  # macOS window management
    stow claude  # AI tools
+
+   # Git: copy the local identity template and fill in your details
+   cp ~/dotfiles/git/.gitconfig.local.example ~/.gitconfig.local
+   # then edit ~/.gitconfig.local with your name and email
 
    # Alternative: Create symlinks for all configs
    stow */
@@ -113,6 +118,7 @@ The following tools are actively used and recommended for the best experience:
 │   ├── Brewfile       # All installed packages/apps
 │   └── README.md      # Package management guide
 ├── claude/            # Claude Code AI assistant config
+├── git/               # Git config (portable; identity goes in ~/.gitconfig.local)
 ├── ghostty/           # Terminal emulator
 ├── k9s/               # Kubernetes cluster manager
 ├── kitty/             # Terminal emulator
@@ -155,6 +161,23 @@ The following tools are actively used and recommended for the best experience:
 - **Cross-platform package management** with Homebrew/system package managers
 
 ## ⚙️ Configuration Highlights
+
+### Git Configuration
+
+Portable setup that works across machines with different identities:
+
+- `git/.gitconfig` — shared settings: delta pager, default branch, merge strategy
+- `git/.gitignore_global` — global ignores (`.DS_Store`, swap files)
+- `~/.gitconfig.local` — machine-specific identity, **not committed**
+
+On a new machine, after `stow git`:
+
+```bash
+cp ~/dotfiles/git/.gitconfig.local.example ~/.gitconfig.local
+# edit with your name and email
+```
+
+The shared config includes `[include] path = ~/.gitconfig.local` so git picks up identity automatically.
 
 ### SketchyBar Features
 

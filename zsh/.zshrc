@@ -199,3 +199,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # Added by Antigravity
 export PATH="/Users/ror2lis/.antigravity/antigravity/bin:$PATH"
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ror2lis/.cache/lm-studio/bin"
+
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
