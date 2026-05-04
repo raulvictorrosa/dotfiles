@@ -7,12 +7,12 @@ return {
     "folke/tokyonight.nvim",
     priority = 1000,
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      -- colorscheme = "dracula",
-      -- colorscheme = "tokyonight-moon",
-      colorscheme = "tokyonight-night",
-    },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "dracula",
+  --     -- colorscheme = "tokyonight-moon",
+  --     -- colorscheme = "tokyonight-night",
+  --   },
+  -- },
 }
