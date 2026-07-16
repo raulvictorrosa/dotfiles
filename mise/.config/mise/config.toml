@@ -1,4 +1,5 @@
 [tools]
+biome = "latest"
 bun = "latest"
 java = "latest"
 node = "latest"
@@ -6,6 +7,15 @@ pnpm = "latest"
 python = "latest"
 ruby = "latest"
 rust = "latest"
+dotnet = "latest"
+pre-commit = "latest"
+protobuf = "latest"
+uv = "latest"
+helm = "latest"
+k9s = "latest"
+trivy = "latest"
+kubelogin = "latest"
+infisical = { version = "latest", asset_pattern = "cli_{{ version }}_{{ os(macos='darwin') }}_{{ arch(x64='amd64') }}.tar.gz" }
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]

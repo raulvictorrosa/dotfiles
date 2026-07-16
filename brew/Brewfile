@@ -1,7 +1,4 @@
-tap "azure/kubelogin"
-tap "derailed/k9s"
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
-tap "infisical/get-cli"
 tap "jackielii/tap", trusted: { casks: ["skhd-zig"] }
 tap "jandedobbeleer/oh-my-posh", trusted: { casks: ["oh-my-posh"] }
 tap "nikitabobko/tap"
@@ -17,8 +14,6 @@ brew "bash"
 brew "bat"
 # Arbitrary precision numeric processing language
 brew "bc"
-# Toolchain of the web
-brew "biome"
 # New way to see and navigate directory trees
 brew "broot"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -31,8 +26,6 @@ brew "coreutils"
 brew "openjdk"
 # Command-line tool that allows to manage your resources with crowdin.com
 brew "crowdin"
-# .NET Core
-brew "dotnet"
 # Modern, maintained replacement for ls
 brew "eza"
 # Test various flash cards
@@ -61,8 +54,6 @@ brew "gnu-sed"
 brew "graphviz"
 # Post-modern modal text editor
 brew "helix"
-# Kubernetes package manager
-brew "helm"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c@76"
 # Tools and libraries to manipulate images in select formats
@@ -109,10 +100,6 @@ brew "pkgconf"
 brew "pngquant"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
-# Framework for managing multi-language pre-commit hooks
-brew "pre-commit"
-# Protocol buffers (Google's data interchange format)
-brew "protobuf"
 # SVG rendering tool and library
 brew "resvg"
 # Search tool like grep and The Silver Searcher
@@ -133,10 +120,6 @@ brew "tmux"
 brew "tmuxinator"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Vulnerability scanner for container images, file systems, and Git repos
-brew "trivy"
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
 # Watch files and take action when they change
 brew "watchman"
 # CLI for Git worktree management, designed for parallel AI agent workflows
@@ -145,20 +128,14 @@ brew "worktrunk"
 brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# A Kubernetes credential (exec) plugin implementing azure authentication
-brew "azure/kubelogin/kubelogin", trusted: true
-# Kubernetes CLI To Manage Your Clusters In Style!
-brew "derailed/k9s/k9s", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
 # Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar", trusted: true
 # Turns macOS input fields into real vim buffers
 brew "felixkratz/formulae/svim", trusted: true
-# The official Infisical CLI
-brew "infisical/get-cli/infisical", trusted: true
 # Simple hotkey daemon for macOS, written in Zig
-brew "jackielii/tap/skhd-zig", trusted: true
+cask "jackielii/tap/skhd-zig", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Enable Windows-like alt-tab
