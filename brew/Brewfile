@@ -1,165 +1,307 @@
-tap "adoptopenjdk/openjdk"
 tap "azure/kubelogin"
 tap "derailed/k9s"
-tap "dracula/install"
-tap "dwarvesf/tap"
-tap "felixkratz/formulae"
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "infisical/get-cli"
-tap "jandedobbeleer/oh-my-posh"
-tap "koekeishiya/formulae"
+tap "jackielii/tap", trusted: { casks: ["skhd-zig"] }
+tap "jandedobbeleer/oh-my-posh", trusted: { casks: ["oh-my-posh"] }
 tap "nikitabobko/tap"
-brew "amp"
+# ARP scanning and fingerprinting tool
 brew "arp-scan"
+# Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
+# Microsoft Azure CLI 2.0
 brew "azure-cli"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Arbitrary precision numeric processing language
+brew "bc"
+# Toolchain of the web
+brew "biome"
+# New way to see and navigate directory trees
 brew "broot"
-brew "f3"
-brew "fd"
-brew "ffmpeg"
-brew "fzf"
-brew "gh"
-brew "git"
-brew "glow"
-brew "graphviz"
-brew "helix"
-brew "helm"
-brew "icu4c@76"
-brew "ios-deploy"
-brew "jj"
-brew "jq"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Development kit for the Java programming language (required by kafka, crowdin)
 brew "openjdk"
+# Command-line tool that allows to manage your resources with crowdin.com
+brew "crowdin"
+# .NET Core
+brew "dotnet"
+# Modern, maintained replacement for ls
+brew "eza"
+# Test various flash cards
+brew "f3"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU awk utility
+brew "gawk"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Open-source GitLab command-line tool
+brew "glab"
+# Render markdown on the CLI
+brew "glow"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Post-modern modal text editor
+brew "helix"
+# Kubernetes package manager
+brew "helm"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c@76"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
+# Install and debug iPhone apps from the command-line
+brew "ios-deploy"
+# Git-compatible distributed version control system
+brew "jj"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Open-source distributed event streaming platform
 brew "kafka"
+# Selection-based modal text editor
 brew "kakoune"
+# Kubernetes command-line interface
 brew "kubernetes-cli"
+# Simple terminal UI for git commands
 brew "lazygit"
+# Clone of ls with colorful output, file type icons, and more
 brew "lsd"
+# Powerful, lightweight programming language
 brew "lua"
+# Package manager for the Lua programming language
 brew "luarocks"
+# Text-based web browser
 brew "lynx"
+# Terminal-based visual file manager
 brew "midnight-commander"
+# Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
+# Prompt theme engine for any shell
 brew "oh-my-posh"
-brew "openjdk@17"
+# SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
+brew "openvpn"
+# Python dependency management tool
 brew "pipenv"
+# Package compiler and linker metadata toolkit
 brew "pkgconf"
+# PNG image optimizing utility
+brew "pngquant"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
+# Protocol buffers (Google's data interchange format)
 brew "protobuf"
-brew "pyenv"
-brew "rbenv"
+# SVG rendering tool and library
+brew "resvg"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Terminal multiplexer with a tmux-style CLI and daemon runtime
+brew "rmux"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Change macOS audio source from the command-line
 brew "switchaudio-osx"
+# Terminal multiplexer
 brew "tmux"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Vulnerability scanner for container images, file systems, and Git repos
 brew "trivy"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Watch files and take action when they change
 brew "watchman"
-brew "azure/kubelogin/kubelogin"
-brew "derailed/k9s/k9s"
-brew "felixkratz/formulae/borders"
-brew "felixkratz/formulae/sketchybar"
-brew "infisical/get-cli/infisical"
-brew "koekeishiya/formulae/skhd"
-cask "aerospace"
+# CLI for Git worktree management, designed for parallel AI agent workflows
+brew "worktrunk"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# A Kubernetes credential (exec) plugin implementing azure authentication
+brew "azure/kubelogin/kubelogin", trusted: true
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "derailed/k9s/k9s", trusted: true
+# A window border system for macOS
+brew "felixkratz/formulae/borders", trusted: true
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar", trusted: true
+# Turns macOS input fields into real vim buffers
+brew "felixkratz/formulae/svim", trusted: true
+# The official Infisical CLI
+brew "infisical/get-cli/infisical", trusted: true
+# Simple hotkey daemon for macOS, written in Zig
+brew "jackielii/tap/skhd-zig", trusted: true
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
+# Enable Windows-like alt-tab
 cask "alt-tab"
+# Automatic tiling window manager similar to xmonad
 cask "amethyst"
+# Android SDK component
 cask "android-platform-tools"
-cask "android-studio"
+# Allows connection to a computer remotely
+cask "anydesk"
+# Application uninstaller
 cask "appcleaner"
+# Audio utility
 cask "background-music"
+# Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
+# Menu bar icon organiser
 cask "bartender"
+# App for managing battery charging. (Also installs a CLI on first use.)
 cask "battery"
+# Open source IDE for exploring and testing APIs
 cask "bruno"
+# Remove junk and unused files
 cask "ccleaner"
+# OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Claude code parallelisation
+cask "conductor"
+# Build wearable experiences for Garmin devices and sensors with ConnectIQ SDK
+cask "connectiq"
+# Brings the power of Copilot coding agent directly to your terminal
+cask "copilot-cli"
+# Voice and text chat software
 cask "discord"
+# App to build and share containerised applications and microservices
 cask "docker-desktop"
-cask "dracula-terminal"
-cask "emacs-app"
-cask "fanny"
+# Launcher for *Epic Games* games
+cask "epic-games"
+# Collaborative team software
 cask "figma"
+# Web browser
 cask "firefox"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-material-design-icons-webfont"
+cask "font-monaspice-nerd-font"
+cask "font-noto-sans-symbols-2"
 cask "font-sf-mono"
 cask "font-sf-pro"
-cask "fontbase"
+cask "font-source-code-pro"
+cask "font-symbols-only-nerd-font"
+# Update maps and software, sync with Garmin Connect and register your device
 cask "garmin-express"
+# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-cask "github"
+# Web browser
 cask "google-chrome"
+# Client for the Google Drive storage service
 cask "google-drive"
-cask "intellij-idea"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Enables an integrated web browser in iTerm2
 cask "itermbrowserplugin"
+# Keyboard customiser
 cask "karabiner-elements"
+# Password manager app
 cask "keepassxc"
-cask "kindavim"
+# GPU-based terminal emulator
 cask "kitty"
+# Customise mouse behavior
 cask "linearmouse"
-cask "lm-studio"
+# Open-source cross-platform alternative to AirDrop
+cask "localsend"
+# Software for Logitech devices
 cask "logi-options+"
+# Full TeX Live distribution with GUI applications
 cask "mactex"
-cask "messenger"
+# Multi-platform web browser
 cask "microsoft-edge"
+# Online collaborative whiteboard platform
 cask "miro"
+# Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
-cask "mos"
+# Visual tool to design, develop and administer MySQL servers
 cask "mysqlworkbench"
-cask "neovide-app"
-cask "obs"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Cloud storage client
 cask "onedrive"
-cask "orion"
+# Client program for the OpenVPN Access Server
+cask "openvpn-connect"
+# Collaboration platform for API development
 cask "postman"
-cask "pycharm"
+# Imaging utility to install operating systems to a microSD card
 cask "raspberry-pi-imager"
+# Control your tools with a few keystrokes
 cask "raycast"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-cask "rive"
-cask "rustrover"
-cask "send-to-kindle"
+# Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
-cask "signal"
+# Team communication and collaboration software
 cask "slack"
-cask "sourcetree"
+# Music streaming service
 cask "spotify"
+# Tool for managing the OpenSSH ssh client configuration file
 cask "ssh-config-editor"
-cask "stremio"
+# Messaging app with a focus on speed and security
 cask "telegram"
-cask "the-archive"
+# Utility to hide the notch
 cask "topnotch"
-cask "tor-browser"
-cask "tradingview"
+# Open-source BitTorrent client
+cask "transmission"
+# Free and open-source OpenVPN client
 cask "tunnelblick"
+# Google Chromium, sans integration with Google
 cask "ungoogled-chromium"
+# Open-source code editor
 cask "visual-studio-code"
+# Rust-based terminal
 cask "warp"
-cask "webstorm"
-cask "wezterm"
+# Native desktop client for WhatsApp
 cask "whatsapp"
+# Multiplayer code editor
 cask "zed"
+# Open-source markdown editor
 cask "zettlr"
 vscode "adpyke.vscode-sql-formatter"
 vscode "ahmadalli.vscode-nginx-conf"
+vscode "angular.ng-template"
 vscode "anthropic.claude-code"
 vscode "apollographql.vscode-apollo"
 vscode "astro-build.astro-vscode"
 vscode "asvetliakov.vscode-neovim"
 vscode "atlassian.atlascode"
 vscode "aykutsarac.jsoncrack-vscode"
+vscode "bbenoist.nix"
 vscode "biomejs.biome"
 vscode "bradlc.vscode-tailwindcss"
 vscode "bruno-api-client.bruno"
-vscode "catppuccin.catppuccin-vsc"
 vscode "catppuccin.catppuccin-vsc-icons"
 vscode "christian-kohler.npm-intellisense"
+vscode "crowdin.vscode-crowdin"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
 vscode "denoland.vscode-deno"
@@ -178,9 +320,8 @@ vscode "exodiusstudios.comment-anchors"
 vscode "fallenmax.styled-components-extractor"
 vscode "figma.figma-vscode-extension"
 vscode "fill-labs.dependi"
+vscode "garmin.monkey-c"
 vscode "github.codespaces"
-vscode "github.copilot"
-vscode "github.copilot-chat"
 vscode "github.remotehub"
 vscode "github.vscode-pull-request-github"
 vscode "grapecity.gc-excelviewer"
@@ -194,16 +335,26 @@ vscode "jock.svg"
 vscode "joshbolduc.commitlint"
 vscode "kumar-harsh.graphql-for-vscode"
 vscode "local-smart.excel-live-server"
+vscode "mathematic.vscode-latex"
 vscode "meganrogge.template-string-converter"
 vscode "mhutchie.git-graph"
 vscode "mikestead.dotenv"
 vscode "mindaro-dev.file-downloader"
 vscode "mrmlnc.vscode-apache"
 vscode "ms-azure-devops.azure-pipelines"
+vscode "ms-azure-load-testing.microsoft-testing"
+vscode "ms-azuretools.azure-dev"
 vscode "ms-azuretools.vscode-azure-github-copilot"
 vscode "ms-azuretools.vscode-azure-mcp-server"
+vscode "ms-azuretools.vscode-azureappservice"
+vscode "ms-azuretools.vscode-azurecontainerapps"
+vscode "ms-azuretools.vscode-azurefunctions"
 vscode "ms-azuretools.vscode-azureresourcegroups"
+vscode "ms-azuretools.vscode-azurestaticwebapps"
+vscode "ms-azuretools.vscode-azurestorage"
+vscode "ms-azuretools.vscode-azurevirtualmachines"
 vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-cosmosdb"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
@@ -220,9 +371,10 @@ vscode "ms-vscode.azure-repos"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.remote-repositories"
 vscode "ms-vscode.remote-server"
-vscode "ms-vscode.sublime-keybindings"
 vscode "ms-vscode.test-adapter-converter"
+vscode "ms-vscode.vscode-chat-customizations-evaluations"
 vscode "ms-vscode.vscode-js-profile-flame"
+vscode "ms-vscode.vscode-node-azure-pack"
 vscode "ms-vscode.vscode-speech"
 vscode "ms-vsliveshare.vsliveshare"
 vscode "ms-windows-ai-studio.windows-ai-studio"
@@ -235,10 +387,12 @@ vscode "oven.bun-vscode"
 vscode "oxc.oxc-vscode"
 vscode "pkief.material-icon-theme"
 vscode "prisma.prisma"
+vscode "redhat.java"
 vscode "redhat.vscode-yaml"
 vscode "serkonda7.vscode-vba"
 vscode "sidneys1.gitconfig"
 vscode "sonarsource.sonarlint-vscode"
+vscode "stevenchen.vscode-adr-manager"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "streetsidesoftware.code-spell-checker-british-english"
 vscode "streetsidesoftware.code-spell-checker-portuguese"
@@ -251,13 +405,20 @@ vscode "tamasfe.even-better-toml"
 vscode "tauri-apps.tauri-vscode"
 vscode "unifiedjs.vscode-mdx"
 vscode "usernamehw.errorlens"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
-vscode "visualstudioexptteam.vscodeintellicode"
+vscode "vadimcn.vscode-lldb"
 vscode "vitest.explorer"
+vscode "vscjava.vscode-gradle"
+vscode "vscjava.vscode-java-debug"
+vscode "vscjava.vscode-java-dependency"
+vscode "vscjava.vscode-java-pack"
+vscode "vscjava.vscode-java-test"
+vscode "vscjava.vscode-lombok"
+vscode "vscjava.vscode-maven"
 vscode "vscode-icons-team.vscode-icons"
-vscode "vscodevim.vim"
 vscode "webben.browserslist"
 vscode "william-voyek.vscode-nginx"
 vscode "wix.vscode-import-cost"
 vscode "xabikos.javascriptsnippets"
 vscode "yoavbls.pretty-ts-errors"
+uv "google-agents-cli"
+uv "graphifyy"
