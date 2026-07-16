@@ -1,4 +1,5 @@
 [tools]
+biome = "latest"
 bun = "latest"
 java = "latest"
 node = "latest"
@@ -6,6 +7,18 @@ pnpm = "latest"
 python = "latest"
 ruby = "latest"
 rust = "latest"
+dotnet = "latest"
+pre-commit = "latest"
+protobuf = "latest"
+uv = "latest"
+helm = "latest"
+k9s = "latest"
+trivy = "latest"
+kubelogin = "latest"
+pipenv = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
+
+[bootstrap.macos.finder]
+show_all_files = true
