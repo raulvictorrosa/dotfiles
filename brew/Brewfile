@@ -52,22 +52,16 @@ brew "glow"
 brew "gnu-sed"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Post-modern modal text editor
-brew "helix"
 # C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
+brew "icu4c@78"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Install and debug iPhone apps from the command-line
 brew "ios-deploy"
-# Git-compatible distributed version control system
-brew "jj"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Open-source distributed event streaming platform
 brew "kafka"
-# Selection-based modal text editor
-brew "kakoune"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # Simple terminal UI for git commands
@@ -78,8 +72,6 @@ brew "lsd"
 brew "lua"
 # Package manager for the Lua programming language
 brew "luarocks"
-# Text-based web browser
-brew "lynx"
 # Terminal-based visual file manager
 brew "midnight-commander"
 # Polyglot runtime manager (asdf rust clone)
@@ -92,8 +84,6 @@ brew "nowplaying-cli"
 brew "oh-my-posh"
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
-# Python dependency management tool
-brew "pipenv"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # PNG image optimizing utility
@@ -108,8 +98,6 @@ brew "ripgrep"
 brew "rmux"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
-# Cross-shell prompt for astronauts
-brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line
@@ -132,8 +120,6 @@ brew "zoxide"
 brew "felixkratz/formulae/borders", trusted: true
 # Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar", trusted: true
-# Turns macOS input fields into real vim buffers
-brew "felixkratz/formulae/svim", trusted: true
 # Simple hotkey daemon for macOS, written in Zig
 cask "jackielii/tap/skhd-zig", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
@@ -148,12 +134,8 @@ cask "android-platform-tools"
 cask "anydesk"
 # Application uninstaller
 cask "appcleaner"
-# Audio utility
-cask "background-music"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# Menu bar icon organiser
-cask "bartender"
 # App for managing battery charging. (Also installs a CLI on first use.)
 cask "battery"
 # Open source IDE for exploring and testing APIs
@@ -195,24 +177,16 @@ cask "ghostty"
 cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
-# Enables an integrated web browser in iTerm2
-cask "itermbrowserplugin"
 # Keyboard customiser
 cask "karabiner-elements"
 # Password manager app
 cask "keepassxc"
-# GPU-based terminal emulator
-cask "kitty"
 # Customise mouse behavior
 cask "linearmouse"
 # Open-source cross-platform alternative to AirDrop
 cask "localsend"
 # Software for Logitech devices
 cask "logi-options+"
-# Full TeX Live distribution with GUI applications
-cask "mactex"
 # Multi-platform web browser
 cask "microsoft-edge"
 # Online collaborative whiteboard platform
@@ -245,8 +219,6 @@ cask "spotify"
 cask "ssh-config-editor"
 # Messaging app with a focus on speed and security
 cask "telegram"
-# Utility to hide the notch
-cask "topnotch"
 # Open-source BitTorrent client
 cask "transmission"
 # Free and open-source OpenVPN client
