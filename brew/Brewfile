@@ -14,8 +14,8 @@ brew "bash"
 brew "bat"
 # Arbitrary precision numeric processing language
 brew "bc"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@78"
+# A window border system for macOS
+brew "felixkratz/formulae/borders", trusted: true
 # New way to see and navigate directory trees
 brew "broot"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -24,10 +24,6 @@ brew "btop"
 brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# TIFF library and utilities
-brew "libtiff"
-# Development kit for the Java programming language
-brew "openjdk"
 # Command-line tool that allows to manage your resources with crowdin.com
 brew "crowdin"
 # Modern, maintained replacement for ls
@@ -56,6 +52,8 @@ brew "glow"
 brew "gnu-sed"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c@78"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Install and debug iPhone apps from the command-line
@@ -68,6 +66,8 @@ brew "kafka"
 brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
+# TIFF library and utilities
+brew "libtiff"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Powerful, lightweight programming language
@@ -84,6 +84,8 @@ brew "neovim"
 brew "nowplaying-cli"
 # Prompt theme engine for any shell
 brew "oh-my-posh"
+# Development kit for the Java programming language
+brew "openjdk"
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
 # Package compiler and linker metadata toolkit
@@ -100,6 +102,8 @@ brew "ripgrep"
 brew "rmux"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar", trusted: true
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line
@@ -120,10 +124,6 @@ brew "worktrunk"
 brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# A window border system for macOS
-brew "felixkratz/formulae/borders", trusted: true
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Enable Windows-like alt-tab
@@ -378,4 +378,3 @@ vscode "xabikos.javascriptsnippets"
 vscode "yoavbls.pretty-ts-errors"
 uv "google-agents-cli"
 uv "graphifyy"
-npm "corepack"
