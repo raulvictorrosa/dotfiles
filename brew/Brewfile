@@ -1,6 +1,5 @@
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "jackielii/tap"
-tap "jandedobbeleer/oh-my-posh", trusted: { casks: ["oh-my-posh"] }
 tap "nikitabobko/tap"
 # ARP scanning and fingerprinting tool
 brew "arp-scan"
@@ -82,8 +81,6 @@ brew "mise"
 brew "neovim"
 # Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
-# Prompt theme engine for any shell
-brew "oh-my-posh"
 # Development kit for the Java programming language
 brew "openjdk"
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
