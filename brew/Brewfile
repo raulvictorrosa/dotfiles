@@ -1,5 +1,5 @@
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
-tap "jackielii/tap", trusted: { casks: ["skhd-zig"] }
+tap "jackielii/tap"
 tap "jandedobbeleer/oh-my-posh", trusted: { casks: ["oh-my-posh"] }
 tap "nikitabobko/tap"
 # ARP scanning and fingerprinting tool
@@ -14,6 +14,8 @@ brew "bash"
 brew "bat"
 # Arbitrary precision numeric processing language
 brew "bc"
+# A window border system for macOS
+brew "felixkratz/formulae/borders", trusted: true
 # New way to see and navigate directory trees
 brew "broot"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -22,8 +24,6 @@ brew "btop"
 brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Development kit for the Java programming language (required by kafka, crowdin)
-brew "openjdk"
 # Command-line tool that allows to manage your resources with crowdin.com
 brew "crowdin"
 # Modern, maintained replacement for ls
@@ -66,6 +66,8 @@ brew "kafka"
 brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
+# TIFF library and utilities
+brew "libtiff"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Powerful, lightweight programming language
@@ -82,6 +84,8 @@ brew "neovim"
 brew "nowplaying-cli"
 # Prompt theme engine for any shell
 brew "oh-my-posh"
+# Development kit for the Java programming language
+brew "openjdk"
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
 # Package compiler and linker metadata toolkit
@@ -98,6 +102,8 @@ brew "ripgrep"
 brew "rmux"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar", trusted: true
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line
@@ -108,6 +114,8 @@ brew "tmux"
 brew "tmuxinator"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Watch files and take action when they change
 brew "watchman"
 # CLI for Git worktree management, designed for parallel AI agent workflows
@@ -116,12 +124,6 @@ brew "worktrunk"
 brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# A window border system for macOS
-brew "felixkratz/formulae/borders", trusted: true
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar", trusted: true
-# Simple hotkey daemon for macOS, written in Zig
-cask "jackielii/tap/skhd-zig", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Enable Windows-like alt-tab
@@ -144,8 +146,6 @@ cask "bruno"
 cask "ccleaner"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Claude code parallelisation
-cask "conductor"
 # Build wearable experiences for Garmin devices and sensors with ConnectIQ SDK
 cask "connectiq"
 # Brings the power of Copilot coding agent directly to your terminal
@@ -173,6 +173,8 @@ cask "font-symbols-only-nerd-font"
 cask "garmin-express"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Native client for GitHub Copilot
+cask "github-copilot-app"
 # Web browser
 cask "google-chrome"
 # Client for the Google Drive storage service
@@ -211,12 +213,16 @@ cask "raycast"
 cask "rectangle"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Simple hotkey daemon written in Zig
+cask "jackielii/tap/skhd-zig", trusted: true
 # Team communication and collaboration software
 cask "slack"
 # Music streaming service
 cask "spotify"
 # Tool for managing the OpenSSH ssh client configuration file
 cask "ssh-config-editor"
+# Companion app for Stremio Web
+cask "stremioservice"
 # Messaging app with a focus on speed and security
 cask "telegram"
 # Open-source BitTorrent client
@@ -251,6 +257,7 @@ vscode "bruno-api-client.bruno"
 vscode "catppuccin.catppuccin-vsc-icons"
 vscode "christian-kohler.npm-intellisense"
 vscode "crowdin.vscode-crowdin"
+vscode "datadog.datadog-vscode"
 vscode "davidanson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
 vscode "denoland.vscode-deno"
