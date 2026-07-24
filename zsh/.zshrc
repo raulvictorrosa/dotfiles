@@ -1,29 +1,11 @@
-# Set XDG variables for command-line tools
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
-
-
-# export MYVIMRC="$HOME/.vimrc"
-# export $NVIM_LOG_FILE="$XDG_STATE_HOME /nvim"
-
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/Downloads/
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -88,19 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  # dotenv
-  git
-  history
-  mise
-  # node
-  # nvm
-  npm
-  rust
-  # sudo
-  vi-mode
-  # ubuntu
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,97 +81,24 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
-# zi light dracula/zsh
-# zi light dracula/zsh-syntax-highlighting
-zi light zsh-users/zsh-autosuggestions
-zi light zsh-users/zsh-completions
-zi light zsh-users/zsh-syntax-highlighting
-zi ice depth=1; zi light romkatv/powerlevel10k
-
-# Atuin - History Manager
-eval "$(atuin init zsh)"
-
-# fzf -- a command-line fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Broot is a better way to navigate directories, find files, and launch commands.
-source /Users/ror2lis/.config/broot/launcher/bash/br
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# bun completions
-[ -s "/Users/ror2lis/.bun/_bun" ] && source "/Users/ror2lis/.bun/_bun"
-
-alias ls='eza --icons=always'
-alias cat='bat'
-alias vim='nvim'
-alias trs='tmux rename-session'
-
-export VISUAL=nvim;
-export EDITOR=nvim;
-
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/ror2lis/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
-# Opt out of Azure MCP / Copilot skills telemetry
-export AZURE_MCP_COLLECT_TELEMETRY=false
-
-# Required for claude CLI and poetry — both install to ~/.local/bin and won't be found without this
-export PATH="$HOME/.local/bin:$PATH"
-
-# Added by Antigravity
-export PATH="/Users/ror2lis/.antigravity/antigravity/bin:$PATH"
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/ror2lis/.cache/lm-studio/bin"
-
-
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
