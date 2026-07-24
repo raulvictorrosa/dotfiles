@@ -10,3 +10,6 @@ zed/.config/zed/.tmp*
 # Copilot - skill folders are large, lock file is enough
 copilot/.agents/skills/*/
 # Hooks scripts may contain telemetry endpoints - review before committing
+
+# Local scratch notes, not meant to be tracked
+TODO_LIMPEZA_HOME.md
