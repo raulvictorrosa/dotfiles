@@ -23,8 +23,6 @@ ZSH_THEME=""
 plugins=(
   git
   history
-  npm
-  rust
   vi-mode
 )
 
