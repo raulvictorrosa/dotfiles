@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/ignore
 	editor = nvim
 	pager = delta
 
@@ -17,4 +17,4 @@
 	conflictStyle = zdiff3
 
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.config/git/config.local

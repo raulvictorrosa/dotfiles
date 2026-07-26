@@ -1,21 +1,15 @@
-# Set XDG variables for command-line tools
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Powerlevel10k instant prompt — disabled now that starship is the active
+# prompt. Kept commented (not deleted) as a rollback path; see
+# docs/plans/starship-migration.md.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Powerlevel10k (loaded via zinit below) is the active prompt; skip oh-my-zsh's
-# own theme rendering entirely instead of loading one that's never shown.
+# Starship (initialized below) is the active prompt; skip oh-my-zsh's own
+# theme rendering entirely instead of loading one that's never shown.
 ZSH_THEME=""
 
 # Which plugins would you like to load?
@@ -59,12 +53,13 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Non-prompt plugins load in Turbo mode (after the first prompt renders) so
-# they don't block startup. Powerlevel10k stays eager since it *is* the
-# prompt — instant-prompt above already covers perceived latency for it.
+# they don't block startup.
 zi ice wait lucid; zi light zsh-users/zsh-autosuggestions
 zi ice wait lucid; zi light zsh-users/zsh-completions
 zi ice wait lucid; zi light zsh-users/zsh-syntax-highlighting
-zi ice depth=1; zi light romkatv/powerlevel10k
+# Powerlevel10k retired in favor of starship — see docs/plans/starship-migration.md.
+# Uncomment to roll back:
+# zi ice depth=1; zi light romkatv/powerlevel10k
 
 # Cache the output of tools whose shell integration is normally loaded via a
 # synchronous `eval "$(... init zsh)"` — that spawns the binary on every
@@ -76,6 +71,12 @@ _zsh_cached_eval_init() {
   [[ -s "$cache" && "$cache" -nt "$bin" ]] || { mkdir -p "${cache:h}"; "$@" > "$cache"; }
   source "$cache"
 }
+
+# Starship — cross-shell prompt (replaces Powerlevel10k; see
+# docs/plans/starship-migration.md). Swap the filename below to try a
+# different committed preset before picking one.
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship-pastel-powerline.toml"
+_zsh_cached_eval_init starship init zsh
 
 # Atuin - History Manager
 _zsh_cached_eval_init atuin init zsh
@@ -92,8 +93,9 @@ command -v wt >/dev/null 2>&1 && _zsh_cached_eval_init wt config shell init zsh
 # Broot is a better way to navigate directories, find files, and launch commands.
 [ -f $HOME/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# p10k rollback: uncomment to bring back the old prompt (also uncomment the
+# instant-prompt block above and the `zi light romkatv/powerlevel10k` line).
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
