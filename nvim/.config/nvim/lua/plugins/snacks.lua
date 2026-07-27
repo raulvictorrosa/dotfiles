@@ -5,6 +5,9 @@ return {
     scroll = {
       enabled = false, -- Disable scrolling animations
     },
+    image = {
+      enabled = true, -- Inline image/PDF/LaTeX/Mermaid rendering (needs a kitty-graphics-protocol terminal)
+    },
     picker = {
       hidden = true, -- Show hidden files in the picker (e.g., using <leader><leader>)
       ignored = true, -- Show files ignored by git in the picker
