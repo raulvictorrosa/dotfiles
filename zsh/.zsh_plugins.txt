@@ -10,8 +10,6 @@ ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/vi-mode
 ohmyzsh/ohmyzsh path:plugins/eza
 
-# tmux plugin: aliases (ta, tad, to, ts, tkss, tksv, tl, tmuxconf, tds) plus
-# it wraps the `tmux` command itself. ZSH_TMUX_AUTOSTART stays false (default)
-# so it never launches tmux on its own; keep an eye on this once fully on
-# rmux, since at that point the wrapper's tmux behavior may no longer be wanted.
+# tmux plugin: adds aliases and wraps the `tmux` command itself. If we decide
+# to migrate to rmux, revisit this config then.
 ohmyzsh/ohmyzsh path:plugins/tmux
