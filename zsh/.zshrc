@@ -61,7 +61,7 @@ _zsh_cached_eval_init() {
 }
 
 # Starship — cross-shell prompt (replaces Powerlevel10k)
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship-default.toml"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 _zsh_cached_eval_init starship init zsh
 
 # ------------------------------------------------------------------
@@ -116,9 +116,3 @@ export AZURE_MCP_COLLECT_TELEMETRY=false
 
 # Required for claude CLI and poetry — both install to ~/.local/bin and won't be found without this
 export PATH="$HOME/.local/bin:$PATH"
-
-# Added by Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.cache/lm-studio/bin"
