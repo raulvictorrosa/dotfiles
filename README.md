@@ -22,7 +22,7 @@ The following tools are actively used and recommended for the best experience:
 ### 🛠️ Core Tools
 
 - **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
-- **Shell**: Zsh with Antidote and Starship — no oh-my-zsh framework, just its `git`, `vi-mode`, and `eza` plugins loaded standalone (see [docs/plans/starship-migration.md](docs/plans/starship-migration.md) for the migration from Powerlevel10k/Zinit/oh-my-zsh)
+- **Shell**: Zsh with Antidote and Starship — a few individual oh-my-zsh plugins (`git`, `vi-mode`, `eza`) loaded standalone, no framework
 - **Multiplexer**: tmux with TPM plugin manager
 - **File Management**: Atuin (history), Yazi (directory navigation)
 
@@ -127,7 +127,7 @@ The following tools are actively used and recommended for the best experience:
 ├── nvim/              # Neovim editor configuration
 ├── sketchybar/        # Custom menu bar (macOS)
 ├── skhd/              # Hotkey daemon (macOS - unused, Aerospace handles hotkeys)
-├── starship/          # Prompt config (default preset, see docs/plans/starship-migration.md)
+├── starship/          # Prompt config (starship, minimal built-in defaults)
 ├── tmux/              # Terminal multiplexer
 ├── vim/               # Classic Vim configuration
 ├── wezterm/           # Terminal emulator
@@ -140,7 +140,7 @@ The following tools are actively used and recommended for the best experience:
 ### Shell Experience
 
 - **Dracula theme** throughout most applications
-- **Starship** prompt with git integration (replacing Powerlevel10k)
+- **Starship** prompt with git integration
 - **Antidote** for static, fast plugin management (replacing Zinit)
 - **VI mode** enabled in zsh
 - **Smart history** with Atuin
