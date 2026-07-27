@@ -60,7 +60,7 @@ _zsh_cached_eval_init() {
   source "$cache"
 }
 
-# Starship — cross-shell prompt (replaces Powerlevel10k)
+# Starship — cross-shell prompt
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 _zsh_cached_eval_init starship init zsh
 
