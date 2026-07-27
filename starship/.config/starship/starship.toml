@@ -1,8 +1,6 @@
-# Starship's built-in defaults, with two tweaks:
-# - time module enabled (off by default) and moved to the end of the main
-#   line instead of its default spot on the second line
-# - cmd_duration is already enabled by default (shows once a command takes
-#   at least 2s) — no change needed there, just noting it's on
+# Starship's built-in defaults, with one tweak: time module enabled (off
+# by default) and moved to the end of the main line instead of its default
+# spot on the second line.
 format = """
 $username\
 $hostname\
