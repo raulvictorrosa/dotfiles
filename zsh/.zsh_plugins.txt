@@ -1,0 +1,13 @@
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+
+# Individual oh-my-zsh plugins, loaded standalone via antidote's path:
+# annotation — just these plugin files, no framework/core needed.
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/vi-mode
+ohmyzsh/ohmyzsh path:plugins/eza
+
+# tmux plugin: adds aliases and wraps the `tmux` command itself. If we decide
+# to migrate to rmux, revisit this config then.
+ohmyzsh/ohmyzsh path:plugins/tmux

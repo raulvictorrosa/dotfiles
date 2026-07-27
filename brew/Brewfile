@@ -1,6 +1,8 @@
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "jackielii/tap"
 tap "nikitabobko/tap"
+# Fast, static zsh plugin manager
+brew "antidote"
 # ARP scanning and fingerprinting tool
 brew "arp-scan"
 # Improved shell history for zsh, bash, fish and nushell
@@ -51,6 +53,8 @@ brew "glow"
 brew "gnu-sed"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# A command-line benchmarking tool
+brew "hyperfine"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c@78"
 # Tools and libraries to manipulate images in select formats
@@ -101,6 +105,8 @@ brew "rmux"
 brew "sevenzip"
 # Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar", trusted: true
+# Cross-shell prompt with git integration, written in Rust
+brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line

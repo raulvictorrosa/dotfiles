@@ -1,0 +1,36 @@
+# See https://git-scm.com/docs/git-config
+
+[core]
+	excludesfile = ~/.config/git/ignore  # Global ignores shared across every repo on the machine
+	editor = nvim
+	pager = delta                       # Syntax-highlighted diff pager
+[init]
+	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only     # Let delta colorize `git add -p` / `git stash -p` hunks
+[delta]
+	navigate = true                     # n/N jump between diff sections in the pager
+	side-by-side = true                 # Two-column diff view
+[merge]
+	conflictStyle = zdiff3              # Show the common ancestor in conflict markers, not just ours/theirs
+[include]
+	path = ~/.config/git/config.local    # Machine-local identity (name/email) — not committed
+[pull]
+	rebase = true 			 # Rebase (instead of merge) on pull
+[push]
+	autoSetupRemote = true   # Automatically set upstream branch on push
+[diff]
+	algorithm = histogram    # Clearer diffs on moved/edited lines
+	colorMoved = plain       # Highlight moved blocks in diffs
+	mnemonicPrefix = true    # More intuitive refs in diff output
+[commit]
+	verbose = true           # Include diff comment in commit message template
+[column]
+	ui = auto 			     # Output in columns when possible
+[branch]
+	sort = -committerdate    # Sort branches by most recent commit first
+[tag]
+	sort = -version:refname  # Sort version numbers as you would expect
+[rerere]
+	enabled = true           # Record and reuse conflict resolutions
+	autoupdate = true        # Apply stored conflict resolutions automatically

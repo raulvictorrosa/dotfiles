@@ -22,7 +22,7 @@ The following tools are actively used and recommended for the best experience:
 ### 🛠️ Core Tools
 
 - **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
-- **Shell**: Zsh with Oh-My-Zsh, Zinit, and Powerlevel10k
+- **Shell**: Zsh with Antidote and Starship — a few individual oh-my-zsh plugins (`git`, `vi-mode`, `eza`) loaded standalone, no framework
 - **Multiplexer**: tmux with TPM plugin manager
 - **File Management**: Atuin (history), Yazi (directory navigation)
 
@@ -88,13 +88,13 @@ The following tools are actively used and recommended for the best experience:
    brew install stow
 
    # Recommended: Link only the currently recommended configs
-   stow nvim zsh tmux ghostty mise atuin git  # Core tools
+   stow nvim zsh tmux ghostty mise atuin git starship  # Core tools
    stow aerospace sketchybar borders linearmouse  # macOS window management
    stow claude  # AI tools
 
    # Git: copy the local identity template and fill in your details
-   cp ~/dotfiles/git/.gitconfig.local.example ~/.gitconfig.local
-   # then edit ~/.gitconfig.local with your name and email
+   cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
+   # then edit ~/.config/git/config.local with your name and email
 
    # Alternative: Create symlinks for all configs
    stow */
@@ -118,7 +118,7 @@ The following tools are actively used and recommended for the best experience:
 │   ├── Brewfile       # All installed packages/apps
 │   └── README.md      # Package management guide
 ├── claude/            # Claude Code AI assistant config
-├── git/               # Git config (portable; identity goes in ~/.gitconfig.local)
+├── git/               # Git config (portable; identity goes in ~/.config/git/config.local)
 ├── ghostty/           # Terminal emulator
 ├── k9s/               # Kubernetes cluster manager
 ├── kitty/             # Terminal emulator
@@ -127,6 +127,7 @@ The following tools are actively used and recommended for the best experience:
 ├── nvim/              # Neovim editor configuration
 ├── sketchybar/        # Custom menu bar (macOS)
 ├── skhd/              # Hotkey daemon (macOS - unused, Aerospace handles hotkeys)
+├── starship/          # Prompt config (starship, minimal built-in defaults)
 ├── tmux/              # Terminal multiplexer
 ├── vim/               # Classic Vim configuration
 ├── wezterm/           # Terminal emulator
@@ -139,8 +140,8 @@ The following tools are actively used and recommended for the best experience:
 ### Shell Experience
 
 - **Dracula theme** throughout most applications
-- **Powerlevel10k** prompt with git integration
-- **Zinit** for fast plugin management
+- **Starship** prompt with git integration
+- **Antidote** for static, fast plugin management (replacing Zinit)
 - **VI mode** enabled in zsh
 - **Smart history** with Atuin
 - **Directory navigation** with Yazi file manager
@@ -164,20 +165,38 @@ The following tools are actively used and recommended for the best experience:
 
 ### Git Configuration
 
-Portable setup that works across machines with different identities:
+Portable setup that works across machines with different identities. Config
+lives under `$XDG_CONFIG_HOME/git/` (native git XDG fallback — only used
+when `~/.gitconfig` doesn't exist, which is why it's important not to
+recreate one):
 
-- `git/.gitconfig` — shared settings: delta pager, default branch, merge strategy
-- `git/.gitignore_global` — global ignores (`.DS_Store`, swap files)
-- `~/.gitconfig.local` — machine-specific identity, **not committed**
+- `git/.config/git/config` — shared settings: delta pager, default branch, merge strategy
+- `git/.config/git/ignore` — global ignores (`.DS_Store`, swap files)
+- `~/.config/git/config.local` — machine-specific identity, **not committed**
 
 On a new machine, after `stow git`:
 
 ```bash
-cp ~/dotfiles/git/.gitconfig.local.example ~/.gitconfig.local
+cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
 # edit with your name and email
 ```
 
-The shared config includes `[include] path = ~/.gitconfig.local` so git picks up identity automatically.
+The shared config includes `[include] path = ~/.config/git/config.local` so git picks up identity automatically.
+
+### XDG Base Directory Compliance
+
+Tools already managed by this repo are kept XDG-compliant where the tool
+supports it (this is a scoped pass over dotfiles-managed tools, not a
+machine-wide reorg):
+
+- **zsh**: env vars (`XDG_*`, `HISTFILE`) live in `zsh/.zshenv`, sourced by
+  *every* zsh invocation — not just interactive ones, unlike `.zshrc`. Shell
+  history lives at `$XDG_STATE_HOME/zsh/history` instead of `~/.zsh_history`.
+- **git**: config relocated to `$XDG_CONFIG_HOME/git/` (see Git Configuration
+  above) instead of `~/.gitconfig`.
+- **atuin, mise, lazygit, yazi, nvim, tmux**: already XDG-compliant natively
+  (config under `.config/`, data/state/cache under their respective XDG dirs)
+  — no changes needed.
 
 ### SketchyBar Features
 

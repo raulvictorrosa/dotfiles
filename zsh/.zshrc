@@ -1,70 +1,53 @@
-# Set XDG variables for command-line tools
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
+# ------------------------------------------------------------------
+# Plugins — antidote (static bundle, see .zsh_plugins.txt). Only 3
+# community plugins plus 3 individual oh-my-zsh plugins loaded standalone
+# (git, vi-mode, eza) — no oh-my-zsh framework/core needed for any of them.
+# ------------------------------------------------------------------
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# eza plugin config must be set before antidote sources it below.
+zstyle ':omz:plugins:eza' icons yes
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# The git plugin (loaded below, before compinit) calls `compdef` to register
+# its aliases' completions — but compinit hasn't defined the real `compdef`
+# yet at that point. Queue those calls in a stub and replay them for real
+# once compinit runs (this is the same ordering trick oh-my-zsh's own
+# completion.zsh uses internally).
+typeset -ga _zsh_deferred_compdefs
+compdef() { _zsh_deferred_compdefs+=("$*") }
 
-# Powerlevel10k (loaded via zinit below) is the active prompt; skip oh-my-zsh's
-# own theme rendering entirely instead of loading one that's never shown.
-ZSH_THEME=""
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-plugins=(
-  git
-  history
-  vi-mode
-)
-
-# Docker CLI completions fpath must be added before compinit runs (inside
-# oh-my-zsh.sh below) so a single compinit pass picks them up — avoids a
-# second, redundant compinit call later in this file.
+# zsh-completions (bundled below) adds to fpath; Docker's own completions
+# need to land in fpath before compinit runs too, so both go in before
+# `antidote load`.
 fpath=($HOME/.docker/completions $fpath)
 
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+# `brew --prefix` resolves correctly across Apple Silicon (/opt/homebrew),
+# Intel Mac (/usr/local), and Linuxbrew (/home/linuxbrew/.linuxbrew); the
+# manual-clone path covers Linux boxes without Homebrew at all (antidote's
+# own non-brew install method).
+if command -v brew >/dev/null 2>&1; then
+  source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+elif [[ -f "$HOME/.antidote/antidote.zsh" ]]; then
+  source "$HOME/.antidote/antidote.zsh"
 fi
+antidote load
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# ------------------------------------------------------------------
+# Completion
+# ------------------------------------------------------------------
+autoload -Uz compinit compdef
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+# `autoload -Uz compdef` above already replaced the stub with the real one
+# (confirmed — autoload overrides an existing ordinary function of the same
+# name). Replay what the stub queued through it.
+for _zsh_compdef_call in "${_zsh_deferred_compdefs[@]}"; do
+  eval "compdef $_zsh_compdef_call"
+done
+unset _zsh_deferred_compdefs _zsh_compdef_call
 
-### End of Zinit's installer chunk
-
-# Non-prompt plugins load in Turbo mode (after the first prompt renders) so
-# they don't block startup. Powerlevel10k stays eager since it *is* the
-# prompt — instant-prompt above already covers perceived latency for it.
-zi ice wait lucid; zi light zsh-users/zsh-autosuggestions
-zi ice wait lucid; zi light zsh-users/zsh-completions
-zi ice wait lucid; zi light zsh-users/zsh-syntax-highlighting
-zi ice depth=1; zi light romkatv/powerlevel10k
+# ------------------------------------------------------------------
+# Prompt
+# ------------------------------------------------------------------
 
 # Cache the output of tools whose shell integration is normally loaded via a
 # synchronous `eval "$(... init zsh)"` — that spawns the binary on every
@@ -77,10 +60,18 @@ _zsh_cached_eval_init() {
   source "$cache"
 }
 
+# Starship — cross-shell prompt
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+_zsh_cached_eval_init starship init zsh
+
+# ------------------------------------------------------------------
+# Tool integrations
+# ------------------------------------------------------------------
+
 # Atuin - History Manager
 _zsh_cached_eval_init atuin init zsh
 
-# mise - polyglot runtime manager (replaces oh-my-zsh's mise plugin eval)
+# mise - polyglot runtime manager
 _zsh_cached_eval_init mise activate zsh
 
 # worktrunk - Git worktree management CLI
@@ -92,20 +83,20 @@ command -v wt >/dev/null 2>&1 && _zsh_cached_eval_init wt config shell init zsh
 # Broot is a better way to navigate directories, find files, and launch commands.
 [ -f $HOME/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-alias ls='eza --icons=always'
+# ------------------------------------------------------------------
+# Aliases
+# ------------------------------------------------------------------
+# ls/la/ll/etc. come from the eza oh-my-zsh plugin above.
 alias cat='bat'
 alias vim='nvim'
 alias trs='tmux rename-session'
 
-export VISUAL=nvim;
-export EDITOR=nvim;
-
+# ------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -114,14 +105,14 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# ------------------------------------------------------------------
+# Environment
+# ------------------------------------------------------------------
+export VISUAL=nvim
+export EDITOR=nvim
+
 # Opt out of Azure MCP / Copilot skills telemetry
 export AZURE_MCP_COLLECT_TELEMETRY=false
 
 # Required for claude CLI and poetry — both install to ~/.local/bin and won't be found without this
 export PATH="$HOME/.local/bin:$PATH"
-
-# Added by Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.cache/lm-studio/bin"
