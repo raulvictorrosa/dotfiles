@@ -1,4 +1,2 @@
 # Intentionally blank. Starship renders its own built-in default prompt
-# when the config file it's pointed at is empty (or absent) — this is the
-# "default preset" candidate from docs/plans/starship-migration.md, picked
-# over the tokyo-night / pastel-powerline presets after a live comparison.
+# when the config file it's pointed at is empty (or absent).
