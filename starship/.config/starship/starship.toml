@@ -1,6 +1,6 @@
 # Starship's built-in defaults, with two tweaks:
-# - time module enabled (off by default) and moved next to the language
-#   runtime version instead of its default spot on the second line
+# - time module enabled (off by default) and moved to the end of the main
+#   line instead of its default spot on the second line
 # - cmd_duration is already enabled by default (shows once a command takes
 #   at least 2s) — no change needed there, just noting it's on
 format = """
@@ -53,7 +53,6 @@ $maven\
 $mojo\
 $nim\
 $nodejs\
-$time\
 $ocaml\
 $odin\
 $opa\
@@ -96,6 +95,7 @@ $crystal\
 $custom\
 $sudo\
 $cmd_duration\
+$time\
 $line_break\
 $jobs\
 $battery\
