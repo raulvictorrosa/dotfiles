@@ -103,9 +103,8 @@ starship is proven out. Treat this as two smaller migrations, not one.
      time — `antidote load` auto-discovers `${ZDOTDIR:-$HOME}/.zsh_plugins.txt`,
      clones plugins on first run, and generates/caches a static
      `~/.zsh_plugins.zsh` that's just sourced afterward.)
-   - `~/.local/share/zinit` (30M) left on disk for now, not yet deleted —
-     harmless leftover, delete once fully confident nothing else references
-     it.
+   - `~/.local/share/zinit` (30M) deleted — confirmed nothing else
+     referenced it, shell still starts clean without it.
 
 ## Antidote results
 
@@ -175,7 +174,5 @@ is the cause — this benchmark doesn't rule it in or out either way.
   "Benchmark results" above.
 - ~~Decide on a `starship.toml` preset~~ — resolved after live comparison:
   **`starship-default.toml`** (starship's own minimal defaults, no preset)
-  is the one wired up via `STARSHIP_CONFIG` in `.zshrc`. `starship-tokyo-night.toml`
-  and `starship-pastel-powerline.toml` are left committed in
-  `starship/.config/starship/` as reference/fallback options — delete them
-  whenever, not blocking.
+  is the one wired up via `STARSHIP_CONFIG` in `.zshrc`. The tokyo-night and
+  pastel-powerline candidates were deleted once the decision was made.

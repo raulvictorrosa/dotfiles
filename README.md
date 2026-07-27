@@ -127,7 +127,7 @@ The following tools are actively used and recommended for the best experience:
 ├── nvim/              # Neovim editor configuration
 ├── sketchybar/        # Custom menu bar (macOS)
 ├── skhd/              # Hotkey daemon (macOS - unused, Aerospace handles hotkeys)
-├── starship/          # Prompt config (3 candidate presets, see docs/plans/starship-migration.md)
+├── starship/          # Prompt config (default preset, see docs/plans/starship-migration.md)
 ├── tmux/              # Terminal multiplexer
 ├── vim/               # Classic Vim configuration
 ├── wezterm/           # Terminal emulator
