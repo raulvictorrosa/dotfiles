@@ -25,8 +25,15 @@ source $ZSH/oh-my-zsh.sh
 # Antidote — static plugin bundle (replaces zinit). Reads
 # ${ZDOTDIR:-$HOME}/.zsh_plugins.txt, clones on first run, and generates a
 # compiled ~/.zsh_plugins.zsh that's just sourced on subsequent starts — no
-# per-plugin runtime resolution.
-source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+# per-plugin runtime resolution. `brew --prefix` resolves correctly across
+# Apple Silicon (/opt/homebrew), Intel Mac (/usr/local), and Linuxbrew
+# (/home/linuxbrew/.linuxbrew); the manual-clone path covers Linux boxes
+# without Homebrew at all (antidote's own non-brew install method).
+if command -v brew >/dev/null 2>&1; then
+  source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+elif [[ -f "$HOME/.antidote/antidote.zsh" ]]; then
+  source "$HOME/.antidote/antidote.zsh"
+fi
 antidote load
 
 # Cache the output of tools whose shell integration is normally loaded via a
