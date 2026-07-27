@@ -3,10 +3,10 @@ deps = []
 
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
-rev = "5f56364"
-hash = "c0bf69ad2c44005892d586e9693993c6"
+rev = "8e6296f"
+hash = "d9da921c3bd37ba32ee27a8a7a40461f"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:dracula"
-rev = "3edeb49"
-hash = "c5e49b9e877ca29a3622ec2e35af0b2a"
+rev = "4770a34"
+hash = "20624fcdfcf7e4e912de05e348065e5e"

@@ -16,7 +16,7 @@ resize-overlay = never
 gtk-toolbar-style = flat
 
 # Mac config
-theme = Dracula
+# theme = Dracula
 # font-thicken = true
 macos-option-as-alt = true
 minimum-contrast = 1
