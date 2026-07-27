@@ -22,7 +22,7 @@ The following tools are actively used and recommended for the best experience:
 ### 🛠️ Core Tools
 
 - **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
-- **Shell**: Zsh with Oh-My-Zsh, Antidote, and Starship (see [docs/plans/starship-migration.md](docs/plans/starship-migration.md) for the migration from Powerlevel10k/Zinit)
+- **Shell**: Zsh with Antidote and Starship — no oh-my-zsh framework, just its `git`, `vi-mode`, and `eza` plugins loaded standalone (see [docs/plans/starship-migration.md](docs/plans/starship-migration.md) for the migration from Powerlevel10k/Zinit/oh-my-zsh)
 - **Multiplexer**: tmux with TPM plugin manager
 - **File Management**: Atuin (history), Yazi (directory navigation)
 

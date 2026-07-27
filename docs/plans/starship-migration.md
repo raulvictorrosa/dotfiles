@@ -1,10 +1,13 @@
 # Migration plan: powerlevel10k → starship
 
-> **Status: both steps implemented** on `feat/starship-prompt-and-xdg-cleanup`.
+> **Status: fully implemented** on `feat/starship-prompt-and-xdg-cleanup`.
 > Step 1 (starship swap) and step 2 (zinit → antidote) were done in the same
 > PR after all — the original "sequence these separately" caution turned out
-> not to matter in practice; see "Antidote results" below. Powerlevel10k has
-> since been fully removed (no more commented-out rollback lines).
+> not to matter in practice; see "Antidote results" below. Went further than
+> originally scoped: oh-my-zsh itself is now fully removed too (not just
+> its theme) — see "oh-my-zsh removal" below. Powerlevel10k and oh-my-zsh
+> are both gone from disk (`~/.p10k.zsh` untouched but unreferenced,
+> `~/.oh-my-zsh` and `~/.local/share/zinit` deleted).
 
 ## Why consider this at all
 
@@ -105,6 +108,47 @@ starship is proven out. Treat this as two smaller migrations, not one.
      `~/.zsh_plugins.zsh` that's just sourced afterward.)
    - `~/.local/share/zinit` (30M) deleted — confirmed nothing else
      referenced it, shell still starts clean without it.
+
+3. **oh-my-zsh removal** — done, went beyond the original scope of this
+   migration (originally only its theme rendering was disabled; the
+   framework itself stayed). Of the 3 plugins in use (`git`, `history`,
+   `vi-mode`), only `git` and `vi-mode` turned out to actually be wanted —
+   `history` was redundant with atuin and dropped. Both are loaded
+   standalone via antidote's `path:` bundle annotation, no oh-my-zsh
+   core/framework needed:
+
+   ```text
+   ohmyzsh/ohmyzsh path:plugins/git
+   ohmyzsh/ohmyzsh path:plugins/vi-mode
+   ohmyzsh/ohmyzsh path:plugins/eza
+   ```
+
+   (`eza` added too — an oh-my-zsh plugin that wraps `eza` into `ls`/`la`/
+   `ll`/etc. aliases with `zstyle`-configurable flags; replaces the old
+   manual `alias ls='eza --icons=always'` line — set
+   `zstyle ':omz:plugins:eza' icons yes` before antidote loads it to match.)
+   Confirmed by reading each plugin's source first that none of the three
+   depend on oh-my-zsh's core `lib/*.zsh` files — they're self-contained,
+   safe to load outside the framework.
+
+   **Gotcha**: oh-my-zsh's own load order is fpath-additions → `compinit` →
+   *then* source each plugin's `.plugin.zsh` — that's why oh-my-zsh's `git`
+   plugin calling `compdef` (to register completions for aliases like `gts`)
+   never errors inside oh-my-zsh itself. Antidote's static bundle sources
+   everything (fpath additions *and* plugin logic) in one pass, before our
+   own `compinit` call — so `git.plugin.zsh`'s `compdef` calls hit a
+   `command not found: compdef` at that point. Fixed with the standard
+   stub-then-replay trick: define a temporary `compdef` that just queues
+   calls into an array, let plugins call it during `antidote load`, then
+   `autoload -Uz compinit compdef; compinit` (both must be explicitly
+   autoloaded — `compinit` running does **not** auto-define `compdef`,
+   confirmed by testing), then replay the queued calls through the now-real
+   `compdef`. See `.zshrc`'s "Plugins"/"Completion" sections for the exact
+   code — do **not** `unfunction compdef` before replaying (tried that
+   first; `autoload -Uz compdef` already transparently replaces the stub
+   with the real function, so unfunctioning it first just deletes the real
+   one and every replayed call fails instead).
+   - `~/.oh-my-zsh` (13M) deleted — confirmed nothing else referenced it.
 
 ## Antidote results
 

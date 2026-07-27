@@ -1,3 +1,11 @@
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
+
+# Individual oh-my-zsh plugins, loaded standalone via antidote's path:
+# annotation — no oh-my-zsh framework/core needed, just these plugin files.
+# Each one is self-contained (only depends on zsh builtins), confirmed by
+# reading the plugin source before switching off of oh-my-zsh entirely.
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/vi-mode
+ohmyzsh/ohmyzsh path:plugins/eza

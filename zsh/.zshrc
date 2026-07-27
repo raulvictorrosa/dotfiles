@@ -1,40 +1,53 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# ------------------------------------------------------------------
+# Plugins — antidote (static bundle, see .zsh_plugins.txt). Only 3
+# community plugins plus 3 individual oh-my-zsh plugins loaded standalone
+# (git, vi-mode, eza) — no oh-my-zsh framework/core needed for any of them.
+# ------------------------------------------------------------------
 
-# Starship (initialized below) is the active prompt; skip oh-my-zsh's own
-# theme rendering entirely instead of loading one that's never shown.
-ZSH_THEME=""
+# eza plugin config must be set before antidote sources it below.
+zstyle ':omz:plugins:eza' icons yes
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-plugins=(
-  git
-  history
-  vi-mode
-)
+# The git plugin (loaded below, before compinit) calls `compdef` to register
+# its aliases' completions — but compinit hasn't defined the real `compdef`
+# yet at that point. Queue those calls in a stub and replay them for real
+# once compinit runs (this is the same ordering trick oh-my-zsh's own
+# completion.zsh uses internally).
+typeset -ga _zsh_deferred_compdefs
+compdef() { _zsh_deferred_compdefs+=("$*") }
 
-# Docker CLI completions fpath must be added before compinit runs (inside
-# oh-my-zsh.sh below) so a single compinit pass picks them up — avoids a
-# second, redundant compinit call later in this file.
+# zsh-completions (bundled below) adds to fpath; Docker's own completions
+# need to land in fpath before compinit runs too, so both go in before
+# `antidote load`.
 fpath=($HOME/.docker/completions $fpath)
 
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# Antidote — static plugin bundle (replaces zinit). Reads
-# ${ZDOTDIR:-$HOME}/.zsh_plugins.txt, clones on first run, and generates a
-# compiled ~/.zsh_plugins.zsh that's just sourced on subsequent starts — no
-# per-plugin runtime resolution. `brew --prefix` resolves correctly across
-# Apple Silicon (/opt/homebrew), Intel Mac (/usr/local), and Linuxbrew
-# (/home/linuxbrew/.linuxbrew); the manual-clone path covers Linux boxes
-# without Homebrew at all (antidote's own non-brew install method).
+# `brew --prefix` resolves correctly across Apple Silicon (/opt/homebrew),
+# Intel Mac (/usr/local), and Linuxbrew (/home/linuxbrew/.linuxbrew); the
+# manual-clone path covers Linux boxes without Homebrew at all (antidote's
+# own non-brew install method).
 if command -v brew >/dev/null 2>&1; then
   source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
 elif [[ -f "$HOME/.antidote/antidote.zsh" ]]; then
   source "$HOME/.antidote/antidote.zsh"
 fi
 antidote load
+
+# ------------------------------------------------------------------
+# Completion
+# ------------------------------------------------------------------
+autoload -Uz compinit compdef
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+
+# `autoload -Uz compdef` above already replaced the stub with the real one
+# (confirmed — autoload overrides an existing ordinary function of the same
+# name). Replay what the stub queued through it.
+for _zsh_compdef_call in "${_zsh_deferred_compdefs[@]}"; do
+  eval "compdef $_zsh_compdef_call"
+done
+unset _zsh_deferred_compdefs _zsh_compdef_call
+
+# ------------------------------------------------------------------
+# Prompt
+# ------------------------------------------------------------------
 
 # Cache the output of tools whose shell integration is normally loaded via a
 # synchronous `eval "$(... init zsh)"` — that spawns the binary on every
@@ -51,10 +64,14 @@ _zsh_cached_eval_init() {
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship-default.toml"
 _zsh_cached_eval_init starship init zsh
 
+# ------------------------------------------------------------------
+# Tool integrations
+# ------------------------------------------------------------------
+
 # Atuin - History Manager
 _zsh_cached_eval_init atuin init zsh
 
-# mise - polyglot runtime manager (replaces oh-my-zsh's mise plugin eval)
+# mise - polyglot runtime manager
 _zsh_cached_eval_init mise activate zsh
 
 # worktrunk - Git worktree management CLI
@@ -69,14 +86,17 @@ command -v wt >/dev/null 2>&1 && _zsh_cached_eval_init wt config shell init zsh
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-alias ls='eza --icons=always'
+# ------------------------------------------------------------------
+# Aliases
+# ------------------------------------------------------------------
+# ls/la/ll/etc. come from the eza oh-my-zsh plugin above.
 alias cat='bat'
 alias vim='nvim'
 alias trs='tmux rename-session'
 
-export VISUAL=nvim;
-export EDITOR=nvim;
-
+# ------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -84,6 +104,12 @@ function y() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# ------------------------------------------------------------------
+# Environment
+# ------------------------------------------------------------------
+export VISUAL=nvim
+export EDITOR=nvim
 
 # Opt out of Azure MCP / Copilot skills telemetry
 export AZURE_MCP_COLLECT_TELEMETRY=false
