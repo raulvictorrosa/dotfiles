@@ -1,6 +1,8 @@
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "jackielii/tap"
 tap "nikitabobko/tap"
+# Fast, static zsh plugin manager
+brew "antidote"
 # ARP scanning and fingerprinting tool
 brew "arp-scan"
 # Improved shell history for zsh, bash, fish and nushell

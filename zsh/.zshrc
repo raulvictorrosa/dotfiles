@@ -1,10 +1,3 @@
-# Powerlevel10k instant prompt — disabled now that starship is the active
-# prompt. Kept commented (not deleted) as a rollback path; see
-# docs/plans/starship-migration.md.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -29,37 +22,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
-# Non-prompt plugins load in Turbo mode (after the first prompt renders) so
-# they don't block startup.
-zi ice wait lucid; zi light zsh-users/zsh-autosuggestions
-zi ice wait lucid; zi light zsh-users/zsh-completions
-zi ice wait lucid; zi light zsh-users/zsh-syntax-highlighting
-# Powerlevel10k retired in favor of starship — see docs/plans/starship-migration.md.
-# Uncomment to roll back:
-# zi ice depth=1; zi light romkatv/powerlevel10k
+# Antidote — static plugin bundle (replaces zinit). Reads
+# ${ZDOTDIR:-$HOME}/.zsh_plugins.txt, clones on first run, and generates a
+# compiled ~/.zsh_plugins.zsh that's just sourced on subsequent starts — no
+# per-plugin runtime resolution.
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load
 
 # Cache the output of tools whose shell integration is normally loaded via a
 # synchronous `eval "$(... init zsh)"` — that spawns the binary on every
@@ -72,10 +40,8 @@ _zsh_cached_eval_init() {
   source "$cache"
 }
 
-# Starship — cross-shell prompt (replaces Powerlevel10k; see
-# docs/plans/starship-migration.md). Swap the filename below to try a
-# different committed preset before picking one.
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship-pastel-powerline.toml"
+# Starship — cross-shell prompt (replaces Powerlevel10k)
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship-default.toml"
 _zsh_cached_eval_init starship init zsh
 
 # Atuin - History Manager
@@ -92,10 +58,6 @@ command -v wt >/dev/null 2>&1 && _zsh_cached_eval_init wt config shell init zsh
 
 # Broot is a better way to navigate directories, find files, and launch commands.
 [ -f $HOME/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
-
-# p10k rollback: uncomment to bring back the old prompt (also uncomment the
-# instant-prompt block above and the `zi light romkatv/powerlevel10k` line).
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

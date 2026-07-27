@@ -1,8 +1,10 @@
 # Migration plan: powerlevel10k → starship
 
-> **Status: step 1 (starship swap) implemented** on
-> `feat/starship-prompt-and-xdg-cleanup`. Step 2 (zinit → antidote) remains an
-> outline only — a separate future PR, only if/when decided on later.
+> **Status: both steps implemented** on `feat/starship-prompt-and-xdg-cleanup`.
+> Step 1 (starship swap) and step 2 (zinit → antidote) were done in the same
+> PR after all — the original "sequence these separately" caution turned out
+> not to matter in practice; see "Antidote results" below. Powerlevel10k has
+> since been fully removed (no more commented-out rollback lines).
 
 ## Why consider this at all
 
@@ -68,37 +70,72 @@ starship is proven out. Treat this as two smaller migrations, not one.
 
 ## Migration steps
 
-1. **Starship swap** (keep zinit) — done:
+1. **Starship swap** (keep zinit initially) — done:
    - `brew install starship`.
-   - Remove `zi ice depth=1; zi light romkatv/powerlevel10k` and the
-     `[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh` line from `.zshrc`.
-   - Add `eval "$(starship init zsh)"` — or, consistent with this branch's
-     cached-eval-init pattern, wrap it in `_zsh_cached_eval_init starship
-     init zsh` to avoid a fresh subprocess spawn every start.
-   - Map the p10k segments actually in use (check `~/.p10k.zsh` for which
-     `POWERLEVEL9K_LEFT/RIGHT_PROMPT_ELEMENTS` are enabled — likely dir, git
-     status, exit code, command duration, context) to equivalent
-     `starship.toml` modules (`directory`, `git_branch`/`git_status`,
-     `cmd_duration`, `character` for exit-code coloring, etc.).
-   - Side-by-side test: keep `~/.p10k.zsh` and the old prompt lines
-     commented out (not deleted) for a week or two of daily driving before
-     removing them for good.
-   - Rollback: uncomment the p10k lines, comment out the starship line.
+   - Added `_zsh_cached_eval_init starship init zsh` (reusing this branch's
+     existing cached-eval-init pattern to avoid a fresh subprocess spawn every
+     start).
+   - Side-by-side tested p10k vs. starship live in the same session (briefly
+     re-enabled p10k's instant-prompt + `zi light romkatv/powerlevel10k` +
+     `~/.p10k.zsh` source, uncommitted, purely for comparison) before
+     deciding: starship (default preset — not a segmented/powerline preset;
+     none of starship's built-ins fully replicate p10k's two-line layout) won.
+   - Powerlevel10k fully removed from `.zshrc` — no rollback lines kept. If
+     ever wanted back: `zi ice depth=1; zi light romkatv/powerlevel10k`, plus
+     sourcing `~/.p10k.zsh` (still present on disk, untouched, not managed by
+     this repo) and its instant-prompt cache block — see git history on this
+     branch (pre-removal commit) for the exact lines.
 
-2. **zinit → antidote swap** (deferred — separate future PR, not part of this
-   migration, only if/when decided on later):
+2. **zinit → antidote swap** — done, same PR (see "Antidote results" below
+   for why the original "sequence these separately" caution didn't end up
+   mattering):
    - `brew install antidote`.
-   - Create `~/.zsh_plugins.txt` listing `zsh-users/zsh-autosuggestions`,
+   - `zsh/.zsh_plugins.txt` lists `zsh-users/zsh-autosuggestions`,
      `zsh-users/zsh-completions`, `zsh-users/zsh-syntax-highlighting`.
-   - Replace the zinit self-bootstrap block + `zi light` lines with
-     antidote's static-bundle load (`source <(antidote init)` /
-     `antidote load` per current antidote docs — verify exact invocation
-     against antidote's own docs at migration time, API may have moved on).
-   - Remove the now-unused `~/.local/share/zinit` directory once confirmed
-     working.
-   - Rollback: antidote and zinit can coexist temporarily during testing
-     (they don't conflict, they just both add functions to fpath) — no need
-     to fully commit before verifying.
+   - Replaced the zinit self-bootstrap block + `zi light` lines with:
+
+     ```sh
+     source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+     antidote load
+     ```
+
+     (current antidote docs, confirmed against antidote.sh at migration
+     time — `antidote load` auto-discovers `${ZDOTDIR:-$HOME}/.zsh_plugins.txt`,
+     clones plugins on first run, and generates/caches a static
+     `~/.zsh_plugins.zsh` that's just sourced afterward.)
+   - `~/.local/share/zinit` (30M) left on disk for now, not yet deleted —
+     harmless leftover, delete once fully confident nothing else references
+     it.
+
+## Antidote results
+
+The user's subjective impression during side-by-side comparison was "p10k
+feels faster than starship" — worth separating two different variables
+(prompt engine vs. plugin manager) instead of conflating them. Measured full
+interactive-shell cold-start time (`hyperfine --warmup 5 --min-runs 15 'zsh -i
+-c exit'`, warm caches, 2026-07-27) across three variants, each restored from
+git history into an isolated `ZDOTDIR` so the comparison is apples-to-apples
+on the same machine, same moment:
+
+| Variant | Mean | Min | Max |
+|---|---|---|---|
+| Original: p10k + zinit (pre-migration) | 262.8 ms ± 42.2 ms | 220.8 ms | 397.9 ms |
+| starship + zinit (mid-migration) | 266.3 ms ± 51.4 ms | 229.9 ms | 422.8 ms |
+| starship + antidote (current) | 269.1 ms ± 64.3 ms | 209.1 ms | 426.4 ms |
+
+**No measurable difference between any of the three** — well within each
+other's noise band. Conclusion: the perceived "p10k is faster" is almost
+certainly p10k's *instant-prompt* trick (paints a cached prompt string
+immediately, before the rest of `.zshrc` actually finishes executing) — a
+perceived-latency illusion, not a real wall-clock difference. Starship has no
+equivalent trick, so even at identical real cost it can *feel* slightly
+behind. zinit → antidote also produced no measurable startup-time gain on
+this machine, likely because this setup only ever had 3 lightweight
+turbo-loaded plugins — not enough plugin-manager overhead for antidote's
+simpler static-bundle model to show a difference. Antidote was kept anyway
+per the original recommendation's non-performance rationale (less runtime
+machinery, smaller surface area, one less second-`compinit` class of
+surprise) — not because it's faster.
 
 ## Benchmark results
 
@@ -121,15 +158,24 @@ on this machine's real repos, not just in general. If it's ever perceived as
 laggy in practice, starship's `git_status`/`git_metrics` modules have
 their own disable/timeout knobs to revisit.
 
+**Scope note**: this only measures `starship prompt`'s own render cost on a
+warm binary/warm disk cache — it does *not* measure full cold-shell-startup
+time (oh-my-zsh sourcing, zinit's turbo re-eval, `compinit`, etc.). Separately
+observed: opening several new terminals back-to-back is fast, but a shell
+opened after ~1h idle takes a few seconds — that's a distinct, already-known
+intermittent slow-startup issue (pre-dates this migration, previously
+profiled with `zprof` inconclusively since it wasn't reproducible on demand)
+and is unrelated to starship specifically. Next time it's caught live,
+profile that cold shell directly with `zprof` rather than assuming starship
+is the cause — this benchmark doesn't rule it in or out either way.
+
 ## Open questions
 
 - ~~Benchmark starship's git-status rendering time~~ — resolved, see
   "Benchmark results" above.
-- ~~Decide on a `starship.toml` preset~~ — resolved by shipping all 3
-  candidates in `starship/.config/starship/` for a pre-merge pick:
-  `starship-default.toml` (starship's own minimal defaults),
-  `starship-tokyo-night.toml` (official preset), and
-  `starship-pastel-powerline.toml` (official preset, closest segmented/diamond
-  look to Powerlevel10k among starship's built-ins — currently the one wired
-  up via `STARSHIP_CONFIG` in `.zshrc`). Swap the `STARSHIP_CONFIG` filename to
-  compare; delete the two you don't want once decided.
+- ~~Decide on a `starship.toml` preset~~ — resolved after live comparison:
+  **`starship-default.toml`** (starship's own minimal defaults, no preset)
+  is the one wired up via `STARSHIP_CONFIG` in `.zshrc`. `starship-tokyo-night.toml`
+  and `starship-pastel-powerline.toml` are left committed in
+  `starship/.config/starship/` as reference/fallback options — delete them
+  whenever, not blocking.

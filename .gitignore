@@ -1,5 +1,9 @@
 .DS_Store
 
+# Machine-local git identity — real file lives here now (parallel to
+# config.local.example) so stow manages the symlink, but must never be committed
+git/.config/git/config.local
+
 tmux/.config/tmux/plugins/
 
 zed/.config/zed/conversations/

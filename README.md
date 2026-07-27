@@ -22,7 +22,7 @@ The following tools are actively used and recommended for the best experience:
 ### 🛠️ Core Tools
 
 - **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
-- **Shell**: Zsh with Oh-My-Zsh, Zinit, and Starship (Powerlevel10k kept commented-out as a rollback during the transition — see [docs/plans/starship-migration.md](docs/plans/starship-migration.md))
+- **Shell**: Zsh with Oh-My-Zsh, Antidote, and Starship (see [docs/plans/starship-migration.md](docs/plans/starship-migration.md) for the migration from Powerlevel10k/Zinit)
 - **Multiplexer**: tmux with TPM plugin manager
 - **File Management**: Atuin (history), Yazi (directory navigation)
 
@@ -140,8 +140,8 @@ The following tools are actively used and recommended for the best experience:
 ### Shell Experience
 
 - **Dracula theme** throughout most applications
-- **Starship** prompt with git integration (replacing Powerlevel10k, kept commented-out as a rollback)
-- **Zinit** for fast plugin management
+- **Starship** prompt with git integration (replacing Powerlevel10k)
+- **Antidote** for static, fast plugin management (replacing Zinit)
 - **VI mode** enabled in zsh
 - **Smart history** with Atuin
 - **Directory navigation** with Yazi file manager
