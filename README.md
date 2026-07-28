@@ -55,6 +55,7 @@ The following tools are actively used and recommended for the best experience:
 ### 🔧 Additional Tools
 
 - **Git**: Portable gitconfig with machine-local identity override pattern
+- **Lazygit**: Terminal UI for git
 - **K9s**: Kubernetes cluster management
 - **SKHD**: Hotkey daemon (unused - Aerospace handles hotkeys)
 
@@ -90,7 +91,7 @@ The following tools are actively used and recommended for the best experience:
    # Recommended: Link only the currently recommended configs
    stow nvim zsh tmux ghostty mise atuin git starship  # Core tools
    stow aerospace sketchybar borders linearmouse  # macOS window management
-   stow k9s btop  # Terminal TUIs
+   stow k9s btop lazygit  # Terminal TUIs
    stow claude  # AI tools
 
    # Git: copy the local identity template and fill in your details
@@ -118,11 +119,13 @@ The following tools are actively used and recommended for the best experience:
 ├── brew/              # Package management (mainly for macOS)
 │   ├── Brewfile       # All installed packages/apps
 │   └── README.md      # Package management guide
+├── btop/              # System monitor (terminal)
 ├── claude/            # Claude Code AI assistant config
 ├── git/               # Git config (portable; identity goes in ~/.config/git/config.local)
 ├── ghostty/           # Terminal emulator
 ├── k9s/               # Kubernetes cluster manager
 ├── kitty/             # Terminal emulator
+├── lazygit/           # Terminal UI for git
 ├── linearmouse/       # Mouse settings (macOS)
 ├── mise/              # Development tool version manager
 ├── nvim/              # Neovim editor configuration
