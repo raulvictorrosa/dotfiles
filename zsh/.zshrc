@@ -17,7 +17,9 @@ compdef() { _zsh_deferred_compdefs+=("$*") }
 
 # zsh-completions (bundled below) adds to fpath; Docker's own completions
 # need to land in fpath before compinit runs too, so both go in before
-# `antidote load`.
+# `antidote load`. Docker Desktop's settings UI checks ~/.zshrc for its own
+# literal marker snippet and will claim completions aren't installed even
+# though they're wired up here — that check is cosmetic, safe to dismiss.
 fpath=($HOME/.docker/completions $fpath)
 
 # `brew --prefix` resolves correctly across Apple Silicon (/opt/homebrew),
