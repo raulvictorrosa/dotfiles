@@ -90,6 +90,7 @@ The following tools are actively used and recommended for the best experience:
    # Recommended: Link only the currently recommended configs
    stow nvim zsh tmux ghostty mise atuin git starship  # Core tools
    stow aerospace sketchybar borders linearmouse  # macOS window management
+   stow k9s btop  # Terminal TUIs
    stow claude  # AI tools
 
    # Git: copy the local identity template and fill in your details
