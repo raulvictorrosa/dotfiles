@@ -1,32 +1,30 @@
 # -----------------------------------------------------------------------------
 # Tokyo Night skin
+# Source: https://github.com/RickTimmer/k9s-tokyonight
 # -----------------------------------------------------------------------------
 
 # Styles...
-foreground: &foreground "#c0caf5"
-background: &background "default"
-current_line: &current_line "#8c6c3e"
-selection: &selection "#364a82"
-comment: &comment "#565f89"
-cyan: &cyan "#7dcfff"
-green: &green "#9ece6a"
-yellow: &yellow "#e0af68"
+foreground: &foreground "#A9B1DC"
+background: &background "#24283B"
+current_line: &current_line "#E0AF68"
+selection: &selection "#797D99"
+comment: &comment "#7AA2F7"
+cyan: &cyan "#7DCFFF"
+green: &green "#73DACA"
+yellow: &yellow "#E0AF68"
 orange: &orange "#ff9e64"
-magenta: &magenta "#bb9af7"
-blue: &blue "#7aa2f7"
-red: &red "#f7768e"
-purple: &purple "#9d7cd8"
-pink: &pink "#bb9af7"
-white: &white "#a9b1d6"
-black: &black "#1d202f"
+magenta: &magenta "#BB9AF7"
+pink: &pink "#e69AF7"
+blue: &blue "#7AA2F7"
+red: &red "#F7768E"
+white: &white "#C0CAF5"
 
-# Skin...
 k9s:
   # General K9s styles
   body:
     fgColor: *foreground
     bgColor: default
-    logoColor: *blue
+    logoColor: *orange
   # Command prompt styles
   prompt:
     fgColor: *foreground
@@ -34,14 +32,14 @@ k9s:
     suggestColor: *orange
   # ClusterInfoView styles.
   info:
-    fgColor: *magenta
+    fgColor: *orange
     sectionColor: *foreground
   # Dialog styles.
   dialog:
     fgColor: *foreground
     bgColor: default
     buttonFgColor: *foreground
-    buttonBgColor: *magenta
+    buttonBgColor: *green
     buttonFocusFgColor: *background
     buttonFocusBgColor: *foreground
     labelFgColor: *comment
@@ -53,9 +51,9 @@ k9s:
       focusColor: *foreground
     menu:
       fgColor: *foreground
-      keyColor: *magenta
+      keyColor: *blue
       # Used for favorite namespaces
-      numKeyColor: *magenta
+      numKeyColor: *blue
     # CrumbView attributes for history navigation.
     crumbs:
       fgColor: *white
@@ -63,19 +61,19 @@ k9s:
       activeColor: *yellow
     # Resource status and update styles
     status:
-      newColor: *magenta
-      modifyColor: *blue
-      addColor: *green
+      newColor: *blue
+      modifyColor: *yellow
+      addColor: *white
       errorColor: *red
       highlightcolor: *orange
-      killColor: *comment
+      killColor: *magenta
       completedColor: *comment
     # Border title styles.
     title:
       fgColor: *foreground
       bgColor: default
       highlightColor: *blue
-      counterColor: *magenta
+      counterColor: *green
       filterColor: *magenta
   views:
     # Charts skins...
@@ -93,7 +91,7 @@ k9s:
       bgColor: default
       cursorFgColor: *white
       cursorBgColor: *background
-      markColor: darkgoldenrod
+      markColor: *pink
       # Header row styles.
       header:
         fgColor: *foreground
@@ -108,7 +106,7 @@ k9s:
       showIcons: false
     # YAML info styles.
     yaml:
-      keyColor: *magenta
+      keyColor: *green
       colonColor: *blue
       valueColor: *foreground
     # Logs styles.
@@ -118,9 +116,11 @@ k9s:
       indicator:
         fgColor: *foreground
         bgColor: *selection
+        toggleOnColor: *cyan
+        toggleOffColor: *foreground
     help:
       fgColor: *foreground
       bgColor: default
       indicator:
         fgColor: *red
-        bgColor: *selection
+        bgColor: default
