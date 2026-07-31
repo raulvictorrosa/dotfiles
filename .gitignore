@@ -6,6 +6,9 @@ git/.config/git/config.local
 
 tmux/.config/tmux/plugins/
 
+# antidote's compiled plugin bundle — regenerated from .zsh_plugins.txt
+zsh/.config/zsh/.zsh_plugins.zsh
+
 zed/.config/zed/conversations/
 zed/.config/zed/embeddings/
 zed/.config/zed/prompts/
