@@ -1,4 +1,16 @@
 # ------------------------------------------------------------------
+# History
+# ------------------------------------------------------------------
+# macOS's system-wide /etc/zshrc runs between .zshenv and this file and
+# unconditionally resets HISTFILE/HISTSIZE/SAVEHIST to its own defaults
+# (${ZDOTDIR:-$HOME}/.zsh_history, 2000, 1000) — reassert the XDG-based
+# values .zshenv already set, since /etc/zshrc clobbers them for every
+# interactive shell.
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export HISTSIZE=50000
+export SAVEHIST=50000
+
+# ------------------------------------------------------------------
 # Plugins — antidote (static bundle, see .zsh_plugins.txt). Only 3
 # community plugins plus 3 individual oh-my-zsh plugins loaded standalone
 # (git, vi-mode, eza) — no oh-my-zsh framework/core needed for any of them.

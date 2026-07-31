@@ -9,6 +9,9 @@ tmux/.config/tmux/plugins/
 # antidote's compiled plugin bundle — regenerated from .zsh_plugins.txt
 zsh/.config/zsh/.zsh_plugins.zsh
 
+# stray history file /etc/zshrc creates at $ZDOTDIR before .zshrc reasserts HISTFILE
+zsh/.config/zsh/.zsh_history
+
 zed/.config/zed/conversations/
 zed/.config/zed/embeddings/
 zed/.config/zed/prompts/
