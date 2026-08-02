@@ -12,6 +12,7 @@ The following tools are actively used and recommended for the best experience:
 - **📁 File Navigation**: Yazi
 - **🕰️ History**: Atuin
 - **🔄 Multiplexer**: tmux
+- **🗂️ Session Management**: tmuxinator, herdr (trialing both, undecided which one sticks)
 - **✨ Terminal**: Ghostty
 - **🐭 Mouse**: LinearMouse
 - **📦 Tools**: Mise, Homebrew
@@ -22,9 +23,21 @@ The following tools are actively used and recommended for the best experience:
 ### 🛠️ Core Tools
 
 - **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
-- **Shell**: Zsh with Antidote and Starship — a few individual oh-my-zsh plugins (`git`, `vi-mode`, `eza`) loaded standalone, no framework
-- **Multiplexer**: tmux with TPM plugin manager
+- **Shell**: Zsh with Antidote and Starship — a few individual oh-my-zsh plugins (`git`, `vi-mode`, `eza`, `tmux`, `tmuxinator`) loaded standalone, no framework
+- **Multiplexer**: tmux with TPM plugin manager, config split under `tmux/.config/tmux/conf.d/` (options/bindings/statusbar/plugins), bindings adapted from [omarchy](https://github.com/basecamp/omarchy)'s tmux.conf
 - **File Management**: Atuin (history), Yazi (directory navigation)
+
+### 🗂️ Session & Workspace Management
+
+Trialing two project-session tools side by side before picking one:
+
+- **tmuxinator**: one YAML per project in `tmuxinator/.config/tmuxinator/` (via the `omz` plugin: `txs`/`txo`/`txn`/`txl` aliases). Start with `tmuxinator start <name>` or `txs <name>`.
+- **herdr**: agent-aware terminal multiplexer, config in `herdr/.config/herdr/`. Two plugins installed:
+  - [herdr-plus](https://github.com/cloudmanic/herdr-plus) — the tmuxinator equivalent: one TOML per project in `plugins/config/cloudmanic.herdr-plus/projects/`. Open the fuzzy picker with `prefix+up` (herdr's own prefix, default `ctrl+b`) or headlessly with `herdr-plus open <name>`.
+  - [herdr-sessionizer](https://github.com/andrewchng/herdr-sessionizer) — fzf-style picker over arbitrary project roots / git worktrees, bound to `prefix+f` (`prefix+shift+f` for the worktree picker).
+  - Reinstall both plugins on a new machine: `herdr plugin install cloudmanic/herdr-plus --yes && herdr plugin install andrewchng/herdr-sessionizer --yes` (also noted as a comment in `config.toml` — `plugins.json` itself isn't tracked, it's machine-generated with local absolute paths).
+
+Client-confidential project files (e.g. work projects outside personal ones) are kept on disk inside these same directories — visible via `ls`, but ignored via `.git/info/exclude` (local-only, never committed) instead of the tracked `.gitignore`, so their names never end up in git history.
 
 ### 🎨 Development Environment
 
@@ -57,7 +70,8 @@ The following tools are actively used and recommended for the best experience:
 - **Git**: Portable gitconfig with machine-local identity override pattern
 - **Lazygit**: Terminal UI for git
 - **K9s**: Kubernetes cluster management
-- **SKHD**: Hotkey daemon (unused - Aerospace handles hotkeys)
+- **SKHD**: Hotkey daemon for app toggles (Chrome, VS Code, Ghostty/Neovim, Finder, Spotify, btop) — Aerospace still owns window-manager hotkeys separately
+- **Witr**: Traces a running process/port/container/file back to what started it
 
 ## 🚀 Quick Start
 
@@ -90,6 +104,7 @@ The following tools are actively used and recommended for the best experience:
 
    # Recommended: Link only the currently recommended configs
    stow nvim zsh tmux ghostty mise atuin git starship  # Core tools
+   stow tmuxinator herdr  # Session/workspace management (trialing both)
    stow aerospace sketchybar borders linearmouse  # macOS window management
    stow k9s btop lazygit  # Terminal TUIs
    stow claude  # AI tools
@@ -123,6 +138,7 @@ The following tools are actively used and recommended for the best experience:
 ├── claude/            # Claude Code AI assistant config
 ├── git/               # Git config (portable; identity goes in ~/.config/git/config.local)
 ├── ghostty/           # Terminal emulator
+├── herdr/             # Agent-aware multiplexer config + herdr-plus/sessionizer plugin projects
 ├── k9s/               # Kubernetes cluster manager
 ├── kitty/             # Terminal emulator
 ├── lazygit/           # Terminal UI for git
@@ -130,9 +146,10 @@ The following tools are actively used and recommended for the best experience:
 ├── mise/              # Development tool version manager
 ├── nvim/              # Neovim editor configuration
 ├── sketchybar/        # Custom menu bar (macOS)
-├── skhd/              # Hotkey daemon (macOS - unused, Aerospace handles hotkeys)
+├── skhd/              # Hotkey daemon for app toggles (macOS)
 ├── starship/          # Prompt config (starship, minimal built-in defaults)
-├── tmux/              # Terminal multiplexer
+├── tmux/              # Terminal multiplexer (tmux.conf sources conf.d/*.conf)
+├── tmuxinator/        # Per-project tmux session layouts (YAML)
 ├── vim/               # Classic Vim configuration
 ├── wezterm/           # Terminal emulator
 ├── zed/               # Modern code editor
@@ -186,6 +203,20 @@ cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
 ```
 
 The shared config includes `[include] path = ~/.config/git/config.local` so git picks up identity automatically.
+
+### macOS Gotchas
+
+**tmux prefix (`C-Space`) doesn't fire.** macOS reserves `Ctrl+Space` /
+`Ctrl+Option+Space` system-wide for switching input sources — it never
+reaches the terminal. Disable it in **System Settings → Keyboard →
+Keyboard Shortcuts → Input Sources** (uncheck "Select the previous input
+source" and "Select next input source"), or from the CLI:
+
+```bash
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:60:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:61:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+killall SystemUIServer cfprefsd
+```
 
 ### XDG Base Directory Compliance
 

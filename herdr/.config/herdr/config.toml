@@ -7,3 +7,30 @@
 
 [theme]
 name = "dracula"
+
+# Project pickers (tmuxinator equivalents) — prefix is herdr's own (default
+# ctrl+b, unrelated to tmux's prefix). prefix+up/down mirror herdr-plus's
+# own README example; prefix+f/prefix+shift+f are free by default.
+[[keys.command]]
+key = "prefix+up"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.projects"
+description = "herdr-plus: projects"
+
+[[keys.command]]
+key = "prefix+down"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.quick-actions"
+description = "herdr-plus: quick actions"
+
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "sessionizer.open"
+description = "sessionizer: open project"
+
+[[keys.command]]
+key = "prefix+shift+f"
+type = "plugin_action"
+command = "sessionizer.worktree-open"
+description = "sessionizer: open worktree"
