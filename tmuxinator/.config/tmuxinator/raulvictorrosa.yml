@@ -1,0 +1,5 @@
+name: raulvictorrosa
+root: ~/workspace/raulvictorrosa
+
+windows:
+  - editor: nvim
