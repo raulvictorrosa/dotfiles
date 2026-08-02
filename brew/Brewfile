@@ -133,6 +133,8 @@ brew "tree-sitter-cli"
 brew "uv"
 # Watch files and take action when they change
 brew "watchman"
+# Trace any process, port, container, or file back to what started it
+brew "witr"
 # CLI for Git worktree management, designed for parallel AI agent workflows
 brew "worktrunk"
 # Blazing fast terminal file manager written in Rust, based on async I/O
