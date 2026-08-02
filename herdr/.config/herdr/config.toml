@@ -1,3 +1,4 @@
+# herdr configuration
 # Installed plugins (not tracked here — herdr's own plugins.json/plugins/github/
 # are machine-generated with local absolute paths and full vendored clones).
 # Reinstall on a new machine with:
@@ -6,7 +7,3 @@
 
 [theme]
 name = "dracula"
-auto_switch = false
-
-[ui]
-agent_panel_sort = "priority"
