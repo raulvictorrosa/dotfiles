@@ -1,0 +1,6 @@
+name = "raulvictorrosa"
+working_dir = "~/workspace/raulvictorrosa"
+
+[[tabs]]
+name = "editor"
+command = "nvim"

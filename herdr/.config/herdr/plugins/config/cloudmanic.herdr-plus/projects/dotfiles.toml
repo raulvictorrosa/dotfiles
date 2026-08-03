@@ -1,0 +1,6 @@
+name = "dotfiles"
+working_dir = "~/dotfiles"
+
+[[tabs]]
+name = "editor"
+command = "nvim"

@@ -7,6 +7,15 @@
 # Define toggle_app command
 .define toggle_app : osascript -e 'tell application "{{1}}" to if it is running then quit else activate' 2>/dev/null || open -a "{{1}}"
 
+# Open/activate Neovim in Ghostty
+# (excludes --embed instances, e.g. the VSCode-Neovim extension's own nvim processes)
+.define open_nvim : sh -c ' \
+  if ps -axo command= | grep -E "(^|/)nvim( |$)" | grep -qv -- "--embed"; then \
+    osascript -e "tell application \"Ghostty\" to activate"; \
+  else \
+    open -n -a Ghostty --args -e nvim; \
+  fi'
+
 # Application shortcuts
 alt - 1: @toggle_app("Google Chrome")
 alt - 2: @toggle_app("Visual Studio Code")
@@ -20,7 +29,7 @@ alt + shift - b: @toggle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
 alt + shift - f: @toggle_app("Finder")
 alt + shift - m: @toggle_app("Spotify")
-alt + shift - n: @toggle_app("Visual Studio Code")
+alt + shift - n: @open_nvim
 alt + shift - t : sh -c ' \
   if pgrep -f "Ghostty.*btop" > /dev/null; then \
     osascript -e "tell application \\"Ghostty\\" to activate"; \

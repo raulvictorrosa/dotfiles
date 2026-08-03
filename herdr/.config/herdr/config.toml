@@ -1,0 +1,61 @@
+# herdr configuration
+# Installed plugins are declared in plugins/config/herdr-lazy/plugins.list
+# (tracked) with commits pinned in plugins.lock (also tracked). herdr's own
+# plugins.json/plugins/github/ stay untracked — machine-generated, local
+# absolute paths, full vendored clones.
+# On a new machine: `herdr plugin install natori-hrj/herdr-lazy --yes`,
+# then `herdr-lazy sync` (see plugins/config/herdr-lazy/ for the binary path
+# trick — herdr-lazy isn't on PATH).
+
+onboarding = false
+
+[theme]
+name = "dracula"
+
+# Project pickers (tmuxinator equivalents) — prefix is herdr's own (default
+# ctrl+b, unrelated to tmux's prefix). prefix+up/down mirror herdr-plus's
+# own README example; prefix+f/prefix+shift+f are free by default.
+[[keys.command]]
+key = "prefix+up"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.projects"
+description = "herdr-plus: projects"
+
+[[keys.command]]
+key = "prefix+down"
+type = "plugin_action"
+command = "cloudmanic.herdr-plus.quick-actions"
+description = "herdr-plus: quick actions"
+
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "sessionizer.open"
+description = "sessionizer: open project"
+
+[[keys.command]]
+key = "prefix+shift+f"
+type = "plugin_action"
+command = "sessionizer.worktree-open"
+description = "sessionizer: open worktree"
+
+[[keys.command]]
+key = "prefix+t"
+type = "plugin_action"
+command = "herdr-navigator.open"
+description = "jump to anything"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "plugin_action"
+command = "herdr-lazy.manage"
+description = "manage plugins"
+
+[ui.toast]
+delivery = "herdr"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[experimental]
+pane_history = true
