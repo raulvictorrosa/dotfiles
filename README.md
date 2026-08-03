@@ -105,10 +105,8 @@ Client-confidential project files (e.g. work projects outside personal ones) are
    brew install stow
 
    # Recommended: Link only the currently recommended configs
-   stow nvim zsh tmux ghostty mise atuin git starship  # Core tools
-   stow tmuxinator herdr  # Session/workspace management (trialing both)
-   stow sketchybar borders linearmouse skhd  # macOS window management (active: Rectangle cask + skhd + Borders)
-   # stow aerospace  # tiling WM — tracked but currently unused (beta lag); Rectangle used instead
+   stow nvim zsh tmux ghostty mise atuin git starship tmuxinator herdr  # Core tools
+   stow aerospace sketchybar borders linearmouse skhd  # macOS window management
    stow k9s btop lazygit  # Terminal TUIs
    stow claude  # AI tools
 
