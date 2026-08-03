@@ -1,9 +1,13 @@
 # herdr configuration
-# Installed plugins (not tracked here — herdr's own plugins.json/plugins/github/
-# are machine-generated with local absolute paths and full vendored clones).
-# Reinstall on a new machine with:
-#   herdr plugin install cloudmanic/herdr-plus --yes
-#   herdr plugin install andrewchng/herdr-sessionizer --yes
+# Installed plugins are declared in plugins/config/herdr-lazy/plugins.list
+# (tracked) with commits pinned in plugins.lock (also tracked). herdr's own
+# plugins.json/plugins/github/ stay untracked — machine-generated, local
+# absolute paths, full vendored clones.
+# On a new machine: `herdr plugin install natori-hrj/herdr-lazy --yes`,
+# then `herdr-lazy sync` (see plugins/config/herdr-lazy/ for the binary path
+# trick — herdr-lazy isn't on PATH).
+
+onboarding = false
 
 [theme]
 name = "dracula"
@@ -34,3 +38,24 @@ key = "prefix+shift+f"
 type = "plugin_action"
 command = "sessionizer.worktree-open"
 description = "sessionizer: open worktree"
+
+[[keys.command]]
+key = "prefix+t"
+type = "plugin_action"
+command = "herdr-navigator.open"
+description = "jump to anything"
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "plugin_action"
+command = "herdr-lazy.manage"
+description = "manage plugins"
+
+[ui.toast]
+delivery = "herdr"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[experimental]
+pane_history = true
