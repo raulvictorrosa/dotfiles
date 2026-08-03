@@ -11,8 +11,8 @@ The following tools are actively used and recommended for the best experience:
 - **📊 System Monitoring**: SketchyBar
 - **📁 File Navigation**: Yazi
 - **🕰️ History**: Atuin
-- **🔄 Multiplexer**: tmux
-- **🗂️ Session Management**: tmuxinator, herdr (trialing both, undecided which one sticks)
+- **🔄 Multiplexer**: tmux, herdr (trialing both, undecided which one sticks)
+- **🗂️ Session Management**: tmuxinator (for tmux), herdr-plus/sessionizer/navigator (for herdr)
 - **✨ Terminal**: Ghostty
 - **🐭 Mouse**: LinearMouse
 - **📦 Tools**: Mise, Homebrew

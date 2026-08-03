@@ -9,6 +9,10 @@ tmux/.config/tmux/plugins/
 # antidote's compiled plugin bundle — regenerated from .zsh_plugins.txt
 zsh/.config/zsh/.zsh_plugins.zsh
 
+# Stray shell history — HISTFILE points at $XDG_STATE_HOME/zsh/history
+# (see .zshenv), this shouldn't exist here at all, but ignore it just in case
+zsh/.config/zsh/.zsh_history
+
 zed/.config/zed/conversations/
 zed/.config/zed/embeddings/
 zed/.config/zed/prompts/
