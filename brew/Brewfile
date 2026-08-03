@@ -1,3 +1,4 @@
+tap "anomalyco/tap"
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "jackielii/tap"
 tap "nikitabobko/tap"
@@ -93,6 +94,8 @@ brew "tree-sitter"
 brew "neovim"
 # Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
+# AI coding agent CLI (open-source alternative agent, trialing alongside Claude Code)
+brew "anomalyco/tap/opencode", trusted: true
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
 # Package compiler and linker metadata toolkit

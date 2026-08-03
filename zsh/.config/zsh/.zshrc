@@ -81,6 +81,9 @@ command -v wt >/dev/null 2>&1 && _zsh_cached_eval_init wt config shell init zsh
 
 # fzf -- a command-line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Dracula palette (draculatheme.com/fzf) — also picked up by anything else
+# that shells out to fzf, e.g. herdr-sessionizer's picker.
+export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4"
 
 # Broot is a better way to navigate directories, find files, and launch commands.
 [ -f $HOME/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
