@@ -60,6 +60,8 @@ brew "glow"
 brew "gnu-sed"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Tools and libraries to manipulate images in select formats
@@ -94,8 +96,6 @@ brew "tree-sitter"
 brew "neovim"
 # Retrieves currently playing media, and simulates media actions
 brew "nowplaying-cli"
-# AI coding agent CLI (open-source alternative agent, trialing alongside Claude Code)
-brew "anomalyco/tap/opencode", trusted: true
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
 # Package compiler and linker metadata toolkit
@@ -126,8 +126,6 @@ brew "tectonic"
 brew "tmux"
 # Manage complex tmux sessions easily
 brew "tmuxinator"
-# Terminal-native multiplexer with built-in AI coding agent state awareness
-brew "herdr"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # CLI for tree-sitter, required by nvim-treesitter for parser installs
@@ -136,7 +134,7 @@ brew "tree-sitter-cli"
 brew "uv"
 # Watch files and take action when they change
 brew "watchman"
-# Trace any process, port, container, or file back to what started it
+# Why is this running?
 brew "witr"
 # CLI for Git worktree management, designed for parallel AI agent workflows
 brew "worktrunk"
@@ -144,6 +142,8 @@ brew "worktrunk"
 brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
 # Custom macOS statusbar with shell plugin, interaction and graph support
@@ -338,6 +338,7 @@ vscode "ms-azuretools.vscode-azurevirtualmachines"
 vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-cosmosdb"
 vscode "ms-azuretools.vscode-docker"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-toolsai.jupyter"
