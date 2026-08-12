@@ -2,6 +2,7 @@ tap "anomalyco/tap"
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "jackielii/tap"
 tap "nikitabobko/tap"
+tap "sazardev/shiki"
 # Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
 # ARP scanning and fingerprinting tool
@@ -114,6 +115,8 @@ brew "resvg"
 brew "ripgrep"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# TUI note-taking app w/ Yazi-inspired three-pane layout, git-backed notebooks
+brew "shiki"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)

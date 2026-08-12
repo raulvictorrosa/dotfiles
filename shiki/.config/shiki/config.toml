@@ -1,0 +1,89 @@
+[general]
+default_notebook = "personal"
+editor = "nvim"
+daily_template = "daily"
+use_favorite_editor = false
+mouse_drag_selection = true
+show_hints = true
+remember_last_session = true
+
+[keybindings]
+leader = "space"
+quit = "q"
+
+[keybindings.global]
+theme_picker = "c"
+global_search = "g"
+tags_panel = "T"
+logs = "l"
+toggle_favorite_editor = "e"
+check_update = "U"
+drawer = "b"
+undo_delete = "u"
+settings = "s"
+scratchpad = "p"
+links = "B"
+tasks_panel = "t"
+publish = "P"
+export = "x"
+
+[keybindings.notebooks]
+new = "a"
+rename = "r"
+delete = "d"
+sync = "s"
+pull = "p"
+pull_all = "P"
+set_remote = "R"
+push = "u"
+
+[keybindings.notes]
+new = "a"
+rename = "r"
+delete = "d"
+edit_inline = "i"
+edit_external = "E"
+search = "/"
+daily_note = "t"
+move_to_notebook = "m"
+sort = "o"
+tree_view = "T"
+toggle_dates = "D"
+new_folder = "f"
+visual = "v"
+copy_entries = "y"
+
+[keybindings.preview]
+edit_inline = "i"
+edit_external = "E"
+history = "H"
+links = "L"
+
+[theme]
+name = "dracula"
+
+[git]
+auto_commit = true
+auto_push = false
+commit_prefix = "shiki: "
+remote = "origin"
+branch = "main"
+sign_commits = false
+auto_sync = false
+auto_sync_every = 5
+remote_template = ""
+
+[editor]
+mouse_selection = true
+find_replace = true
+os_clipboard = false
+select_all_ctrl_a = false
+line_numbers = false
+multi_cursor = false
+
+[export]
+pdf_theme = "default"
+
+[notebooks]
+
+[snippets]
