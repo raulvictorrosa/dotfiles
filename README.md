@@ -72,6 +72,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 - **Git**: Portable gitconfig with machine-local identity override pattern
 - **Lazygit**: Terminal UI for git
 - **K9s**: Kubernetes cluster management
+- **Shiki**: Terminal note-taking app, Yazi-inspired three-pane layout, git-backed notebooks
 - **SKHD**: Hotkey daemon for app toggles (Chrome, VS Code, Ghostty/Neovim, Finder, Spotify, btop) — window snapping is handled separately by Rectangle, not a tiling window manager
 - **Witr**: Traces a running process/port/container/file back to what started it
 
@@ -107,7 +108,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
    # Recommended: Link only the currently recommended configs
    stow nvim zsh tmux ghostty mise atuin git starship tmuxinator herdr  # Core tools
    stow aerospace sketchybar borders linearmouse skhd  # macOS window management
-   stow k9s btop lazygit  # Terminal TUIs
+   stow k9s btop lazygit shiki  # Terminal TUIs
    stow claude  # AI tools
 
    # Git: copy the local identity template and fill in your details
@@ -146,6 +147,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 ├── linearmouse/       # Mouse settings (macOS)
 ├── mise/              # Development tool version manager
 ├── nvim/              # Neovim editor configuration
+├── shiki/             # Terminal note-taking app (git-backed notebooks)
 ├── sketchybar/        # Custom menu bar (macOS)
 ├── skhd/              # Hotkey daemon for app toggles (macOS)
 ├── starship/          # Prompt config (starship, minimal built-in defaults)
