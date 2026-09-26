@@ -10,7 +10,7 @@
 onboarding = false
 
 [theme]
-name = "dracula"
+# name = "dracula"
 
 # Project pickers (tmuxinator equivalents) — prefix is herdr's own (default
 # ctrl+b, unrelated to tmux's prefix). prefix+up/down mirror herdr-plus's
@@ -52,10 +52,7 @@ command = "herdr-lazy.manage"
 description = "manage plugins"
 
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [ui]
 show_agent_labels_on_pane_borders = true
-
-[experimental]
-pane_history = true
