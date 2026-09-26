@@ -15,11 +15,10 @@ zsh/.config/zsh/.zsh_history
 # compiled completion cache, regenerated per-machine by compinit
 zsh/.config/zsh/.zcompcache/
 
+# per-terminal session/history state, not config
+zsh/.config/zsh/.zsh_sessions/
+
 zed/.config/zed/conversations/
 zed/.config/zed/embeddings/
 zed/.config/zed/prompts/
 zed/.config/zed/.tmp*
-
-# Copilot - skill folders are large, lock file is enough
-copilot/.agents/skills/*/
-# Hooks scripts may contain telemetry endpoints - review before committing

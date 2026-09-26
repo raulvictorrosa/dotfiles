@@ -27,10 +27,6 @@ brew "btop"
 brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# TIFF library and utilities
-brew "libtiff"
-# Development kit for the Java programming language
-brew "openjdk"
 # Command-line tool that allows to manage your resources with crowdin.com
 brew "crowdin"
 # Modern, maintained replacement for ls
@@ -45,14 +41,18 @@ brew "ffmpeg"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# TIFF library and utilities
+brew "libtiff"
 # GitHub command-line tool
 brew "gh"
-# Interpreter for PostScript and PDF, used by Snacks.image to render PDFs
+# Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Git LFS plugin that uploads and downloads using the Xet protocol
+brew "git-xet"
 # Open-source GitLab command-line tool
 brew "glab"
 # Render markdown on the CLI
@@ -63,6 +63,8 @@ brew "gnu-sed"
 brew "graphviz"
 # Agent multiplexer that lives in your terminal
 brew "herdr"
+# Client library for huggingface.co hub
+brew "hf"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Tools and libraries to manipulate images in select formats
@@ -73,24 +75,30 @@ brew "ios-deploy"
 brew "jq"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "k9s"
+# Development kit for the Java programming language
+brew "openjdk"
 # Open-source distributed event streaming platform
 brew "kafka"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
+# LLVM's OpenMP runtime library
+brew "libomp"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Powerful, lightweight programming language
 brew "lua"
 # Package manager for the Lua programming language
 brew "luarocks"
-# Mermaid diagram CLI, used by Snacks.image to render Mermaid diagrams
+# CLI for Mermaid library
 brew "mermaid-cli"
 # Terminal-based visual file manager
 brew "midnight-commander"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Deep clean and optimize your Mac
+brew "mole"
 # Incremental parsing library
 brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -121,7 +129,7 @@ brew "starship"
 brew "stow"
 # Change macOS audio source from the command-line
 brew "switchaudio-osx"
-# LaTeX engine, used by Snacks.image to render LaTeX math expressions
+# Modernized, complete, self-contained TeX/LaTeX engine
 brew "tectonic"
 # Terminal multiplexer
 brew "tmux"
@@ -129,7 +137,7 @@ brew "tmux"
 brew "tmuxinator"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# CLI for tree-sitter, required by nvim-treesitter for parser installs
+# Parser generator tool
 brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
@@ -177,8 +185,6 @@ cask "chatgpt"
 cask "connectiq"
 # Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli"
-# Voice and text chat software
-cask "discord"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Launcher for *Epic Games* games
@@ -200,12 +206,16 @@ cask "font-symbols-only-nerd-font"
 cask "garmin-express"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"
 # Native client for GitHub Copilot
 cask "github-copilot-app"
 # Web browser
 cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
+# Homebrew's official GUI
+cask "homebrew-app"
 # Keyboard customiser
 cask "karabiner-elements"
 # Password manager app
@@ -228,6 +238,8 @@ cask "mysqlworkbench"
 cask "obsidian"
 # Cloud storage client
 cask "onedrive"
+# AI coding agent desktop client
+cask "opencode-desktop"
 # Client program for the OpenVPN Access Server
 cask "openvpn-connect"
 # Browse, manage, inspect containers and images
@@ -250,6 +262,8 @@ cask "slack"
 cask "spotify"
 # Tool for managing the OpenSSH ssh client configuration file
 cask "ssh-config-editor"
+# Open-source media center
+cask "stremio"
 # Companion app for Stremio Web
 cask "stremioservice"
 # Messaging app with a focus on speed and security
@@ -262,6 +276,8 @@ cask "tunnelblick"
 cask "ungoogled-chromium"
 # Open-source code editor
 cask "visual-studio-code"
+# Menu bar toolkit with keep-awake, system monitor and volume mixer
+cask "vorssaint"
 # Rust-based terminal
 cask "warp"
 # Native desktop client for WhatsApp
@@ -407,5 +423,7 @@ vscode "william-voyek.vscode-nginx"
 vscode "wix.vscode-import-cost"
 vscode "xabikos.javascriptsnippets"
 vscode "yoavbls.pretty-ts-errors"
-uv "google-agents-cli"
+cargo "shiki-mcp"
 uv "graphifyy"
+uv "markitdown-mcp"
+uv "poetry"

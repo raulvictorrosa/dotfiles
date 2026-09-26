@@ -114,6 +114,14 @@ alias trs='tmux rename-session'
 # ------------------------------------------------------------------
 # Functions
 # ------------------------------------------------------------------
+function docker() {
+	if [[ "$(podman machine list --format '{{.Running}}' 2>/dev/null)" != *true* ]]; then
+		echo "podman machine not running, starting..." >&2
+		podman machine start
+	fi
+	podman "$@"
+}
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
