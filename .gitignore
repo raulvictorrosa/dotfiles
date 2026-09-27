@@ -2,8 +2,7 @@
 
 # Machine-local git identity — real files live here now (parallel to
 # config.local.example) so stow manages the symlinks, but must never be
-# committed. The template itself ends in .example (not .local), so this
-# glob naturally leaves it tracked without needing a negation.
+# committed.
 git/.config/git/*.local
 
 tmux/.config/tmux/plugins/
