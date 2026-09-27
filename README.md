@@ -112,7 +112,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
    stow claude  # AI tools
 
    # Git: copy the local identity template and fill in your details
-   cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
+   cp ~/dotfiles/git/.config/git/config-example.local ~/.config/git/config.local
    # then edit ~/.config/git/config.local with your name and email
 
    # Alternative: Create symlinks for all configs
@@ -201,7 +201,7 @@ recreate one):
 On a new machine, after `stow git`:
 
 ```bash
-cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
+cp ~/dotfiles/git/.config/git/config-example.local ~/.config/git/config.local
 # edit with your name and email
 ```
 

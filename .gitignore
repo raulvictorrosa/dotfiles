@@ -1,10 +1,11 @@
 .DS_Store
 
-# Machine-local git identity — real file lives here now (parallel to
-# config.local.example) so stow manages the symlink, but must never be committed
-git/.config/git/config.local
-git/.config/git/config-personal
-git/.config/git/config-work
+# Machine-local git identity — real files live here now (parallel to
+# config-example.local) so stow manages the symlinks, but must never be
+# committed. config-example.local itself ends in .local too (it's the
+# template), hence the negation below to keep it tracked.
+git/.config/git/*.local
+!git/.config/git/config-example.local
 
 tmux/.config/tmux/plugins/
 

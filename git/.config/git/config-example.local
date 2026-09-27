@@ -4,8 +4,8 @@
 
 # Optional: route specific directories to a different identity (e.g. work vs
 # personal projects). Each target file is its own untracked [user] block,
-# same shape as this one — gitignored next to config.local.
+# same shape as this one — gitignored via the *.local pattern.
 # [includeIf "gitdir:~/some/personal/path/"]
-# 	path = ~/.config/git/config-personal
+# 	path = ~/.config/git/config-personal.local
 # [includeIf "gitdir:~/some/work/path/"]
-# 	path = ~/.config/git/config-work
+# 	path = ~/.config/git/config-work.local
