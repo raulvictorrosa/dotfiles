@@ -3,6 +3,8 @@
 # Machine-local git identity — real file lives here now (parallel to
 # config.local.example) so stow manages the symlink, but must never be committed
 git/.config/git/config.local
+git/.config/git/config-personal
+git/.config/git/config-work
 
 tmux/.config/tmux/plugins/
 
