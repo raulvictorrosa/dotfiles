@@ -1,5 +1,3 @@
-# herdr reports light mode (CSI ?997;2n) even on a dark terminal, so yazi
-# would pick the light flavor. Keep both on mocha; catppuccin-latte stays installed.
 [flavor]
 dark = "catppuccin-mocha"
 light = "catppuccin-mocha"
