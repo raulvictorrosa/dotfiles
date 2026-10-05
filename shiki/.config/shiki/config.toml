@@ -273,9 +273,9 @@ move_line = true
 duplicate_line = true
 block_indent_select = true
 insert_timestamp = true
-timestamp_with_time = false
-spellcheck = false
-spellcheck_lang = ""
+timestamp_with_time = true
+spellcheck = true
+spellcheck_lang = "en_US,en_GB,pt_BR,pt_PT"
 
 # PDF export (`shiki publish`, leader+`P`) — pdf_theme picks one of
 # go-pretty-pdf's 17 built-in themes: default, minimal, modern, classic,
