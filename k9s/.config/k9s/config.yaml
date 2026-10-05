@@ -8,7 +8,7 @@ k9s:
   noExitOnCtrlC: false
   portForwardAddress: localhost
   ui:
-    skin: dracula
+    skin: catppuccin-mocha
     enableMouse: true
     headless: false
     logoless: false

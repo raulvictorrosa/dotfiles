@@ -23,3 +23,7 @@ zed/.config/zed/conversations/
 zed/.config/zed/embeddings/
 zed/.config/zed/prompts/
 zed/.config/zed/.tmp*
+
+# shiki runtime state — log and last-session restore, not config
+shiki/.config/shiki/shiki.log
+shiki/.config/shiki/session.toml
