@@ -37,6 +37,7 @@ Trialing two project-session tools side by side before picking one:
   - [herdr-sessionizer](https://github.com/andrewchng/herdr-sessionizer) — fzf-style picker over arbitrary project roots / git worktrees, bound to `prefix+f` (`prefix+shift+f` for the worktree picker).
   - [herdr-navigator](https://github.com/thanhdat77/herdr-navigator) — unified fuzzy "jump to anything" (workspaces, agents, projects, sessions, dirs, actions) with a preview toggle, bound to `prefix+t`.
   - [herdr-lazy](https://github.com/natori-hrj/herdr-lazy) — declarative plugin manager for the other three: `plugins/config/herdr-lazy/plugins.list` (tracked) declares the set, `plugins.lock` (tracked) pins commits. Manage pane bound to `prefix+shift+l`. On a new machine: `herdr plugin install natori-hrj/herdr-lazy --yes`, then `herdr-lazy sync` (see that file for the binary-path trick — it isn't on `PATH`).
+- **herdr-app** (desktop GUI, separate from the TUI above): only `settings.json` and `themes/` are tracked in `herdr-app/.config/herdr-app/`; the rest of `~/.config/herdr-app` is app-managed and rewritten on start. The theme is `themes/catppuccin-mocha.json`, selected by the `theme` key in `settings.json` — swap that one value if a built-in Catppuccin ships later. If the app rewrites `settings.json` and breaks the symlink, re-stow.
 
 Client-confidential project files (e.g. work projects outside personal ones) are kept on disk inside these same directories — visible via `ls`, but ignored via `.git/info/exclude` (local-only, never committed) instead of the tracked `.gitignore`, so their names never end up in git history.
 
@@ -106,7 +107,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
    brew install stow
 
    # Recommended: Link only the currently recommended configs
-   stow nvim zsh tmux ghostty mise atuin git starship tmuxinator herdr  # Core tools
+   stow nvim zsh tmux ghostty mise atuin git starship tmuxinator herdr herdr-app  # Core tools
    stow aerospace sketchybar borders linearmouse skhd  # macOS window management
    stow k9s btop lazygit shiki  # Terminal TUIs
    stow claude  # AI tools
@@ -141,6 +142,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 ├── git/               # Git config (portable; identity goes in ~/.config/git/config.local)
 ├── ghostty/           # Terminal emulator
 ├── herdr/             # Agent-aware multiplexer config + herdr-plus/sessionizer plugin projects
+├── herdr-app/         # Herdr desktop app: settings + Catppuccin Mocha theme
 ├── k9s/               # Kubernetes cluster manager
 ├── kitty/             # Terminal emulator
 ├── lazygit/           # Terminal UI for git
