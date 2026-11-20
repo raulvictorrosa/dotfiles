@@ -2,16 +2,25 @@
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 
 # Font
-font-family = "JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace"
+# One font-family line per font: Ghostty uses them in order as a fallback chain
+# (same order as VS Code's editor.fontFamily).
+font-family = "JetBrainsMono Nerd Font"
+font-family = "Menlo"
+font-family = "Monaco"
+font-family = "Courier New"
 font-style = Regular
-# VS Code: editor.fontSize 12 (macOS default) * window.zoomLevel 1 (120%) = 14.4pt
-font-size = 14.4
 
-# VS Code's automatic line height is round(1.5 * 12) = 18, times the 1.2 zoom =
-# 21.6pt = 43.2px on a 2x display. JetBrains Mono at 14.4pt has a 38px natural
-# cell, so add 5px for 43px. Cell width is 17px (VS Code: 17.28px); terminals
-# only do whole-pixel widths.
-adjust-cell-height = 5
+# Same base size as VS Code (editor.fontSize 12, the macOS default). VS Code runs
+# with window.zoomLevel 1 (+20%), so one cmd+plus here is also +20%: 12 -> 14.4pt.
+font-size = 12
+keybind = super+equal=increase_font_size:2.4
+keybind = super+plus=increase_font_size:2.4
+keybind = super+minus=decrease_font_size:2.4
+
+# VS Code's automatic line height is 1.5x the font size, JetBrains Mono's natural
+# cell is ~1.32x. A percentage keeps that ratio at any zoom level (a pixel value
+# would not). At 14.4pt: 38px natural + 13% = 43px (VS Code: 43.2px).
+adjust-cell-height = 13%
 
 font-thicken = true
 
