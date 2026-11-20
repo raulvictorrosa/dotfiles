@@ -2,14 +2,34 @@
 -- (and needs setup() called), so open it once everything has loaded.
 -- Keys: <leader>mt toggle, <leader>mf focus the map and browse (<CR> accept, <Esc> cancel),
 -- <leader>ms switch side. With `focusable = true` the mouse can enter the map window too.
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-mini/mini.map",
   version = "*",
   event = "VeryLazy",
   keys = {
-    { "<leader>mt", function() require("mini.map").toggle() end, desc = "Minimap: toggle" },
-    { "<leader>mf", function() require("mini.map").toggle_focus() end, desc = "Minimap: focus and browse" },
-    { "<leader>ms", function() require("mini.map").toggle_side() end, desc = "Minimap: switch side" },
+    {
+      "<leader>mt",
+      function()
+        require("mini.map").toggle()
+      end,
+      desc = "Minimap: toggle",
+    },
+    {
+      "<leader>mf",
+      function()
+        require("mini.map").toggle_focus()
+      end,
+      desc = "Minimap: focus and browse",
+    },
+    {
+      "<leader>ms",
+      function()
+        require("mini.map").toggle_side()
+      end,
+      desc = "Minimap: switch side",
+    },
   },
   opts = function()
     local map = require("mini.map")

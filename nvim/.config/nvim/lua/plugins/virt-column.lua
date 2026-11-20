@@ -2,9 +2,13 @@
 -- 'colorcolumn' paints a whole cell (~8.5pt wide); virt-column draws a thin
 -- "▏" (1/8 of a cell, ~2px) instead. VS Code puts a ruler after N characters,
 -- i.e. at the left edge of column N + 1, hence 81/101/121.
+---@module "lazy"
+---@module "virt-column"
+---@type LazySpec
 return {
   "lukas-reineke/virt-column.nvim",
   event = "VeryLazy",
+  ---@type virtcolumn.config
   opts = {
     char = "▏",
     virtcolumn = "81,101,121",
@@ -19,7 +23,9 @@ return {
         return vim.api.nvim_set_hl(0, "VirtColumn", { link = "NonText" })
       end
       local function mix(shift)
-        return math.floor(bit.band(bit.rshift(n.bg, shift), 0xff) * 0.85 + bit.band(bit.rshift(n.fg, shift), 0xff) * 0.15)
+        return math.floor(
+          bit.band(bit.rshift(n.bg, shift), 0xff) * 0.85 + bit.band(bit.rshift(n.fg, shift), 0xff) * 0.15
+        )
       end
       vim.api.nvim_set_hl(0, "VirtColumn", { fg = mix(16) * 0x10000 + mix(8) * 0x100 + mix(0) })
     end
