@@ -13,6 +13,3 @@ end
 
 -- Session restore fixes (directory buffer, explorer sidebar): see config/session.lua
 require("config.session")
-
--- Keep lazygit's delta diffs in the colorscheme's palette: see config/lazygit-delta.lua
-require("config.lazygit-delta")

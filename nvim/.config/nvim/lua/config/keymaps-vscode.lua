@@ -38,7 +38,9 @@ local setupVsCodeConfigs = function()
 
   -- Comment or remove the return bellow if you want to add
   -- more VSCode-specific keymaps
-  do return end
+  do
+    return
+  end
 
   -- Additional VSCode-specific keymaps (with absolute priority - will override telescope and other plugins)
   local function set_vscode_keymap(mode, lhs, rhs, opts)
