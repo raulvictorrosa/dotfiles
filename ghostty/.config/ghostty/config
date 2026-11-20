@@ -6,9 +6,9 @@ font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
 font-size = 14
 
-# Match VS Code's automatic line height (~1.5em). JetBrains Mono's natural
-# cell height is ~1.32em, so add ~13% on top of it.
-adjust-cell-height = 13%
+# Match VS Code's automatic line height (round(1.5 * 14) = 21pt = 42px on a 2x
+# display). JetBrains Mono at 14pt has a 37px natural cell, so add 5px.
+adjust-cell-height = 5
 
 font-thicken = true
 
