@@ -2,12 +2,15 @@
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 
 # Font
-font-family = "JetBrainsMono Nerd Font"
+font-family = "JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace"
 font-style = Regular
-font-size = 14
+# VS Code: editor.fontSize 12 (macOS default) * window.zoomLevel 1 (120%) = 14.4pt
+font-size = 14.4
 
-# Match VS Code's automatic line height (round(1.5 * 14) = 21pt = 42px on a 2x
-# display). JetBrains Mono at 14pt has a 37px natural cell, so add 5px.
+# VS Code's automatic line height is round(1.5 * 12) = 18, times the 1.2 zoom =
+# 21.6pt = 43.2px on a 2x display. JetBrains Mono at 14.4pt has a 38px natural
+# cell, so add 5px for 43px. Cell width is 17px (VS Code: 17.28px); terminals
+# only do whole-pixel widths.
 adjust-cell-height = 5
 
 font-thicken = true
