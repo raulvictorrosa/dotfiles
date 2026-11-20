@@ -11,6 +11,7 @@
 [delta]
 	navigate = true                     # n/N jump between diff sections in the pager
 	side-by-side = true                 # Two-column diff view
+	syntax-theme = Catppuccin Mocha     # Same palette as Ghostty/nvim; lazygit runs this delta too, so it follows
 [merge]
 	conflictStyle = zdiff3              # Show the common ancestor in conflict markers, not just ours/theirs
 [include]

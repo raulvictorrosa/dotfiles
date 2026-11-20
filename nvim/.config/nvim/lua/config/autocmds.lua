@@ -10,3 +10,6 @@
 if vim.g.vscode then
   vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 end
+
+-- Session restore fixes (directory buffer, explorer sidebar): see config/session.lua
+require("config.session")

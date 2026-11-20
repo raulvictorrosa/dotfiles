@@ -2,9 +2,34 @@
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 
 # Font
+# One font-family line per font: Ghostty uses them in order as a fallback chain
+# (same order as VS Code's editor.fontFamily).
 font-family = "JetBrainsMono Nerd Font"
+font-family = "Menlo"
+font-family = "Monaco"
+font-family = "Courier New"
 font-style = Regular
-font-size = 14
+
+# Same base size as VS Code (editor.fontSize 12, the macOS default). VS Code runs
+# with window.zoomLevel 1 (+20%), so one cmd+plus here is also +20%: 12 -> 14.4pt.
+font-size = 12
+keybind = super+==increase_font_size:2.4
+keybind = super++=increase_font_size:2.4
+keybind = super+-=decrease_font_size:2.4
+
+# VS Code's automatic line height is 1.5x the font size, JetBrains Mono's natural
+# cell is ~1.32x. A percentage keeps that ratio at any zoom level (a pixel value
+# would not). At 14.4pt: 38px natural + 13% = 43px (VS Code: 43.2px).
+adjust-cell-height = 13%
+
+# Known limit: Ghostty snaps the cell to whole pixels, so at 14.4pt the cell is
+# 17x43px while VS Code's is 17.28x43.2px (width ~1.6% narrower, can't be fixed
+# here: adjust-cell-width 0%/1.6% -> 17px, 3% -> 18px). If we ever want an exact
+# match, try a terminal that supports fractional cell sizes - check that first, not
+# every terminal does. Rex (https://www.superlogical.com/rex/docs/reference/mac-settings)
+# exposes the same adjust-cell-height / adjust-cell-width (pixels or percent), so it
+# probably snaps the same way (untested). WezTerm's cell_width / line_height: untested.
+# Measure the real cell size with: printf '\e[16t' (reply: ESC[6;<height>;<width>t)
 
 font-thicken = true
 

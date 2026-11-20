@@ -1,3 +1,6 @@
+---@module "lazy"
+---@module "snacks"
+---@type LazySpec
 return {
   "folke/snacks.nvim",
   ---@type snacks.Config
@@ -16,6 +19,11 @@ return {
           -- Explicitly set for the 'files' source used by <space><space>
           hidden = true,
           ignored = true,
+          -- `ignored` also lists gitignored dependency folders; keep those out
+          exclude = { "node_modules" },
+        },
+        grep = {
+          exclude = { "node_modules" },
         },
       },
     },
