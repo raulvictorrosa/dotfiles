@@ -25,8 +25,10 @@ adjust-cell-height = 13%
 # Known limit: Ghostty snaps the cell to whole pixels, so at 14.4pt the cell is
 # 17x43px while VS Code's is 17.28x43.2px (width ~1.6% narrower, can't be fixed
 # here: adjust-cell-width 0%/1.6% -> 17px, 3% -> 18px). If we ever want an exact
-# match, try a terminal that supports fractional cell sizes (e.g. WezTerm's
-# cell_width / line_height, or Rio) - check that first, not every terminal does.
+# match, try a terminal that supports fractional cell sizes - check that first, not
+# every terminal does. Rex (https://www.superlogical.com/rex/docs/reference/mac-settings)
+# exposes the same adjust-cell-height / adjust-cell-width (pixels or percent), so it
+# probably snaps the same way (untested). WezTerm's cell_width / line_height: untested.
 # Measure the real cell size with: printf '\e[16t' (reply: ESC[6;<height>;<width>t)
 
 font-thicken = true
