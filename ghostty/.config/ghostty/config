@@ -22,6 +22,13 @@ keybind = super+-=decrease_font_size:2.4
 # would not). At 14.4pt: 38px natural + 13% = 43px (VS Code: 43.2px).
 adjust-cell-height = 13%
 
+# Known limit: Ghostty snaps the cell to whole pixels, so at 14.4pt the cell is
+# 17x43px while VS Code's is 17.28x43.2px (width ~1.6% narrower, can't be fixed
+# here: adjust-cell-width 0%/1.6% -> 17px, 3% -> 18px). If we ever want an exact
+# match, try a terminal that supports fractional cell sizes (e.g. WezTerm's
+# cell_width / line_height, or Rio) - check that first, not every terminal does.
+# Measure the real cell size with: printf '\e[16t' (reply: ESC[6;<height>;<width>t)
+
 font-thicken = true
 
 # Window
