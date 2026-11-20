@@ -13,9 +13,9 @@ font-style = Regular
 # Same base size as VS Code (editor.fontSize 12, the macOS default). VS Code runs
 # with window.zoomLevel 1 (+20%), so one cmd+plus here is also +20%: 12 -> 14.4pt.
 font-size = 12
-keybind = super+equal=increase_font_size:2.4
-keybind = super+plus=increase_font_size:2.4
-keybind = super+minus=decrease_font_size:2.4
+keybind = super+==increase_font_size:2.4
+keybind = super++=increase_font_size:2.4
+keybind = super+-=decrease_font_size:2.4
 
 # VS Code's automatic line height is 1.5x the font size, JetBrains Mono's natural
 # cell is ~1.32x. A percentage keeps that ratio at any zoom level (a pixel value
