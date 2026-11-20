@@ -7,7 +7,7 @@ local opt = vim.opt
 opt.winborder = "rounded"
 opt.spelllang = { "en", "pt" }
 -- vim.opt.statuscolumn = ""
-opt.colorcolumn = "80,100,120"
+-- Rulers (80/100/120) are drawn by lua/plugins/virt-column.lua instead of 'colorcolumn'
 
 -- No installed plugin needs the node/perl/ruby/python3 remote plugin hosts.
 -- node/python/ruby here come from mise's floating "latest" version, so a
