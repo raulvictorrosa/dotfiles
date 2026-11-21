@@ -11,26 +11,23 @@ return {
     image = {
       enabled = true, -- Inline image/PDF/LaTeX/Mermaid rendering (needs a kitty-graphics-protocol terminal)
     },
+    -- Same split as VS Code: the explorer lists everything (dotfiles and gitignored files),
+    -- while the pickers (find files, grep, ...) skip what .gitignore ignores, e.g. node_modules.
+    -- <a-i> / <a-h> inside a picker toggle ignored / hidden files when you need them.
     picker = {
       hidden = true, -- Show hidden files in the picker (e.g., using <leader><leader>)
-      ignored = true, -- Show files ignored by git in the picker
+      ignored = false, -- Hide files ignored by git in the picker
       sources = {
         files = {
-          -- Explicitly set for the 'files' source used by <space><space>
+          -- The 'files' source (<space><space>) has its own defaults and ignores the
+          -- picker-level hidden/ignored, so set both explicitly.
           hidden = true,
-          ignored = true,
-          -- `ignored` also lists gitignored dependency folders; keep those out
-          exclude = { "node_modules" },
+          ignored = false,
         },
-        grep = {
-          exclude = { "node_modules" },
+        explorer = {
+          hidden = true, -- Show hidden files in the file explorer
+          ignored = true, -- Show files ignored by git in the file explorer
         },
-      },
-    },
-    explorer = {
-      files = {
-        hidden = true, -- Show hidden files in the file explorer
-        ignored = true, -- Show files ignored by git in the file explorer
       },
     },
   },
