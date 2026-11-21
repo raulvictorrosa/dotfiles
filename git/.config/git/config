@@ -3,6 +3,7 @@
 [core]
 	excludesfile = ~/.config/git/ignore  # Global ignores shared across every repo on the machine
 	editor = nvim
+	# pager = delta                       # Syntax-highlighted diff pager (switch back if hunk does not work out)
 	pager = hunk pager
 [init]
 	defaultBranch = main
