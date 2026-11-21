@@ -1,4 +1,7 @@
--- Session restore fixes (persistence.nvim sessions and `:restart`). Loaded from config/autocmds.lua.
+-- Session restore fixes (persistence.nvim sessions and `:restart`). Loaded from init.lua, NOT
+-- from config/autocmds.lua: LazyVim only loads autocmds.lua after startup when nvim is opened
+-- without file arguments (plain `nvim`), which is after `:restart` has already restored the
+-- session, so the SessionLoadPost autocmd below would be missed.
 
 -- Sessions saved after `nvim <dir>` keep that directory in the arglist, so a restored
 -- session gets an extra listed buffer named after the folder. Selecting it makes snacks'
@@ -37,13 +40,26 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
 
     if vim.g.SnacksExplorerOpen == 1 and not restoring_explorer then
       restoring_explorer = true
-      vim.schedule(function()
+      local function open_explorer()
+        restoring_explorer = false
         if _G.Snacks and #Snacks.picker.get({ source = "explorer" }) == 0 then
           -- focus = false: keep the cursor in the editor window
           Snacks.explorer.open({ focus = false })
         end
-        restoring_explorer = false
-      end)
+      end
+      if #vim.api.nvim_list_uis() > 0 then
+        vim.schedule(open_explorer)
+      else
+        -- `:restart` restores the session before the UI attaches again; a picker opened
+        -- now would have no screen to draw on, so wait for it.
+        vim.api.nvim_create_autocmd("UIEnter", {
+          once = true,
+          group = session_group,
+          callback = function()
+            vim.schedule(open_explorer)
+          end,
+        })
+      end
     end
   end,
 })
