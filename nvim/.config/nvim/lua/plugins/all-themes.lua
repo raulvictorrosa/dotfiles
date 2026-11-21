@@ -25,12 +25,6 @@ return {
     priority = 1000,
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = true,
-    priority = 1000,
-  },
-  {
     "sainnhe/everforest",
     lazy = true,
     priority = 1000,
