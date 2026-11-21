@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
@@ -6,6 +8,7 @@ return {
       "html",
       "javascript",
       "json",
+      "latex",
       "lua",
       "markdown",
       "markdown_inline",

@@ -3,7 +3,8 @@
 [core]
 	excludesfile = ~/.config/git/ignore  # Global ignores shared across every repo on the machine
 	editor = nvim
-	pager = delta                       # Syntax-highlighted diff pager
+	# pager = delta                       # Syntax-highlighted diff pager (switch back if hunk does not work out)
+	pager = hunk pager
 [init]
 	defaultBranch = main
 [interactive]
@@ -11,6 +12,7 @@
 [delta]
 	navigate = true                     # n/N jump between diff sections in the pager
 	side-by-side = true                 # Two-column diff view
+	syntax-theme = Catppuccin Mocha     # Same palette as Ghostty/nvim; lazygit runs this delta too, so it follows
 [merge]
 	conflictStyle = zdiff3              # Show the common ancestor in conflict markers, not just ours/theirs
 [include]

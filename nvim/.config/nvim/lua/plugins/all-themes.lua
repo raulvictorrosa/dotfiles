@@ -1,6 +1,9 @@
+---@module "lazy"
+---@type LazySpec
 return {
-  -- Load all theme plugins but don't apply them
-  -- This ensures all colorschemes are available for hot-reloading
+  -- Install all theme plugins (lazy-loaded) but don't apply them.
+  -- This keeps every colorscheme available to `:colorscheme` and the colorscheme
+  -- picker (<leader>uC); the one used at startup is set in theme.lua.
   {
     "ribru17/bamboo.nvim",
     lazy = true,
@@ -18,12 +21,6 @@ return {
   },
   {
     "bjarneo/hackerman.nvim",
-    lazy = true,
-    priority = 1000,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
     lazy = true,
     priority = 1000,
   },
@@ -65,11 +62,6 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    lazy = true,
-    priority = 1000,
-  },
-  {
-    "folke/tokyonight.nvim",
     lazy = true,
     priority = 1000,
   },
