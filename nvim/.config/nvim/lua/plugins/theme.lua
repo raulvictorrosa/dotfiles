@@ -13,7 +13,9 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "dracula",
-      colorscheme = "catppuccin",
+      -- "catppuccin-nvim", not "catppuccin": Neovim 0.12 ships its own built-in "catppuccin"
+      -- colorscheme, which wins at startup and leaves FloatBorder/NormalFloat on Neovim defaults.
+      colorscheme = "catppuccin-nvim",
     },
   },
 }
