@@ -1,5 +1,6 @@
 # theme = light:TokyoNight Day,dark:TokyoNight
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+# theme = Dracula
 
 # Font
 # One font-family line per font: Ghostty uses them in order as a fallback chain
@@ -41,7 +42,6 @@ resize-overlay = never
 gtk-toolbar-style = flat
 
 # Mac config
-# theme = Dracula
 # font-thicken = true
 macos-option-as-alt = true
 minimum-contrast = 1
