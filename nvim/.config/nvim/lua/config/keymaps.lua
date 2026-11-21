@@ -5,5 +5,3 @@
 -- vim.keymap.set({ "n", "t" }, "<c-S-7>", function()
 --   Snacks.terminal(nil, { cwd = LazyVim.root() })
 -- end, { desc = "Terminal (Root Dir)" })
-
-require("config.keymaps-vscode")
