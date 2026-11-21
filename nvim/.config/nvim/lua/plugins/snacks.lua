@@ -33,6 +33,12 @@ return {
   },
   keys = {
     {
+      -- <leader>e behaves like VS Code's "focus Explorer" instead of LazyVim's plain toggle:
+      --   explorer closed                  -> open it
+      --   explorer open, cursor in editor  -> move the cursor to the explorer (keeps it open)
+      --   cursor already in the explorer   -> close it (Snacks.explorer() toggles)
+      -- The explorer is a snacks picker, so its window is found by the "snacks_picker_list"
+      -- filetype.
       "<leader>e",
       function()
         local explorer_win = nil
