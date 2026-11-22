@@ -18,17 +18,17 @@
 
 # Application shortcuts
 alt - 1: @toggle_app("Google Chrome")
-alt - 2: @toggle_app("Visual Studio Code")
+alt - 2: @toggle_app("Zed")
 alt - 3: @toggle_app("Ghostty")
 alt - 4: @toggle_app("Figma")
 alt - 5: @toggle_app("Microsoft Teams")
 alt - 6: @toggle_app("Microsoft Outlook")
 
-alt - return: @toggle_app("Ghostty")
+alt - return: @toggle_app("Herdr")
 alt + shift - b: @toggle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
 alt + shift - f: @toggle_app("Finder")
-alt + shift - m: @toggle_app("Spotify")
+alt + shift - m: ~/.config/skhd/scripts/music-picker.sh
 alt + shift - n: @open_nvim
 alt + shift - t : sh -c ' \
   if pgrep -f "Ghostty.*btop" > /dev/null; then \

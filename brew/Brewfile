@@ -23,6 +23,8 @@ brew "icu4c@78"
 brew "broot"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Fuzzy matcher that uses std{in,out} and a native GUI
+brew "choose-gui"
 # Cross-platform make
 brew "cmake"
 # GNU File, Shell, and Text utilities
@@ -161,8 +163,6 @@ brew "felixkratz/formulae/sketchybar", trusted: true
 brew "sazardev/shiki/shiki", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
-# Enable Windows-like alt-tab
-cask "alt-tab"
 # Automatic tiling window manager similar to xmonad
 cask "amethyst"
 # Android SDK component
@@ -250,8 +250,6 @@ cask "postman"
 cask "raspberry-pi-imager"
 # Control your tools with a few keystrokes
 cask "raycast"
-# Move and resize windows using keyboard shortcuts or snap areas
-cask "rectangle"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 # Simple hotkey daemon written in Zig
