@@ -6,7 +6,7 @@ A comprehensive collection of configuration files for a productive development e
 
 The following tools are actively used and recommended for the best experience:
 
-- **📝 Editors**: Neovim, VS Code
+- **📝 Editors**: Neovim, Zed, VS Code
 - **🪟 Window Management**: Rectangle, skhd, Borders (Aerospace tracked but currently unused — beta lag)
 - **📊 System Monitoring**: SketchyBar
 - **📁 File Navigation**: Yazi
@@ -46,7 +46,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 - **Neovim**: LazyVim-based configuration with LSP support (recommended)
 - **VS Code**: Modern editor with extensions (recommended)
 - **Vim**: Classic Vim setup with vim-plug (reference)
-- **Zed**: Modern code editor configuration (alternative)
+- **Zed**: Modern code editor, Catppuccin theme + Vim mode, bound to `alt+2` via skhd
 
 ### 🪟 Desktop & UI
 
@@ -74,7 +74,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 - **Lazygit**: Terminal UI for git
 - **K9s**: Kubernetes cluster management
 - **Shiki**: Terminal note-taking app, Yazi-inspired three-pane layout, git-backed notebooks
-- **SKHD**: Hotkey daemon for app toggles (Chrome, VS Code, Ghostty/Neovim, Finder, Spotify, btop) — window snapping is handled separately by Rectangle, not a tiling window manager
+- **SKHD**: Hotkey daemon for app toggles (Chrome, Zed, Ghostty/Neovim, Finder, Spotify, btop) — window snapping is handled separately by Rectangle, not a tiling window manager
 - **Witr**: Traces a running process/port/container/file back to what started it
 
 ## 🚀 Quick Start
