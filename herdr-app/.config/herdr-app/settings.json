@@ -3,8 +3,8 @@
   "sounds": {
     "enabled": true
   },
-  "font_ligatures": false,
   "minimum_contrast": 1,
   "font_size": 12,
-  "theme": "catppuccin-mocha"
+  "theme": "catppuccin-mocha",
+  "telemetry": false
 }
