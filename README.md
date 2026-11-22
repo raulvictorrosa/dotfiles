@@ -7,7 +7,7 @@ A comprehensive collection of configuration files for a productive development e
 The following tools are actively used and recommended for the best experience:
 
 - **📝 Editors**: Neovim, Zed, VS Code
-- **🪟 Window Management**: Rectangle, skhd, Borders (Aerospace tracked but currently unused — beta lag)
+- **🪟 Window Management**: Vorssaint, skhd, Borders (Aerospace tracked but currently unused — beta lag)
 - **📊 System Monitoring**: SketchyBar
 - **📁 File Navigation**: Yazi
 - **🕰️ History**: Atuin
@@ -46,11 +46,11 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 - **Neovim**: LazyVim-based configuration with LSP support (recommended)
 - **VS Code**: Modern editor with extensions (recommended)
 - **Vim**: Classic Vim setup with vim-plug (reference)
-- **Zed**: Modern code editor, Catppuccin theme + Vim mode, bound to `alt+2` via skhd
+- **Zed**: Modern code editor configuration (alternative)
 
 ### 🪟 Desktop & UI
 
-- **Rectangle**: Window snapping/positioning (macOS) — the active window-management tool
+- **Vorssaint**: Menu bar toolkit (macOS) — app switcher, window snapping/layouts and Dock previews; replaced AltTab and Rectangle as the active window-management tool
 - **SketchyBar**: Custom menu bar with system monitors (macOS)
 - **Borders**: Window border customization (macOS)
 - **LinearMouse**: Mouse acceleration customization (macOS)
@@ -74,7 +74,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 - **Lazygit**: Terminal UI for git
 - **K9s**: Kubernetes cluster management
 - **Shiki**: Terminal note-taking app, Yazi-inspired three-pane layout, git-backed notebooks
-- **SKHD**: Hotkey daemon for app toggles (Chrome, Zed, Ghostty/Neovim, Finder, Spotify, btop) — window snapping is handled separately by Rectangle, not a tiling window manager
+- **SKHD**: Hotkey daemon for app toggles (Chrome, Zed, Ghostty/Neovim, Finder, Spotify, btop) — window snapping is handled separately by Vorssaint, not a tiling window manager
 - **Witr**: Traces a running process/port/container/file back to what started it
 
 ## 🚀 Quick Start
@@ -176,7 +176,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 
 - **Modern text editing** with Neovim + LazyVim
 - **Multiple terminal options** (Ghostty, Kitty, WezTerm; Alacritty kept for reference)
-- **Window snapping** with Rectangle, app-toggle hotkeys with skhd (macOS) — Aerospace tracked for later, currently unused (beta lag)
+- **Window snapping and app switcher** with Vorssaint, app-toggle hotkeys with skhd (macOS) — Aerospace tracked for later, currently unused (beta lag)
 - **Kubernetes management** with K9s
 - **Version management** with Mise
 
@@ -297,7 +297,7 @@ Feel free to:
 - Configurations support both macOS and Linux environments
 - Some platform-specific tools (Aerospace, SketchyBar, LinearMouse) are macOS-only
 - Font requirements: JetBrains Mono Nerd Font (installed via package manager)
-- Rectangle + skhd currently handle window management on macOS; Aerospace is tracked in the Brewfile/repo but not in use (still in beta, was causing lag)
+- Vorssaint + skhd currently handle window management on macOS; Aerospace is tracked in the Brewfile/repo but not in use (still in beta, was causing lag)
 - **If you do switch to Aerospace**: it disables macOS native word navigation (Option+arrow keys) due to hotkey conflicts
 
 ## 📚 Useful Commands
@@ -306,7 +306,7 @@ Feel free to:
 # Reload zsh configuration
 source ~/.zshrc
 
-# Restart Aerospace (macOS window manager, if you're using it instead of Rectangle)
+# Restart Aerospace (macOS window manager, if you're using it instead of Vorssaint)
 aerospace reload-config
 
 # Rebuild SketchyBar (macOS)
