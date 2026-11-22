@@ -28,7 +28,35 @@ alt - return: @toggle_app("Ghostty")
 alt + shift - b: @toggle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
 alt + shift - f: @toggle_app("Finder")
-alt + shift - m: @toggle_app("Spotify")
+# alt + shift - m: @toggle_app("Spotify")
+alt + shift - m : sh -c ' \
+  if pgrep -f "Ghostty.*cliamp" > /dev/null; then \
+    osascript -e "tell application \\"Ghostty\\" to activate"; \
+  else \
+    open -n -a Ghostty --args --title="cliamp" -e cliamp; \
+  fi; \
+  sleep 1; \
+  osascript \
+    -e "set window_width to 875" \
+    -e "set window_height to 600" \
+    -e "set process_name to \\"Ghostty\\"" \
+    -e "tell application \\"Finder\\" to set screen_bounds to bounds of window of desktop" \
+    -e "set screen_width to item 3 of screen_bounds" \
+    -e "set screen_height to item 4 of screen_bounds" \
+    -e "set x_pos to (screen_width - window_width) / 2" \
+    -e "set y_pos to ((screen_height - window_height) / 3)" \
+    -e "tell application \\"System Events\\"" \
+    -e "  repeat with p in (every process whose name is process_name)" \
+    -e "    repeat with w in windows of p" \
+    -e "      if name of w contains \\"cliamp\\" then" \
+    -e "        set size of w to {window_width, window_height}" \
+    -e "        set position of w to {x_pos, y_pos}" \
+    -e "        return" \
+    -e "      end if" \
+    -e "    end repeat" \
+    -e "  end repeat" \
+    -e "end tell"'
+
 alt + shift - n: @open_nvim
 alt + shift - t : sh -c ' \
   if pgrep -f "Ghostty.*btop" > /dev/null; then \
