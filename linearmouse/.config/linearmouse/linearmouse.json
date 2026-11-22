@@ -1,140 +1,127 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.12.0",
   "schemes" : [
     {
-      "pointer" : {
-        "speed" : 0,
-        "acceleration" : 2,
-        "disableAcceleration" : false
-      },
-      "scrolling" : {
-        "reverse" : true,
-        "speed" : 0,
-        "acceleration" : 1
-      },
       "if" : {
         "device" : {
-          "serialNumber" : "3c-a6-f6-db-f6-ff",
+          "category" : "mouse",
           "productID" : "0x269",
           "productName" : "Magic Mouse",
-          "category" : "mouse",
+          "serialNumber" : "3c-a6-f6-db-f6-ff",
           "vendorID" : "0x4c"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 2,
+        "disableAcceleration" : false,
+        "speed" : 0
+      },
+      "scrolling" : {
+        "acceleration" : 1,
+        "reverse" : true,
+        "speed" : 0
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x608d",
+          "productName" : "Lenovo USB Optical Mouse",
+          "vendorID" : "0x17ef"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 1.5,
+        "disableAcceleration" : true,
+        "speed" : 0
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : true,
+        "speed" : {
+          "vertical" : 0
         }
       }
     },
     {
+      "if" : {
+        "device" : {
+          "category" : "trackpad",
+          "productID" : "0x343",
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "vendorID" : "0x5ac"
+        }
+      },
       "pointer" : {
-        "acceleration" : 1.5,
-        "speed" : 0,
+        "acceleration" : 2,
         "disableAcceleration" : true
       },
       "scrolling" : {
-        "reverse" : true,
-        "distance" : {
-          "vertical" : "auto"
-        },
-        "acceleration" : {
-          "vertical" : 1
-        },
-        "speed" : {
-          "vertical" : 0
-        }
-      },
-      "if" : {
-        "device" : {
-          "productID" : "0x608d",
-          "productName" : "Lenovo USB Optical Mouse",
-          "category" : "mouse",
-          "vendorID" : "0x17ef"
-        }
-      }
-    },
-    {
-      "pointer" : {
-        "disableAcceleration" : true,
-        "acceleration" : 2
-      },
-      "scrolling" : {
-        "speed" : {
-          "vertical" : 0
-        },
         "acceleration" : {
           "vertical" : 1
         },
         "distance" : {
           "vertical" : "auto"
-        }
-      },
-      "if" : {
-        "device" : {
-          "vendorID" : "0x5ac",
-          "category" : "trackpad",
-          "productName" : "Apple Internal Keyboard \/ Trackpad",
-          "productID" : "0x343"
+        },
+        "speed" : {
+          "vertical" : 0
         }
       }
     },
     {
       "buttons" : {
-        "switchPrimaryButtonAndSecondaryButtons" : false,
         "clickDebouncing" : {
           "buttons" : [
             0,
             1
           ],
           "timeout" : 0
+        },
+        "switchPrimaryButtonAndSecondaryButtons" : false
+      },
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc542",
+          "productName" : "Wireless Receiver",
+          "vendorID" : "0x46d"
         }
       },
       "pointer" : {
         "acceleration" : 2.5
       },
       "scrolling" : {
+        "acceleration" : {
+          "horizontal" : 1,
+          "vertical" : 0.5
+        },
         "distance" : {
           "vertical" : "auto"
-        },
-        "acceleration" : {
-          "vertical" : 0.5,
-          "horizontal" : 1
-        },
-        "speed" : {
-          "vertical" : 0
         },
         "reverse" : {
           "vertical" : true
-        }
-      },
-      "if" : {
-        "device" : {
-          "vendorID" : "0x46d",
-          "category" : "mouse",
-          "productID" : "0xc542",
-          "productName" : "Wireless Receiver"
-        }
-      }
-    },
-    {
-      "scrolling" : {
-        "distance" : {
-          "vertical" : "auto"
-        },
-        "acceleration" : {
-          "vertical" : 0.5
         },
         "speed" : {
           "vertical" : 0
         }
-      },
-      "if" : {
-        "device" : {
-          "productID" : "0xc542",
-          "vendorID" : "0x46d",
-          "productName" : "Wireless Receiver",
-          "category" : "mouse"
-        },
-        "app" : "com.google.Chrome.app.fmgjjmmmlfnkbppncabfkddbjimcfncm"
       }
     },
     {
+      "if" : {
+        "app" : "com.google.Chrome.app.fmgjjmmmlfnkbppncabfkddbjimcfncm",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc542",
+          "productName" : "Wireless Receiver",
+          "vendorID" : "0x46d"
+        }
+      },
       "scrolling" : {
         "acceleration" : {
           "vertical" : 0.5
@@ -145,21 +132,21 @@
         "speed" : {
           "vertical" : 0
         }
-      },
-      "if" : {
-        "device" : {
-          "productName" : "Wireless Receiver",
-          "vendorID" : "0x46d",
-          "category" : "mouse",
-          "productID" : "0xc542"
-        },
-        "app" : "com.google.Chrome"
       }
     },
     {
+      "if" : {
+        "app" : "com.google.Chrome",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc542",
+          "productName" : "Wireless Receiver",
+          "vendorID" : "0x46d"
+        }
+      },
       "scrolling" : {
         "acceleration" : {
-          "vertical" : 1
+          "vertical" : 0.5
         },
         "distance" : {
           "vertical" : "auto"
@@ -167,89 +154,103 @@
         "speed" : {
           "vertical" : 0
         }
-      },
+      }
+    },
+    {
       "if" : {
         "app" : "com.microsoft.Excel",
         "device" : {
           "category" : "mouse",
-          "vendorID" : "0x46d",
-          "productName" : "Wireless Receiver",
-          "productID" : "0xc542"
-        }
-      }
-    },
-    {
-      "scrolling" : {
-        "reverse" : {
-          "vertical" : false
-        }
-      },
-      "if" : {
-        "app" : "barrier",
-        "device" : {
-          "vendorID" : "0x46d",
           "productID" : "0xc542",
           "productName" : "Wireless Receiver",
-          "category" : "mouse"
-        }
-      }
-    },
-    {
-      "scrolling" : {
-        "reverse" : true
-      },
-      "if" : {
-        "device" : {
-          "vendorID" : "0x3f0",
-          "productName" : "HP 125 USB Optical Mouse",
-          "category" : "mouse",
-          "productID" : "0x584a"
-        }
-      }
-    },
-    {
-      "if" : {
-        "device" : {
-          "category" : "mouse",
-          "vendorID" : "0x46a",
-          "productName" : "Cherry USB Optical Mouse",
-          "productID" : "0xb091"
+          "vendorID" : "0x46d"
         }
       },
       "scrolling" : {
-        "reverse" : true,
         "acceleration" : {
-          "horizontal" : 1
-        }
-      }
-    },
-    {
-      "pointer" : {
-        "disableAcceleration" : false,
-        "acceleration" : 2.5,
-        "speed" : 0.0689655172413792768
-      },
-      "if" : {
-        "device" : {
-          "vendorID" : "0x46d",
-          "serialNumber" : "091B171C",
-          "productName" : "MX Master 3S",
-          "category" : "mouse",
-          "productID" : "0xb034"
-        }
-      },
-      "scrolling" : {
+          "vertical" : 1
+        },
         "distance" : {
           "vertical" : "auto"
         },
         "speed" : {
           "vertical" : 0
+        }
+      }
+    },
+    {
+      "if" : {
+        "app" : "barrier",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc542",
+          "productName" : "Wireless Receiver",
+          "vendorID" : "0x46d"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : false
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x584a",
+          "productName" : "HP 125 USB Optical Mouse",
+          "vendorID" : "0x3f0"
+        }
+      },
+      "scrolling" : {
+        "reverse" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb091",
+          "productName" : "Cherry USB Optical Mouse",
+          "vendorID" : "0x46a"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "horizontal" : 1
         },
+        "reverse" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb034",
+          "productName" : "MX Master 3S",
+          "serialNumber" : "091B171C",
+          "vendorID" : "0x46d"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 2.5,
+        "disableAcceleration" : false,
+        "redirectsToScroll" : false,
+        "speed" : "unset"
+      },
+      "scrolling" : {
         "acceleration" : {
           "vertical" : 1
         },
+        "distance" : {
+          "vertical" : "auto"
+        },
         "reverse" : {
           "vertical" : false
+        },
+        "speed" : {
+          "vertical" : 0
         }
       }
     }
