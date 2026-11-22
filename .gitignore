@@ -27,3 +27,7 @@ zed/.config/zed/.tmp*
 # shiki runtime state — log and last-session restore, not config
 shiki/.config/shiki/shiki.log
 shiki/.config/shiki/session.toml
+
+# shiki runtime state — capture server port and deleted-note trash, not config
+shiki/.config/shiki/capture.port
+shiki/.config/shiki/trash/
