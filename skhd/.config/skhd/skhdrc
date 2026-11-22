@@ -24,7 +24,7 @@ alt - 4: @toggle_app("Figma")
 alt - 5: @toggle_app("Microsoft Teams")
 alt - 6: @toggle_app("Microsoft Outlook")
 
-alt - return: @toggle_app("Ghostty")
+alt - return: @toggle_app("Herdr")
 alt + shift - b: @toggle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
 alt + shift - f: @toggle_app("Finder")
