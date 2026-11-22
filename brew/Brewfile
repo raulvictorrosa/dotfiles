@@ -23,6 +23,8 @@ brew "icu4c@78"
 brew "broot"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Fuzzy matcher that uses std{in,out} and a native GUI
+brew "choose-gui"
 # Cross-platform make
 brew "cmake"
 # GNU File, Shell, and Text utilities
