@@ -12,7 +12,7 @@
 # The window title marks it: an nvim running elsewhere (Herdr, VS Code embed) must not count.
 .define open_nvim : sh -c ' \
   pgrep -f "[g]hostty --title=nvim" > /dev/null || \
-    open -n -a Ghostty --args --title=nvim -e nvim; \
+    open -n -a Ghostty --args --title=nvim --maximize=true -e nvim; \
   ~/.config/skhd/scripts/place-window Ghostty nvim'
 
 # Application shortcuts
