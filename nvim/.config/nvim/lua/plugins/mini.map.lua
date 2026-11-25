@@ -1,5 +1,5 @@
 -- Code minimap on the right, like VS Code's. mini.map does not open by itself
--- (and needs setup() called), so open it once everything has loaded.
+-- (and needs setup() called), so open it when a file is shown (see `config`).
 -- Keys: <leader>mt toggle, <leader>mf focus the map and browse (<CR> accept, <Esc> cancel),
 -- <leader>ms switch side. With `focusable = true` the mouse can enter the map window too.
 ---@module "lazy"
@@ -50,6 +50,29 @@ return {
   config = function(_, opts)
     local map = require("mini.map")
     map.setup(opts)
-    map.open()
+
+    -- Show the map only once a file is on screen, not on the dashboard / empty start.
+    -- It opens on the "no file -> file" transition only, so a manual <leader>mt close sticks.
+    local was_file = false
+    local function sync()
+      local buf = vim.api.nvim_get_current_buf()
+      -- Special windows (the map itself, help, trees...) must not change anything.
+      if vim.bo[buf].buftype ~= "" and vim.bo[buf].filetype ~= "snacks_dashboard" then
+        return
+      end
+      local is_file = vim.bo[buf].buftype == "" and vim.api.nvim_buf_get_name(buf) ~= ""
+      if is_file and not was_file then
+        map.open()
+      elseif not is_file then
+        map.close()
+      end
+      was_file = is_file
+    end
+    vim.api.nvim_create_autocmd("BufEnter", {
+      callback = function()
+        vim.schedule(sync)
+      end,
+    })
+    sync()
   end,
 }
