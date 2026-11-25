@@ -1,12 +1,13 @@
 // place-window: size and center one window of an app, then bring it to front.
 //
-//   place-window "<App Name>" "<title substring>" <width> <height>
+//   place-window "<App Name>" "<title substring>" [<width> <height>]
 //
 // Waits up to 3 s for a window whose title contains <title substring> to appear (so callers
 // don't need a fixed `sleep`), then centers it horizontally and puts it in the upper third of
-// the primary screen. Searches every running instance of the app (`open -n` spawns new ones).
+// the primary screen. Without <width> <height> the window is only brought to front, not moved.
+// Searches every running instance of the app (`open -n` spawns new ones).
 //
-// Build (binary is git-ignored, rebuild after editing):
+// Build (binary is git-ignored): `mise run skhd-build`, or by hand:
 //   swiftc -O -swift-version 5 -o ~/.config/skhd/scripts/place-window ~/.config/skhd/scripts/place-window.swift
 //
 // Needs Accessibility permission; when launched from skhd it inherits skhd's.
@@ -15,8 +16,14 @@ import AppKit
 import ApplicationServices
 
 let args = CommandLine.arguments
-guard args.count == 5, let width = Double(args[3]), let height = Double(args[4]) else {
-    FileHandle.standardError.write(Data("usage: place-window \"<App Name>\" \"<title substring>\" <width> <height>\n".utf8))
+let usage = "usage: place-window \"<App Name>\" \"<title substring>\" [<width> <height>]\n"
+guard args.count == 3 || args.count == 5 else {
+    FileHandle.standardError.write(Data(usage.utf8))
+    exit(2)
+}
+let size: CGSize? = args.count == 5 ? Double(args[3]).flatMap { w in Double(args[4]).map { CGSize(width: w, height: $0) } } : nil
+if args.count == 5 && size == nil {
+    FileHandle.standardError.write(Data(usage.utf8))
     exit(2)
 }
 let (name, titlePart) = (args[1], args[2])
@@ -57,11 +64,12 @@ guard let (app, window) = found else {
     exit(1)
 }
 
-let screen = NSScreen.screens[0].frame  // primary screen; AX uses a top-left origin
-var size = CGSize(width: width, height: height)
-var origin = CGPoint(x: (screen.width - width) / 2, y: (screen.height - height) / 3)
-if let v = AXValueCreate(.cgSize, &size) { AXUIElementSetAttributeValue(window, kAXSizeAttribute as CFString, v) }
-if let v = AXValueCreate(.cgPoint, &origin) { AXUIElementSetAttributeValue(window, kAXPositionAttribute as CFString, v) }
+if var size {
+    let screen = NSScreen.screens[0].frame  // primary screen; AX uses a top-left origin
+    var origin = CGPoint(x: (screen.width - size.width) / 2, y: (screen.height - size.height) / 3)
+    if let v = AXValueCreate(.cgSize, &size) { AXUIElementSetAttributeValue(window, kAXSizeAttribute as CFString, v) }
+    if let v = AXValueCreate(.cgPoint, &origin) { AXUIElementSetAttributeValue(window, kAXPositionAttribute as CFString, v) }
+}
 
 app.unhide()
 AXUIElementPerformAction(window, kAXRaiseAction as CFString)
