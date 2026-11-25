@@ -4,59 +4,38 @@
 # Use custom shell (skips interactive shell overhead)
 .shell "/bin/zsh"
 
-# Define toggle_app command
-.define toggle_app : osascript -e 'tell application "{{1}}" to if it is running then quit else activate' 2>/dev/null || open -a "{{1}}"
+# cycle_app: open if closed, focus if in background, rotate windows if already focused,
+# hide if it has a single window. Source: utils/CycleApp.swift (built into ~/.local/bin/skhd-utils by `mise run skhd-build`).
+.define cycle_app : ~/.local/bin/skhd-utils cycle-app "{{1}}"
 
-# Open/activate Neovim in Ghostty
-# (excludes --embed instances, e.g. the VSCode-Neovim extension's own nvim processes)
+# Open Neovim in its own Ghostty window (875x700, tall enough for the whole LazyVim dashboard),
+# or focus it if already open.
+# The window title marks it: an nvim running elsewhere (Herdr, VS Code embed) must not count.
 .define open_nvim : sh -c ' \
-  if ps -axo command= | grep -E "(^|/)nvim( |$)" | grep -qv -- "--embed"; then \
-    osascript -e "tell application \"Ghostty\" to activate"; \
-  else \
-    open -n -a Ghostty --args -e nvim; \
-  fi'
+  pgrep -f "[g]hostty --title=nvim" > /dev/null || \
+    open -n -a Ghostty --args --title=nvim -e nvim; \
+  ~/.local/bin/skhd-utils place-window Ghostty nvim 875 700'
 
 # Application shortcuts
-alt - 1: @toggle_app("Google Chrome")
-alt - 2: @toggle_app("Zed")
-alt - 3: @toggle_app("Ghostty")
-alt - 4: @toggle_app("Figma")
-alt - 5: @toggle_app("Microsoft Teams")
-alt - 6: @toggle_app("Microsoft Outlook")
+alt - 1: @cycle_app("Google Chrome")
+alt - 2: @cycle_app("Visual Studio Code")
+alt - 3: @cycle_app("Ghostty")
+alt - 4: @cycle_app("Github Copilot")
+alt - 5: @cycle_app("Microsoft Teams")
+alt - 6: @cycle_app("Microsoft Outlook")
+alt - 7: @cycle_app("Figma")
 
-alt - return: @toggle_app("Herdr")
-alt + shift - b: @toggle_app("Google Chrome")
+alt - return: @cycle_app("Herdr")
+alt + shift - b: @cycle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
-alt + shift - f: @toggle_app("Finder")
+alt + shift - f: @cycle_app("Finder")
 alt + shift - m: ~/.config/skhd/scripts/music-picker.sh
 alt + shift - n: @open_nvim
+# btop in its own centered Ghostty window (875x600, upper third); place-window waits for the window
 alt + shift - t : sh -c ' \
-  if pgrep -f "Ghostty.*btop" > /dev/null; then \
-    osascript -e "tell application \\"Ghostty\\" to activate"; \
-  else \
+  pgrep -f "Ghostty.*btop" > /dev/null || \
     open -n -a Ghostty --args --title="btop" -e btop; \
-  fi; \
-  sleep 1; \
-  osascript \
-    -e "set window_width to 875" \
-    -e "set window_height to 600" \
-    -e "set process_name to \\"Ghostty\\"" \
-    -e "tell application \\"Finder\\" to set screen_bounds to bounds of window of desktop" \
-    -e "set screen_width to item 3 of screen_bounds" \
-    -e "set screen_height to item 4 of screen_bounds" \
-    -e "set x_pos to (screen_width - window_width) / 2" \
-    -e "set y_pos to ((screen_height - window_height) / 3)" \
-    -e "tell application \\"System Events\\"" \
-    -e "  repeat with p in (every process whose name is process_name)" \
-    -e "    repeat with w in windows of p" \
-    -e "      if name of w contains \\"btop\\" then" \
-    -e "        set size of w to {window_width, window_height}" \
-    -e "        set position of w to {x_pos, y_pos}" \
-    -e "        return" \
-    -e "      end if" \
-    -e "    end repeat" \
-    -e "  end repeat" \
-    -e "end tell"'
+  ~/.local/bin/skhd-utils place-window Ghostty btop 875 600'
 
 # command to restart skhd
 # skhd --reload

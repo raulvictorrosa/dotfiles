@@ -25,3 +25,18 @@ idiomatic_version_file_enable_tools = ["node"]
 
 [bootstrap.macos.finder]
 show_all_files = true
+
+# Compiles skhd-utils, the one Swift binary with every helper skhd calls
+# (skhd/.config/skhd/utils/*.swift -> ~/.local/bin/skhd-utils). It lives in ~/.local/bin, outside the
+# repo, so nothing needs a .gitignore entry, and a new subcommand is just another .swift file there.
+# mise skips the build while the sources are unchanged (`mise run --force skhd-build` to rebuild anyway).
+# TODO: once install.sh is committed and in use, run `mise run skhd-build` there after stowing skhd on macOS.
+[tasks.skhd-build]
+description = "Build skhd-utils (the skhd Swift helpers) into ~/.local/bin"
+dir = "~/.config/skhd/utils"
+sources = ["*.swift"]
+outputs = { auto = true }
+run = '''
+mkdir -p "$HOME/.local/bin"
+swiftc -O -swift-version 5 -o "$HOME/.local/bin/skhd-utils" *.swift
+'''
