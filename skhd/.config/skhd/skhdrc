@@ -8,12 +8,13 @@
 # hide if it has a single window. Source: scripts/cycle-app.swift (build command in its header).
 .define cycle_app : ~/.config/skhd/scripts/cycle-app "{{1}}"
 
-# Open Neovim in its own Ghostty window, or focus it if already open.
+# Open Neovim in its own Ghostty window (875x700, tall enough for the whole LazyVim dashboard),
+# or focus it if already open.
 # The window title marks it: an nvim running elsewhere (Herdr, VS Code embed) must not count.
 .define open_nvim : sh -c ' \
   pgrep -f "[g]hostty --title=nvim" > /dev/null || \
-    open -n -a Ghostty --args --title=nvim --maximize=true -e nvim; \
-  ~/.config/skhd/scripts/place-window Ghostty nvim'
+    open -n -a Ghostty --args --title=nvim -e nvim; \
+  ~/.config/skhd/scripts/place-window Ghostty nvim 875 700'
 
 # Application shortcuts
 alt - 1: @cycle_app("Google Chrome")
