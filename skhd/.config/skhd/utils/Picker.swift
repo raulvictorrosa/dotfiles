@@ -1,7 +1,6 @@
-// picker: small AppKit launcher-style chooser, a possible replacement for `choose` (choose-gui).
-// NOT wired into any script.
+// skhd-utils picker: small AppKit launcher-style chooser, a replacement for `choose` (choose-gui).
 //
-//   printf 'Spotify\ncliamp\n' | picker -p "Search music" -n 2 -w 20
+//   printf 'Spotify\ncliamp\n' | skhd-utils picker -p "Search music" -n 2 -w 20
 //
 //   -p <text>  placeholder shown in the search field
 //   -n <rows>  max visible rows (default 8)
@@ -11,35 +10,18 @@
 // Type to filter (fuzzy), Up/Down to move, Return to pick, Esc or click away to cancel (exit 1).
 // Look: translucent rounded panel, search icon, accent-colored rounded selection; follows the
 // system light/dark appearance and accent color.
-//
-// To try it in music-picker.sh, swap `/opt/homebrew/bin/choose` for `~/.local/bin/picker`.
-// To drop the experiment: delete this file and the `picker` line in .gitignore.
-//
-// Build (binary goes to ~/.local/bin): `mise run skhd-build`, or by hand:
-//   swiftc -O -swift-version 5 -o ~/.local/bin/picker ~/.config/skhd/scripts/picker.swift
 
 import AppKit
 
-var prompt = "Search"
-var maxRows = 8
-var widthPercent = 20.0
-var argv = CommandLine.arguments.dropFirst()
-while let flag = argv.popFirst() {
-    let value = argv.popFirst() ?? ""
-    switch flag {
-    case "-p": prompt = value
-    case "-n": maxRows = Int(value) ?? maxRows
-    case "-w": widthPercent = Double(value) ?? widthPercent
-    default: break
-    }
+private struct PickerConfig {
+    var prompt = "Search"
+    var maxRows = 8
+    var widthPercent = 20.0
+    var choices: [String] = []
 }
 
-let choices = String(decoding: FileHandle.standardInput.readDataToEndOfFile(), as: UTF8.self)
-    .split(separator: "\n").map(String.init).filter { !$0.isEmpty }
-guard !choices.isEmpty else { exit(1) }
-
 /// Every character of `query` appears in `text`, in order (case-insensitive).
-func fuzzyMatch(_ query: String, in text: String) -> Bool {
+private func fuzzyMatch(_ query: String, in text: String) -> Bool {
     var rest = text.lowercased()[...]
     for ch in query.lowercased() {
         guard let i = rest.firstIndex(of: ch) else { return false }
@@ -49,12 +31,12 @@ func fuzzyMatch(_ query: String, in text: String) -> Bool {
 }
 
 // Borderless panels refuse key status by default, which would leave the text field deaf.
-final class Panel: NSPanel {
+private final class Panel: NSPanel {
     override var canBecomeKey: Bool { true }
 }
 
 /// Rounded, accent-colored selection instead of the default full-width bar.
-final class RowView: NSTableRowView {
+private final class RowView: NSTableRowView {
     override var isEmphasized: Bool { get { true } set {} }  // keep the text white even when unfocused
     override func drawSelection(in dirtyRect: NSRect) {
         guard isSelected else { return }
@@ -63,20 +45,23 @@ final class RowView: NSTableRowView {
     }
 }
 
-final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate {
+private final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate {
     let searchHeight: CGFloat = 58, rowHeight: CGFloat = 40, listInset: CGFloat = 8
+    let config: PickerConfig
     let panel: Panel
     let icon = NSImageView()
     let field = NSTextField()
     let divider = NSView()
     let table = NSTableView()
     let scroll = NSScrollView()
-    var shown = choices
+    var shown: [String]
     var finished = false
 
-    override init() {
+    init(_ config: PickerConfig) {
+        self.config = config
+        shown = config.choices
         let screen = NSScreen.main?.frame ?? NSScreen.screens[0].frame
-        let width = max(420, screen.width * widthPercent / 100)
+        let width = max(420, screen.width * config.widthPercent / 100)
         panel = Panel(contentRect: NSRect(x: 0, y: 0, width: width, height: 100),
                       styleMask: [.borderless], backing: .buffered, defer: false)
         super.init()
@@ -104,7 +89,7 @@ final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTabl
         icon.contentTintColor = .secondaryLabelColor
         background.addSubview(icon)
 
-        field.placeholderString = prompt
+        field.placeholderString = config.prompt
         field.font = .systemFont(ofSize: 22, weight: .light)
         field.isBordered = false
         field.drawsBackground = false
@@ -144,7 +129,7 @@ final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTabl
 
     /// Grow/shrink the panel to the number of matches, keeping its top edge in place.
     func relayout() {
-        let rows = min(shown.count, maxRows)
+        let rows = min(shown.count, config.maxRows)
         let listHeight = CGFloat(rows) * rowHeight
         let height = searchHeight + (rows > 0 ? 1 + listInset + listHeight + listInset : 0)
         var frame = panel.frame
@@ -152,7 +137,7 @@ final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTabl
         frame.size.height = height
         panel.setFrame(frame, display: true)
         panel.invalidateShadow()  // otherwise the old, taller shadow lingers after the list shrinks
-        scroll.hasVerticalScroller = shown.count > maxRows
+        scroll.hasVerticalScroller = shown.count > config.maxRows
 
         let top = height - searchHeight
         icon.frame = NSRect(x: 20, y: top + (searchHeight - 22) / 2, width: 22, height: 22)
@@ -188,7 +173,7 @@ final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTabl
     // MARK: NSTextFieldDelegate
     func controlTextDidChange(_ obj: Notification) {
         let query = field.stringValue
-        shown = query.isEmpty ? choices : choices.filter { fuzzyMatch(query, in: $0) }
+        shown = query.isEmpty ? config.choices : config.choices.filter { fuzzyMatch(query, in: $0) }
         table.reloadData()
         relayout()
         if !shown.isEmpty { table.selectRowIndexes([0], byExtendingSelection: false) }
@@ -226,20 +211,39 @@ final class Picker: NSObject, NSTextFieldDelegate, NSTableViewDataSource, NSTabl
     func windowDidResignKey(_ notification: Notification) { finish(1) }  // clicked away
 }
 
-let app = NSApplication.shared
-app.setActivationPolicy(.accessory)  // no Dock icon
-let picker = Picker()
-picker.panel.alphaValue = 0
-picker.panel.makeKeyAndOrderFront(nil)
-picker.panel.makeFirstResponder(picker.field)
-NSAnimationContext.runAnimationGroup { context in
-    context.duration = 0.12
-    picker.panel.animator().alphaValue = 1
+/// `args` are the flags after `picker`; the choices come from stdin.
+func runPicker(_ args: [String]) -> Never {
+    var config = PickerConfig()
+    var flags = args[...]
+    while let flag = flags.popFirst() {
+        let value = flags.popFirst() ?? ""
+        switch flag {
+        case "-p": config.prompt = value
+        case "-n": config.maxRows = Int(value) ?? config.maxRows
+        case "-w": config.widthPercent = Double(value) ?? config.widthPercent
+        default: break
+        }
+    }
+    config.choices = String(decoding: FileHandle.standardInput.readDataToEndOfFile(), as: UTF8.self)
+        .split(separator: "\n").map(String.init).filter { !$0.isEmpty }
+    guard !config.choices.isEmpty else { exit(1) }
+
+    let app = NSApplication.shared
+    app.setActivationPolicy(.accessory)  // no Dock icon
+    let picker = Picker(config)
+    picker.panel.alphaValue = 0
+    picker.panel.makeKeyAndOrderFront(nil)
+    picker.panel.makeFirstResponder(picker.field)
+    NSAnimationContext.runAnimationGroup { context in
+        context.duration = 0.12
+        picker.panel.animator().alphaValue = 1
+    }
+    // A background-launched process (skhd) can't take focus through NSApp.activate on macOS 14+,
+    // so also ask for it through Accessibility (needs the permission skhd already has).
+    app.activate(ignoringOtherApps: true)
+    if AXIsProcessTrusted() {
+        AXUIElementSetAttributeValue(AXUIElementCreateApplication(getpid()), kAXFrontmostAttribute as CFString, kCFBooleanTrue)
+    }
+    app.run()
+    exit(0)
 }
-// A background-launched process (skhd) can't take focus through NSApp.activate on macOS 14+,
-// so also ask for it through Accessibility (needs the permission skhd already has).
-app.activate(ignoringOtherApps: true)
-if AXIsProcessTrusted() {
-    AXUIElementSetAttributeValue(AXUIElementCreateApplication(getpid()), kAXFrontmostAttribute as CFString, kCFBooleanTrue)
-}
-app.run()
