@@ -29,3 +29,6 @@ shiki/.config/shiki/shiki.log
 shiki/.config/shiki/session.toml
 shiki/.config/shiki/capture.port
 shiki/.config/shiki/trash/
+
+# compiled by hand from skhd/.config/skhd/scripts/cycle-app.swift (see its header)
+skhd/.config/skhd/scripts/cycle-app

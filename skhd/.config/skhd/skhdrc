@@ -4,8 +4,9 @@
 # Use custom shell (skips interactive shell overhead)
 .shell "/bin/zsh"
 
-# Define toggle_app command
-.define toggle_app : osascript -e 'tell application "{{1}}" to if it is running then quit else activate' 2>/dev/null || open -a "{{1}}"
+# cycle_app: open if closed, focus if in background, rotate windows if already focused,
+# hide if it has a single window. Source: scripts/cycle-app.swift (build command in its header).
+.define cycle_app : ~/.config/skhd/scripts/cycle-app "{{1}}"
 
 # Open/activate Neovim in Ghostty
 # (excludes --embed instances, e.g. the VSCode-Neovim extension's own nvim processes)
@@ -17,17 +18,18 @@
   fi'
 
 # Application shortcuts
-alt - 1: @toggle_app("Google Chrome")
-alt - 2: @toggle_app("Zed")
-alt - 3: @toggle_app("Ghostty")
-alt - 4: @toggle_app("Figma")
-alt - 5: @toggle_app("Microsoft Teams")
-alt - 6: @toggle_app("Microsoft Outlook")
+alt - 1: @cycle_app("Google Chrome")
+alt - 2: @cycle_app("Visual Studio Code")
+alt - 3: @cycle_app("Ghostty")
+alt - 4: @cycle_app("Github Copilot")
+alt - 5: @cycle_app("Microsoft Teams")
+alt - 6: @cycle_app("Microsoft Outlook")
+alt - 7: @cycle_app("Figma")
 
-alt - return: @toggle_app("Herdr")
-alt + shift - b: @toggle_app("Google Chrome")
+alt - return: @cycle_app("Herdr")
+alt + shift - b: @cycle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
-alt + shift - f: @toggle_app("Finder")
+alt + shift - f: @cycle_app("Finder")
 alt + shift - m: ~/.config/skhd/scripts/music-picker.sh
 alt + shift - n: @open_nvim
 alt + shift - t : sh -c ' \
