@@ -8,13 +8,17 @@
 # hide if it has a single window. Source: utils/CycleApp.swift (built into ~/.local/bin/skhd-utils by `mise run skhd-build`).
 .define cycle_app : ~/.local/bin/skhd-utils cycle-app "{{1}}"
 
-# Open Neovim in its own Ghostty window (875x700, tall enough for the whole LazyVim dashboard),
-# or focus it if already open.
-# The window title marks it: an nvim running elsewhere (Herdr, VS Code embed) must not count.
-.define open_nvim : sh -c ' \
-  pgrep -f "[g]hostty --title=nvim" > /dev/null || \
-    open -n -a Ghostty --args --title=nvim -e nvim; \
-  ~/.local/bin/skhd-utils place-window Ghostty nvim 875 700'
+# ghostty_window(command, width, height): run <command> in its own Ghostty window titled <command>.
+# Freshly opened: sized width x height, centered in the upper third. Already open: only focused,
+# so a window you resized or maximized keeps its size.
+# The title marks it: a command running elsewhere (Herdr, VS Code embed) must not count.
+.define ghostty_window : sh -c ' \
+  if pgrep -f "[g]hostty --title={{1}}" > /dev/null; then \
+    ~/.local/bin/skhd-utils place-window Ghostty {{1}}; \
+  else \
+    open -n -a Ghostty --args --title={{1}} -e {{1}}; \
+    ~/.local/bin/skhd-utils place-window Ghostty {{1}} {{2}} {{3}}; \
+  fi'
 
 # Application shortcuts
 alt - 1: @cycle_app("Google Chrome")
@@ -30,12 +34,9 @@ alt + shift - b: @cycle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
 alt + shift - f: @cycle_app("Finder")
 alt + shift - m: ~/.config/skhd/scripts/music-picker.sh
-alt + shift - n: @open_nvim
-# btop in its own centered Ghostty window (875x600, upper third); place-window waits for the window
-alt + shift - t : sh -c ' \
-  pgrep -f "Ghostty.*btop" > /dev/null || \
-    open -n -a Ghostty --args --title="btop" -e btop; \
-  ~/.local/bin/skhd-utils place-window Ghostty btop 875 600'
+# 875x700 is tall enough for the whole LazyVim dashboard
+alt + shift - n: @ghostty_window("nvim", "875", "700")
+alt + shift - t: @ghostty_window("btop", "875", "600")
 
 # command to restart skhd
 # skhd --reload

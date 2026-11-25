@@ -9,9 +9,13 @@ Spotify)
   open -a Spotify
   ;;
 cliamp)
-  pgrep -f "Ghostty.*cliamp" >/dev/null ||
-    open -n -a Ghostty --args --title="cliamp" -e cliamp
-  # wait for the window, center it (875x600, upper third of the screen) and bring it to front
-  ~/.local/bin/skhd-utils place-window Ghostty cliamp 875 600
+  if pgrep -f "[g]hostty --title=cliamp" >/dev/null; then
+    # already open: only focus it, so a resized or maximized window keeps its size
+    ~/.local/bin/skhd-utils place-window Ghostty cliamp
+  else
+    open -n -a Ghostty --args --title=cliamp -e cliamp
+    # wait for the window, center it (875x600, upper third of the screen) and bring it to front
+    ~/.local/bin/skhd-utils place-window Ghostty cliamp 875 600
+  fi
   ;;
 esac
