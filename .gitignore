@@ -29,8 +29,3 @@ shiki/.config/shiki/shiki.log
 shiki/.config/shiki/session.toml
 shiki/.config/shiki/capture.port
 shiki/.config/shiki/trash/
-
-# skhd helpers compiled by hand from the .swift files next to them (see their headers)
-skhd/.config/skhd/scripts/cycle-app
-skhd/.config/skhd/scripts/place-window
-skhd/.config/skhd/scripts/picker

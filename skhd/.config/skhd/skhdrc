@@ -5,8 +5,8 @@
 .shell "/bin/zsh"
 
 # cycle_app: open if closed, focus if in background, rotate windows if already focused,
-# hide if it has a single window. Source: scripts/cycle-app.swift (build command in its header).
-.define cycle_app : ~/.config/skhd/scripts/cycle-app "{{1}}"
+# hide if it has a single window. Source: scripts/cycle-app.swift, built into ~/.local/bin by `mise run skhd-build`.
+.define cycle_app : ~/.local/bin/cycle-app "{{1}}"
 
 # Open Neovim in its own Ghostty window (875x700, tall enough for the whole LazyVim dashboard),
 # or focus it if already open.
@@ -14,7 +14,7 @@
 .define open_nvim : sh -c ' \
   pgrep -f "[g]hostty --title=nvim" > /dev/null || \
     open -n -a Ghostty --args --title=nvim -e nvim; \
-  ~/.config/skhd/scripts/place-window Ghostty nvim 875 700'
+  ~/.local/bin/place-window Ghostty nvim 875 700'
 
 # Application shortcuts
 alt - 1: @cycle_app("Google Chrome")
@@ -35,7 +35,7 @@ alt + shift - n: @open_nvim
 alt + shift - t : sh -c ' \
   pgrep -f "Ghostty.*btop" > /dev/null || \
     open -n -a Ghostty --args --title="btop" -e btop; \
-  ~/.config/skhd/scripts/place-window Ghostty btop 875 600'
+  ~/.local/bin/place-window Ghostty btop 875 600'
 
 # command to restart skhd
 # skhd --reload

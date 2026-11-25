@@ -11,8 +11,8 @@
 // All running instances of the app count as one (`open -n -a Ghostty` starts a separate process
 // per btop/cliamp/nvim window). Windows are ordered with the system-wide front-to-back list.
 //
-// Build (binary is git-ignored): `mise run skhd-build`, or by hand:
-//   swiftc -O -swift-version 5 -o ~/.config/skhd/scripts/cycle-app ~/.config/skhd/scripts/cycle-app.swift
+// Build (binary goes to ~/.local/bin): `mise run skhd-build`, or by hand:
+//   swiftc -O -swift-version 5 -o ~/.local/bin/cycle-app ~/.config/skhd/scripts/cycle-app.swift
 //
 // Needs Accessibility permission; when launched from skhd it inherits skhd's.
 

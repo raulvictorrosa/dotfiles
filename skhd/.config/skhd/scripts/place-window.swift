@@ -7,8 +7,8 @@
 // the primary screen. Without <width> <height> the window is only brought to front, not moved.
 // Searches every running instance of the app (`open -n` spawns new ones).
 //
-// Build (binary is git-ignored): `mise run skhd-build`, or by hand:
-//   swiftc -O -swift-version 5 -o ~/.config/skhd/scripts/place-window ~/.config/skhd/scripts/place-window.swift
+// Build (binary goes to ~/.local/bin): `mise run skhd-build`, or by hand:
+//   swiftc -O -swift-version 5 -o ~/.local/bin/place-window ~/.config/skhd/scripts/place-window.swift
 //
 // Needs Accessibility permission; when launched from skhd it inherits skhd's.
 

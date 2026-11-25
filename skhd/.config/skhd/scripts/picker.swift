@@ -12,11 +12,11 @@
 // Look: translucent rounded panel, search icon, accent-colored rounded selection; follows the
 // system light/dark appearance and accent color.
 //
-// To try it in music-picker.sh, swap `/opt/homebrew/bin/choose` for `~/.config/skhd/scripts/picker`.
+// To try it in music-picker.sh, swap `/opt/homebrew/bin/choose` for `~/.local/bin/picker`.
 // To drop the experiment: delete this file and the `picker` line in .gitignore.
 //
-// Build (binary is git-ignored): `mise run skhd-build`, or by hand:
-//   swiftc -O -swift-version 5 -o ~/.config/skhd/scripts/picker ~/.config/skhd/scripts/picker.swift
+// Build (binary goes to ~/.local/bin): `mise run skhd-build`, or by hand:
+//   swiftc -O -swift-version 5 -o ~/.local/bin/picker ~/.config/skhd/scripts/picker.swift
 
 import AppKit
 
