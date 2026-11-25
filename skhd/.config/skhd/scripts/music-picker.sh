@@ -1,7 +1,8 @@
 #!/bin/sh
 # alt+shift+m: pick Spotify or cliamp
-# needs `choose` (choose-gui) and scripts/place-window (build: see place-window.swift)
-pick=$(printf 'Spotify\ncliamp\n' | /opt/homebrew/bin/choose -p "Music" -n 2 -w 20) || exit 0
+# needs scripts/picker and scripts/place-window (build: see picker.swift and place-window.swift)
+# (previous picker: printf ... | /opt/homebrew/bin/choose -p "Music" -n 2 -w 20)
+pick=$(printf 'Spotify\ncliamp\n' | ~/.config/skhd/scripts/picker -p "Search music" -n 2 -w 20) || exit 0
 
 case "$pick" in
 Spotify)
