@@ -25,3 +25,17 @@ idiomatic_version_file_enable_tools = ["node"]
 
 [bootstrap.macos.finder]
 show_all_files = true
+
+# Compiles the Swift helpers skhd calls (scripts/<name>.swift -> scripts/<name>, git-ignored).
+# mise skips it while every binary is newer than the sources, so it is cheap to re-run.
+# TODO: once install.sh is committed and in use, run `mise run skhd-build` there after stowing skhd on macOS.
+[tasks.skhd-build]
+description = "Build the skhd Swift helpers (cycle-app, place-window, picker)"
+dir = "~/.config/skhd/scripts"
+sources = ["*.swift"]
+outputs = ["cycle-app", "place-window", "picker"]
+run = '''
+for f in cycle-app place-window picker; do
+  swiftc -O -swift-version 5 -o "$f" "$f.swift"
+done
+'''
