@@ -30,7 +30,7 @@ show_all_files = true
 # (skhd/.config/skhd/utils/*.swift -> ~/.local/bin/skhd-utils). It lives in ~/.local/bin, outside the
 # repo, so nothing needs a .gitignore entry, and a new subcommand is just another .swift file there.
 # mise skips the build while the sources are unchanged (`mise run --force skhd-build` to rebuild anyway).
-# TODO: once install.sh is committed and in use, run `mise run skhd-build` there after stowing skhd on macOS.
+# install.sh runs this task on macOS after stowing skhd.
 [tasks.skhd-build]
 description = "Build skhd-utils (the skhd Swift helpers) into ~/.local/bin"
 dir = "{{xdg_config_home}}/skhd/utils"

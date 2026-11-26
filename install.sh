@@ -17,15 +17,18 @@ set -euo pipefail
 
 REPO_URL="https://github.com/raulvictorrosa/dotfiles.git"
 
-# Packages that work everywhere (macOS, Linux, devcontainers)
+# These lists are Stow packages: the configs that get linked, not the software
+# that gets installed (that is brew/Brewfile, only with --brew).
+
+# Packages that work on macOS and Linux
 COMMON_PACKAGES=(
-  atuin btop git herdr hunk k9s lazygit mise nvim shiki
-  starship television yazi zsh
+  atuin btop ghostty git herdr herdr-app hunk k9s lazygit mise nvim shiki
+  starship television yazi zed zsh
 )
 
 # macOS-only packages
 MAC_PACKAGES=(
-  ghostty herdr-app linearmouse skhd zed
+  linearmouse skhd
 )
 # Tracked but not installed because they are unused: aerospace, borders, tmux,
 # tmuxinator. sketchybar is also left out: its files are not under .config/, so
@@ -122,6 +125,21 @@ stow_package() {
   fi
 }
 
+# skhd hotkeys call skhd-utils, which a mise task compiles from the Swift sources.
+# A failure only warns: the configs are already linked at this point.
+build_skhd_utils() {
+  local configs="$1" retry="run 'mise run skhd-build' later"
+  load_brew || true
+  if ! command -v mise &>/dev/null || ! xcode-select -p &>/dev/null; then
+    echo "WARNING: skhd-utils needs mise and the Xcode Command Line Tools; $retry" >&2
+    return 0
+  fi
+  echo "Building skhd-utils..."
+  # Without this, 'mise run' first installs every tool listed in the global config.
+  (cd "$HOME" && XDG_CONFIG_HOME="$configs" MISE_TASK_RUN_AUTO_INSTALL=false mise run skhd-build) ||
+    echo "WARNING: building skhd-utils failed; $retry" >&2
+}
+
 # Directory of this script when it runs from a checkout, empty when piped.
 local_checkout() {
   local source="${BASH_SOURCE[0]:-}" dir
@@ -206,6 +224,14 @@ main() {
     echo "Stowing $pkg..."
     stow_package "$dir" "$configs" "$pkg" "${stow_flags[@]}" || failed+=("$pkg")
   done
+
+  if is_mac && [[ " ${failed[*]-} " != *" skhd "* && " ${failed[*]-} " != *" mise "* ]]; then
+    if $dry_run; then
+      echo "Would build skhd-utils with: mise run skhd-build"
+    else
+      build_skhd_utils "$configs"
+    fi
+  fi
 
   local identity="$dir/git/.config/git/config.local"
   if ! $dry_run && [[ ! -e "$identity" ]]; then

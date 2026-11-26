@@ -94,6 +94,8 @@ curl -fsSL https://raw.githubusercontent.com/raulvictorrosa/dotfiles/main/instal
 
 [`install.sh`](install.sh) clones the repo to `~/dotfiles` (override with `DOTFILES_DIR`), installs Git and Stow if missing (with Homebrew on macOS, or `pacman`, `apt-get` or `dnf` on Linux), links the packages and creates `git/.config/git/config.local` from the example. Running it again is safe: an existing clone is reused and **not** pulled. It never overwrites your files; packages with conflicts are listed at the end so you can move the files and run it again.
 
+The script links **configs**; it does not install the programs that read them. Apart from Git, Stow and Homebrew, software comes only from the Brewfile (`--brew`, macOS). On macOS it also builds `skhd-utils` with `mise run skhd-build`, which needs mise and the Xcode Command Line Tools; without them it prints a warning and carries on.
+
 Only macOS and Linux are supported: on Windows shells such as Git Bash, MSYS2 or Cygwin the script stops before changing anything. WSL identifies itself as Linux, so it is treated as Linux (not tested).
 
 Configs are linked into `$XDG_CONFIG_HOME` when it is set to an absolute path, and into `~/.config` otherwise. Some macOS apps may only read `~/.config`, so keep the default there unless you have checked yours. Unused configs (aerospace, borders, tmux, tmuxinator) are not linked; link one with `stow <name>`.
@@ -138,8 +140,9 @@ git clone https://github.com/raulvictorrosa/dotfiles.git ~/dotfiles
    # (this assumes the default ~/.config; install.sh also handles a custom XDG_CONFIG_HOME)
    mkdir -p ~/.config/herdr ~/.config/herdr-app/themes
 
-   stow atuin btop git herdr hunk k9s lazygit mise nvim shiki starship television yazi zsh  # Core tools and TUIs
-   stow ghostty herdr-app linearmouse skhd zed  # macOS
+   stow atuin btop ghostty git herdr herdr-app hunk k9s lazygit mise nvim shiki starship television yazi zed zsh  # macOS and Linux
+   stow linearmouse skhd  # macOS only
+   mise run skhd-build    # macOS only: compiles the helpers the skhd hotkeys call
 
    # Git: copy the local identity template, then fill in your name and email
    cp git/.config/git/config.local.example git/.config/git/config.local
