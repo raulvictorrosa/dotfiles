@@ -5,6 +5,9 @@
 # committed.
 git/.config/git/*.local
 
+# Machine-local environment variables, sourced by .zshenv
+zsh/.config/zsh/.zshenv.local
+
 tmux/.config/tmux/plugins/
 
 # antidote's compiled plugin bundle — regenerated from .zsh_plugins.txt

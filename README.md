@@ -234,6 +234,10 @@ cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
 
 The shared config includes `[include] path = ~/.config/git/config.local` so git picks up identity automatically.
 
+### Machine-local environment variables
+
+Variables that belong to one machine (work project IDs, local paths, tokens) go in `~/.config/zsh/.zshenv.local`. The tracked `.zshenv` sources it when it exists, and Git ignores it, the same pattern as `config.local` for the Git identity.
+
 ### macOS Gotchas
 
 **tmux prefix (`C-Space`) doesn't fire.** macOS reserves `Ctrl+Space` /

@@ -15,3 +15,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export HISTSIZE=50000
 export SAVEHIST=50000
+
+# Machine-local variables (work project ids, per-machine paths) go in the
+# untracked .zshenv.local next to this file, never here: the repo is public.
+[[ ! -r "$ZDOTDIR/.zshenv.local" ]] || source "$ZDOTDIR/.zshenv.local"
