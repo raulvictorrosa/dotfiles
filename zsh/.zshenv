@@ -3,5 +3,5 @@
 # ZDOTDIR here does NOT make zsh re-read .zshenv from the new location; it
 # only affects .zprofile/.zshrc/.zlogin, which are looked up fresh. So the
 # real .zshenv content is sourced explicitly below.
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 [[ -f "$ZDOTDIR/.zshenv" ]] && source "$ZDOTDIR/.zshenv"

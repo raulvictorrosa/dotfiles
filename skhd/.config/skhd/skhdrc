@@ -33,7 +33,7 @@ alt - return: @cycle_app("Herdr")
 alt + shift - b: @cycle_app("Google Chrome")
 alt + cmd + shift - b: open -na "Google Chrome" --args --incognito
 alt + shift - f: @cycle_app("Finder")
-alt + shift - m: ~/.config/skhd/scripts/music-picker.sh
+alt + shift - m: "${XDG_CONFIG_HOME:-$HOME/.config}/skhd/scripts/music-picker.sh"
 # 875x700 is tall enough for the whole LazyVim dashboard
 alt + shift - n: @ghostty_window("nvim", "875", "700")
 alt + shift - t: @ghostty_window("btop", "875", "600")
