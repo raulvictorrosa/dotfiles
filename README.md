@@ -7,12 +7,12 @@ A comprehensive collection of configuration files for a productive development e
 The following tools are actively used and recommended for the best experience:
 
 - **📝 Editors**: Neovim, Zed, VS Code
-- **🪟 Window Management**: Vorssaint, skhd, Borders (Aerospace tracked but currently unused — beta lag)
+- **🪟 Window Management**: Vorssaint, skhd (Aerospace and Borders tracked but currently unused)
 - **📊 System Monitoring**: SketchyBar
 - **📁 File Navigation**: Yazi
 - **🕰️ History**: Atuin
-- **🔄 Multiplexer**: tmux, herdr (trialing both, undecided which one sticks)
-- **🗂️ Session Management**: tmuxinator (for tmux), herdr-plus/sessionizer/navigator (for herdr)
+- **🔄 Multiplexer**: herdr (tmux tracked but currently unused)
+- **🗂️ Session Management**: herdr-plus/sessionizer/navigator
 - **✨ Terminal**: Ghostty
 - **🐭 Mouse**: LinearMouse
 - **📦 Tools**: Mise, Homebrew
@@ -24,12 +24,12 @@ The following tools are actively used and recommended for the best experience:
 
 - **Terminal**: Ghostty (recommended), Kitty, WezTerm configurations; Alacritty (reference only)
 - **Shell**: Zsh with Antidote and Starship — a few individual oh-my-zsh plugins (`git`, `vi-mode`, `eza`, `tmux`, `tmuxinator`) loaded standalone, no framework
-- **Multiplexer**: tmux with TPM plugin manager, config split under `tmux/.config/tmux/conf.d/` (options/bindings/statusbar/plugins), bindings adapted from [omarchy](https://github.com/basecamp/omarchy)'s tmux.conf — herdr is being trialed alongside it, see "Session & Workspace Management" below
+- **Multiplexer**: tmux with TPM plugin manager, config split under `tmux/.config/tmux/conf.d/` (options/bindings/statusbar/plugins), bindings adapted from [omarchy](https://github.com/basecamp/omarchy)'s tmux.conf — currently unused in favor of herdr, see "Session & Workspace Management" below
 - **File Management**: Atuin (history), Yazi (directory navigation)
 
 ### 🗂️ Session & Workspace Management
 
-Trialing two project-session tools side by side before picking one:
+herdr is the tool in use; the tmuxinator config is still tracked but unused:
 
 - **tmuxinator**: one YAML per project in `tmuxinator/.config/tmuxinator/` (via the `omz` plugin: `txs`/`txo`/`txn`/`txl` aliases). Start with `tmuxinator start <name>` or `txs <name>`.
 - **herdr**: agent-aware terminal multiplexer, config in `herdr/.config/herdr/`. Four plugins installed:
@@ -52,7 +52,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 
 - **Vorssaint**: Menu bar toolkit (macOS) — app switcher, window snapping/layouts and Dock previews; replaced AltTab and Rectangle as the active window-management tool
 - **SketchyBar**: Custom menu bar with system monitors (macOS)
-- **Borders**: Window border customization (macOS)
+- **Borders**: Window border customization (macOS) — tracked but currently unused
 - **LinearMouse**: Mouse acceleration customization (macOS)
 - **Aerospace**: Tiling window manager (macOS) — tracked but currently unused; still in beta and was causing lag, may revisit later
 - **Amethyst**: Alternative tiling window manager (macOS - reference only)
@@ -84,7 +84,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 ### Prerequisites
 
 - macOS or Linux (configs support both platforms)
-- `curl`; on macOS the installer sets up [Homebrew](https://brew.sh/) when needed, on Linux it uses `apt-get` or `dnf`
+- `curl`; on macOS the installer sets up [Homebrew](https://brew.sh/) when needed, on Linux it uses `pacman`, `apt-get` or `dnf`
 
 ### One-line install
 
@@ -92,7 +92,11 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 curl -fsSL https://raw.githubusercontent.com/raulvictorrosa/dotfiles/main/install.sh | bash
 ```
 
-[`install.sh`](install.sh) clones the repo to `~/dotfiles` (override with `DOTFILES_DIR`), installs Git and Stow if missing (and Homebrew on macOS when needed), links the packages and creates `git/.config/git/config.local` from the example. Running it again is safe: an existing clone is reused and **not** pulled. It never overwrites your files; packages with conflicts are listed at the end so you can move the files and run it again.
+[`install.sh`](install.sh) clones the repo to `~/dotfiles` (override with `DOTFILES_DIR`), installs Git and Stow if missing (with Homebrew on macOS, or `pacman`, `apt-get` or `dnf` on Linux), links the packages and creates `git/.config/git/config.local` from the example. Running it again is safe: an existing clone is reused and **not** pulled. It never overwrites your files; packages with conflicts are listed at the end so you can move the files and run it again.
+
+Only macOS and Linux are supported: on Windows shells such as Git Bash, MSYS2 or Cygwin the script stops before changing anything. WSL identifies itself as Linux, so it is treated as Linux (not tested).
+
+Configs are linked into `$XDG_CONFIG_HOME` when it is set to an absolute path, and into `~/.config` otherwise. Some macOS apps may only read `~/.config`, so keep the default there unless you have checked yours. Unused configs (aerospace, borders, tmux, tmuxinator) are not linked; link one with `stow <name>`.
 
 To also install everything in the Brewfile (macOS; large, includes GUI apps):
 
@@ -131,10 +135,11 @@ git clone https://github.com/raulvictorrosa/dotfiles.git ~/dotfiles
 
    ```bash
    # Keep these as real directories, so apps don't write runtime files into the repo
+   # (this assumes the default ~/.config; install.sh also handles a custom XDG_CONFIG_HOME)
    mkdir -p ~/.config/herdr ~/.config/herdr-app/themes
 
-   stow atuin btop git herdr hunk k9s lazygit mise nvim shiki starship television tmux tmuxinator yazi zsh  # Core tools and TUIs
-   stow borders ghostty herdr-app linearmouse skhd zed  # macOS
+   stow atuin btop git herdr hunk k9s lazygit mise nvim shiki starship television yazi zsh  # Core tools and TUIs
+   stow ghostty herdr-app linearmouse skhd zed  # macOS
 
    # Git: copy the local identity template, then fill in your name and email
    cp git/.config/git/config.local.example git/.config/git/config.local
@@ -208,7 +213,7 @@ git clone https://github.com/raulvictorrosa/dotfiles.git ~/dotfiles
 ### System Integration
 
 - **Custom menu bar** with SketchyBar showing system stats (macOS)
-- **Window borders** for better visual separation (macOS)
+- **Window borders** for better visual separation (macOS, currently unused)
 - **App-toggle hotkeys** built into skhd (macOS)
 - **Cross-platform package management** with Homebrew/system package managers
 
@@ -232,7 +237,7 @@ cp ~/dotfiles/git/.config/git/config.local.example ~/.config/git/config.local
 # edit with your name and email
 ```
 
-The shared config includes `[include] path = ~/.config/git/config.local` so git picks up identity automatically.
+The shared config includes `[include] path = config.local`, resolved next to the config file, so git picks up identity automatically.
 
 ### Machine-local environment variables
 
@@ -258,6 +263,7 @@ Tools already managed by this repo are kept XDG-compliant where the tool
 supports it (this is a scoped pass over dotfiles-managed tools, not a
 machine-wide reorg):
 
+- **zsh**: `XDG_*` variables already set by the machine are kept; the usual defaults apply otherwise.
 - **zsh**: env vars (`XDG_*`, `HISTFILE`) live in `zsh/.zshenv`, sourced by
   *every* zsh invocation — not just interactive ones, unlike `.zshrc`. Shell
   history lives at `$XDG_STATE_HOME/zsh/history` instead of `~/.zsh_history`.
