@@ -1,4 +1,5 @@
 tap "anomalyco/tap"
+tap "bjarneo/cliamp"
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "jackielii/tap"
 tap "nikitabobko/tap"
@@ -17,12 +18,16 @@ brew "bash"
 brew "bat"
 # Arbitrary precision numeric processing language
 brew "bc"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@78"
 # New way to see and navigate directory trees
 brew "broot"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# TIFF library and utilities
+brew "libtiff"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c@78"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
+brew "chafa"
 # Fuzzy matcher that uses std{in,out} and a native GUI
 brew "choose-gui"
 # Cross-platform make
@@ -43,8 +48,6 @@ brew "ffmpeg"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
-# TIFF library and utilities
-brew "libtiff"
 # GitHub command-line tool
 brew "gh"
 # Interpreter for PostScript and PDF
@@ -63,10 +66,16 @@ brew "glow"
 brew "gnu-sed"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Post-modern modal text editor
+brew "helix"
 # Agent multiplexer that lives in your terminal
 brew "herdr"
 # Client library for huggingface.co hub
 brew "hf"
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
+# Spell checker and morphological analyzer
+brew "hunspell"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Tools and libraries to manipulate images in select formats
@@ -133,6 +142,8 @@ brew "stow"
 brew "switchaudio-osx"
 # Modernized, complete, self-contained TeX/LaTeX engine
 brew "tectonic"
+# General purpose fuzzy finder TUI
+brew "television"
 # Terminal multiplexer
 brew "tmux"
 # Manage complex tmux sessions easily
@@ -141,6 +152,8 @@ brew "tmuxinator"
 brew "tree"
 # Parser generator tool
 brew "tree-sitter-cli"
+# Terminal UI OS (Terminal Multiplexer)
+brew "tuios"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Watch files and take action when they change
@@ -155,6 +168,8 @@ brew "yazi"
 brew "zoxide"
 # The AI coding agent built for the terminal.
 brew "anomalyco/tap/opencode", trusted: true
+# A retro terminal music player inspired by Winamp 2.x
+brew "bjarneo/cliamp/cliamp", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
 # Custom macOS statusbar with shell plugin, interaction and graph support
@@ -163,8 +178,12 @@ brew "felixkratz/formulae/sketchybar", trusted: true
 brew "sazardev/shiki/shiki", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
+# Enable Windows-like alt-tab
+cask "alt-tab"
 # Automatic tiling window manager similar to xmonad
 cask "amethyst"
+# Command-line tools for building and debugging Android apps
+cask "android-commandlinetools"
 # Android SDK component
 cask "android-platform-tools"
 # Allows connection to a computer remotely
@@ -185,6 +204,8 @@ cask "chatgpt"
 cask "connectiq"
 # Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli"
+# Plugin-based AI agent desktop application
+cask "deepseek-harness"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Launcher for *Epic Games* games
@@ -214,6 +235,8 @@ cask "github-copilot-app"
 cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
+# Desktop app for terminals and coding agents
+cask "herdr-app"
 # Homebrew's official GUI
 cask "homebrew-app"
 # Keyboard customiser
@@ -230,6 +253,8 @@ cask "logi-options+"
 cask "microsoft-edge"
 # Online collaborative whiteboard platform
 cask "miro"
+# Create mock APIs in seconds
+cask "mockoon"
 # Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
 # Visual tool to design, develop and administer MySQL servers
@@ -240,6 +265,8 @@ cask "obsidian"
 cask "onedrive"
 # AI coding agent desktop client
 cask "opencode-desktop"
+# Local-first alternative to Logitech Options+ for HID++ devices
+cask "openlogi"
 # Client program for the OpenVPN Access Server
 cask "openvpn-connect"
 # Browse, manage, inspect containers and images
@@ -250,8 +277,12 @@ cask "postman"
 cask "raspberry-pi-imager"
 # Control your tools with a few keystrokes
 cask "raycast"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Code editor based on VS Code and Tauri
+cask "sidex"
 # Simple hotkey daemon written in Zig
 cask "jackielii/tap/skhd-zig", trusted: true
 # Team communication and collaboration software
@@ -268,6 +299,8 @@ cask "stremioservice"
 cask "telegram"
 # Open-source BitTorrent client
 cask "transmission"
+# Hierarchical note taking application
+cask "trilium-notes"
 # Free and open-source OpenVPN client
 cask "tunnelblick"
 # Google Chromium, sans integration with Google
@@ -276,12 +309,16 @@ cask "ungoogled-chromium"
 cask "visual-studio-code"
 # Menu bar toolkit with keep-awake, system monitor and volume mixer
 cask "vorssaint"
+# Binary releases of VS Code without MS branding/telemetry/licensing
+cask "vscodium"
 # Rust-based terminal
 cask "warp"
 # Native desktop client for WhatsApp
 cask "whatsapp"
 # Multiplayer code editor
 cask "zed"
+# Multiplayer environment for coding with agents
+cask "zed-delta"
 # Open-source markdown editor
 cask "zettlr"
 vscode "adpyke.vscode-sql-formatter"
@@ -297,6 +334,7 @@ vscode "bbenoist.nix"
 vscode "biomejs.biome"
 vscode "bradlc.vscode-tailwindcss"
 vscode "bruno-api-client.bruno"
+vscode "catppuccin.catppuccin-vsc"
 vscode "catppuccin.catppuccin-vsc-icons"
 vscode "christian-kohler.npm-intellisense"
 vscode "crowdin.vscode-crowdin"
@@ -323,6 +361,8 @@ vscode "garmin.monkey-c"
 vscode "github.codespaces"
 vscode "github.remotehub"
 vscode "github.vscode-pull-request-github"
+vscode "google.geminicodeassist"
+vscode "google.google-antigravity"
 vscode "grapecity.gc-excelviewer"
 vscode "graphql.vscode-graphql"
 vscode "graphql.vscode-graphql-syntax"
@@ -333,6 +373,7 @@ vscode "jeylanib.pinescript"
 vscode "jock.svg"
 vscode "joshbolduc.commitlint"
 vscode "kumar-harsh.graphql-for-vscode"
+vscode "llvm-vs-code-extensions.lldb-dap"
 vscode "local-smart.excel-live-server"
 vscode "mathematic.vscode-latex"
 vscode "meganrogge.template-string-converter"
@@ -401,6 +442,7 @@ vscode "streetsidesoftware.code-spell-checker-portuguese-brazilian"
 vscode "styled-components.vscode-styled-components"
 vscode "sumneko.lua"
 vscode "svsool.markdown-memo"
+vscode "swiftlang.swift-vscode"
 vscode "syler.sass-indented"
 vscode "tamasfe.even-better-toml"
 vscode "tauri-apps.tauri-vscode"
@@ -422,6 +464,8 @@ vscode "wix.vscode-import-cost"
 vscode "xabikos.javascriptsnippets"
 vscode "yoavbls.pretty-ts-errors"
 cargo "shiki-mcp"
+uv "google-agents-cli"
 uv "graphifyy"
-uv "markitdown-mcp"
+uv "laya"
 uv "poetry"
+uv "pylatexenc"
