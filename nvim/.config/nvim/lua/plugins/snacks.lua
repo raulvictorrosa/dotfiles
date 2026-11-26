@@ -29,10 +29,8 @@ return {
           ignored = true, -- Show files ignored by git in the file explorer
           win = {
             list = {
-              -- Hybrid line numbers in the explorer, same as the editor, so counts like 5j / 3k
-              -- can be read straight off the gutter. Snacks hides them by default. The list
-              -- buffer only holds the rows on screen, so the number on the cursor line is the
-              -- screen row, not the item's position in the whole tree.
+              -- Hybrid line numbers, as in the editor, so counts like 5j / 3k are easy to read.
+              -- The cursor line shows the screen row, not the item's position in the tree.
               wo = {
                 number = true,
                 relativenumber = true,
