@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Bootstrap these dotfiles: clone the repo if needed, then symlink the packages
-# with GNU Stow. Safe to run more than once.
+# with GNU Stow. Safe to run more than once. macOS and Linux only.
 #
 #   curl -fsSL https://raw.githubusercontent.com/raulvictorrosa/dotfiles/main/install.sh | bash
 #   curl -fsSL https://raw.githubusercontent.com/raulvictorrosa/dotfiles/main/install.sh | bash -s -- --brew
@@ -10,7 +10,8 @@
 #   --dry-run  only show what Stow would link; installs and writes nothing
 #
 # Environment:
-#   DOTFILES_DIR  where to clone when running through curl (default: ~/dotfiles)
+#   DOTFILES_DIR     where to clone when running through curl (default: ~/dotfiles)
+#   XDG_CONFIG_HOME  where configs are linked (default: ~/.config)
 
 set -euo pipefail
 
@@ -19,21 +20,23 @@ REPO_URL="https://github.com/raulvictorrosa/dotfiles.git"
 # Packages that work everywhere (macOS, Linux, devcontainers)
 COMMON_PACKAGES=(
   atuin btop git herdr hunk k9s lazygit mise nvim shiki
-  starship television tmux tmuxinator yazi zsh
+  starship television yazi zsh
 )
 
-# macOS-only packages. aerospace is tracked but unused. sketchybar is left out
-# because its files are not under .config/, so Stow would link them into $HOME.
+# macOS-only packages
 MAC_PACKAGES=(
-  borders ghostty herdr-app linearmouse skhd zed
+  ghostty herdr-app linearmouse skhd zed
 )
+# Tracked but not installed because they are unused: aerospace, borders, tmux,
+# tmuxinator. sketchybar is also left out: its files are not under .config/, so
+# Stow would link them into the wrong place.
 
-# Apps write runtime files into these. Creating them first stops Stow from
-# folding them into a single symlink that would send those files into the repo.
+# Apps write runtime files into these (relative to the config directory).
+# Creating them first stops Stow from folding them into a single symlink that
+# would send those files into the repo.
 APP_MANAGED_DIRS=(
-  .config
-  .config/herdr
-  .config/herdr-app/themes
+  herdr
+  herdr-app/themes
 )
 
 die() {
@@ -77,6 +80,10 @@ install_packages() {
   if is_mac; then
     ensure_brew
     brew install "$@"
+  elif command -v pacman &>/dev/null; then
+    # No -y: refreshing the database without a full upgrade is unsupported on Arch.
+    as_root pacman -S --needed --noconfirm "$@" ||
+      die "pacman failed; update the system with 'sudo pacman -Syu', then run this again"
   elif command -v apt-get &>/dev/null; then
     as_root apt-get update
     as_root apt-get install -y "$@"
@@ -84,6 +91,34 @@ install_packages() {
     as_root dnf install -y "$@"
   else
     die "no supported package manager; install manually: $*"
+  fi
+}
+
+# XDG base directory spec: use XDG_CONFIG_HOME only when it is an absolute path,
+# otherwise fall back to the default.
+config_home() {
+  if [[ "${XDG_CONFIG_HOME:-}" == /* ]]; then
+    echo "${XDG_CONFIG_HOME%/}"
+  else
+    echo "$HOME/.config"
+  fi
+}
+
+# Link one package: its .config/ content goes to the config directory, and
+# anything else (only zsh/.zshenv today) goes to $HOME.
+stow_package() {
+  local repo="$1" target="$2" pkg="$3"
+  shift 3
+  if [[ -d "$repo/$pkg/.config" ]]; then
+    if [[ -d "$target" ]]; then
+      stow "$@" --dir="$repo/$pkg" --target="$target" .config || return 1
+    else
+      # Only on a dry run: Stow rejects a missing target, and nothing in it can conflict.
+      echo "  would link $repo/$pkg/.config/* into $target"
+    fi
+  fi
+  if [[ -f "$repo/$pkg/.zshenv" ]]; then
+    stow "$@" --dir="$repo" --target="$HOME" --ignore='\.config' "$pkg" || return 1
   fi
 }
 
@@ -95,7 +130,19 @@ local_checkout() {
   if [[ -f "$dir/zsh/.zshenv" ]]; then echo "$dir"; fi
 }
 
+# Anything else (Git Bash, MSYS2, Cygwin on Windows, BSDs) stops before any change.
+require_supported_os() {
+  local os
+  os="$(uname -s)"
+  case "$os" in
+    Darwin | Linux) ;;
+    *) die "unsupported system '$os': only macOS and Linux are supported" ;;
+  esac
+}
+
 main() {
+  require_supported_os
+
   local with_brew=false dry_run=false arg
   for arg in "$@"; do
     case "$arg" in
@@ -138,13 +185,18 @@ main() {
   local packages=("${COMMON_PACKAGES[@]}")
   if is_mac; then packages+=("${MAC_PACKAGES[@]}"); fi
 
-  local stow_flags=(--dir="$dir" --target="$HOME" --ignore='\.DS_Store')
+  local configs
+  configs="$(config_home)"
+  echo "Linking configs into $configs"
+
+  local stow_flags=(--ignore='\.DS_Store')
   if $dry_run; then
     stow_flags+=(--no --verbose)
   else
     local managed
+    mkdir -p "$configs"
     for managed in "${APP_MANAGED_DIRS[@]}"; do
-      mkdir -p "$HOME/$managed"
+      mkdir -p "$configs/$managed"
     done
   fi
 
@@ -152,7 +204,7 @@ main() {
   local pkg failed=()
   for pkg in "${packages[@]}"; do
     echo "Stowing $pkg..."
-    stow "${stow_flags[@]}" "$pkg" || failed+=("$pkg")
+    stow_package "$dir" "$configs" "$pkg" "${stow_flags[@]}" || failed+=("$pkg")
   done
 
   local identity="$dir/git/.config/git/config.local"
@@ -161,7 +213,7 @@ main() {
     echo "Created $identity - edit it with your git name and email."
   fi
   if [[ -e "$HOME/.gitconfig" ]]; then
-    echo "WARNING: ~/.gitconfig exists, so Git also reads it and it overrides ~/.config/git/config." >&2
+    echo "WARNING: ~/.gitconfig exists, so Git also reads it and it overrides $configs/git/config." >&2
   fi
 
   if ((${#failed[@]})); then
