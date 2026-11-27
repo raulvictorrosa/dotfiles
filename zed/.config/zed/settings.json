@@ -8,6 +8,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "show_whitespaces": "all",
+  "use_display_p3": true,
   "agent_buffer_font_size": 16.0,
   "agent_servers": {
     "github-copilot-cli": {
@@ -46,9 +54,13 @@
     "toggle_relative_line_numbers": true
   },
   "project_panel": {
+    "sort_order": "default",
+    "bold_folder_labels": false,
+    "entry_spacing": "comfortable",
     "dock": "left"
   },
   "agent": {
+    "dock": "right",
     "favorite_models": [],
     "model_parameters": []
   },

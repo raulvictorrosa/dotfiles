@@ -6,12 +6,16 @@
 # HISTFILE/HISTSIZE/SAVEHIST are reasserted again in .zshrc (see comment
 # there) — this copy is what actually applies to non-interactive/script
 # shells, which never reach .zshrc.
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 
 [[ -d "$XDG_STATE_HOME/zsh" ]] || mkdir -p "$XDG_STATE_HOME/zsh"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export HISTSIZE=50000
 export SAVEHIST=50000
+
+# Machine-local variables (work project ids, per-machine paths) go in the
+# untracked .zshenv.local next to this file, never here: the repo is public.
+[[ ! -r "$ZDOTDIR/.zshenv.local" ]] || source "$ZDOTDIR/.zshenv.local"

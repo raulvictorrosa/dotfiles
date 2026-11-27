@@ -1,4 +1,5 @@
 ---@module "lazy"
+---@module "lazyvim"
 ---@type LazySpec
 return {
   {
@@ -7,6 +8,7 @@ return {
   },
   {
     "LazyVim/LazyVim",
+    ---@type LazyVimOptions
     opts = {
       -- colorscheme = "dracula",
       -- "catppuccin-nvim", not "catppuccin": Neovim 0.12 ships its own built-in "catppuccin"

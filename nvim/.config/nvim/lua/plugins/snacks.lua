@@ -27,6 +27,16 @@ return {
         explorer = {
           hidden = true, -- Show hidden files in the file explorer
           ignored = true, -- Show files ignored by git in the file explorer
+          win = {
+            list = {
+              -- Hybrid line numbers, as in the editor, so counts like 5j / 3k are easy to read.
+              -- The cursor line shows the screen row, not the item's position in the tree.
+              wo = {
+                number = true,
+                relativenumber = true,
+              },
+            },
+          },
         },
       },
     },

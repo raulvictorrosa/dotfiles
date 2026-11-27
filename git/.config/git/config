@@ -1,7 +1,6 @@
 # See https://git-scm.com/docs/git-config
 
 [core]
-	excludesfile = ~/.config/git/ignore  # Global ignores shared across every repo on the machine
 	editor = nvim
 	# pager = delta                       # Syntax-highlighted diff pager (switch back if hunk does not work out)
 	pager = hunk pager
@@ -16,7 +15,7 @@
 [merge]
 	conflictStyle = zdiff3              # Show the common ancestor in conflict markers, not just ours/theirs
 [include]
-	path = ~/.config/git/config.local    # Machine-local identity (name/email) — not committed
+	path = config.local                  # Machine-local identity (name/email) — not committed
 [pull]
 	rebase = true 			 # Rebase (instead of merge) on pull
 [push]
