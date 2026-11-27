@@ -6,6 +6,9 @@ local opt = vim.opt
 
 opt.winborder = "rounded"
 opt.spelllang = { "en", "pt" }
+-- Show spaces and tabs (LazyVim enables 'list'; Neovim's default is "tab:> ,trail:-,nbsp:+").
+-- This value replaces that whole default, so nbsp (non-breaking space) needs its own entry.
+opt.listchars = { space = "·", tab = "→ ", trail = "·", nbsp = "␣" }
 -- vim.opt.statuscolumn = ""
 -- Rulers (80/100/120) are drawn by lua/plugins/virt-column.lua instead of 'colorcolumn'
 -- opt.colorcolumn = "80,100,120"

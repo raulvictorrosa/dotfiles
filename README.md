@@ -50,7 +50,7 @@ Client-confidential project files (e.g. work projects outside personal ones) are
 
 ### 🪟 Desktop & UI
 
-- **Vorssaint**: Menu bar toolkit (macOS) — app switcher, window snapping/layouts and Dock previews; replaced AltTab and Rectangle as the active window-management tool
+- **Vorssaint**: Menu bar toolkit (macOS) — app switcher, window snapping/layouts and Dock previews; replaced AltTab and Rectangle
 - **SketchyBar**: Custom menu bar with system monitors (macOS)
 - **Borders**: Window border customization (macOS) — tracked but currently unused
 - **LinearMouse**: Mouse acceleration customization (macOS)
@@ -290,6 +290,7 @@ machine-wide reorg):
 - LazyVim as the base configuration
 - LSP support for multiple languages
 - Custom keybindings for VSCode compatibility
+- Inlay hints (inline types and parameter names) start hidden; toggle them with `<leader>uh`
 - Hybrid (relative) line numbers in the editor and in the Snacks file explorer
 
 ### Terminal Features
